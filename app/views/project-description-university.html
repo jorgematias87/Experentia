@@ -118,7 +118,7 @@
             <div class="widget-body">
                 <div class="row">
                     <div class="col-xs-5 text-muted-dark"><div class="innerB half">Tecnología</div></div>
-                    <div class="col-xs-7 text-inverse"><div class="innerB half">.NET</div></div>
+                    <div class="col-xs-7 text-inverse"><div class="innerB half">{{grupo.tecnologia}}</div></div>
                     <div class="col-xs-5 text-muted-dark"><div class="innerB half">Equipo</div></div>
                     <div class="col-xs-7 text-inverse"><div class="innerB half">3 Personas</div></div>
                     <div class="col-xs-5 text-muted-dark"><div class="innerB half">Inicio:</div></div>
@@ -155,8 +155,9 @@
                 <div class="heading">Grupo asignado</div>
             </div>
             <div class="widget-body innerAll text-center">
-                <span ng-if="!viewProjectsCompany">No asignado</span>
-                <a ng-if="viewProjectsCompany" data-target="#modal-assignTaskGroup" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
+                <span ng-if="grupo.length > 0">No asignado</span>
+
+                <a ng-if="grupo.length === 0" data-target="#modal-assignTaskGroup" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
             </div>
         </div>
     </div>
