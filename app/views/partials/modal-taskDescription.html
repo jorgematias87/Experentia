@@ -1,0 +1,72 @@
+<!-- modal task description -->
+<div class="modal fade" id="modal-taskDescription">
+
+    <div class="modal-dialog">
+        <div class="modal-content bg-white">
+            <!-- Modal body -->
+            <div class="modal-body padding-none ">
+
+                <form class="form-horizontal " role="form">
+
+                    <div class="innerLR innerT">
+                        <div class="form-group">
+                            <label for="alumnos" class="col-sm-2 control-label innerB">Descripción:</label>
+                            <p class="col-sm-12">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label innerB">Feedback:</label>
+                            <div class="col-sm-12">
+                                <div class="widget-body">
+                                    <textarea id="mustHaveId" class="wysihtml5 col-md-12 form-control" rows="5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</textarea>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Calificación</label>
+                            <control-label></control-label>
+                            <div class="innerB" ng-controller="RatingCtrl">
+
+                                <rating class="ui-rating size-h3"
+                                ng-model="rate"
+                                max="max"
+                                readonly="isReadonly"
+                                on-hover="hoveringOver(value)"
+                                on-leave="overStar = null"
+                                state-on="'fa fa-star fa-2x'"
+                                state-off="'fa fa-star-o fa-2x'"></rating>
+                                <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+                                
+                            </div>
+                        </div>
+
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                </form>
+
+            </div>
+            <!-- // Modal body END -->
+
+            <div class="innerLR innerB text-right">
+                <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
+                <a href="#" class="btn btn-primary"><i class="fa  fa-check"></i> Guardar</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!-- end modal task description -->
+
+                        <!-- // END MODAL -->

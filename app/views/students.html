@@ -1,0 +1,158 @@
+
+<h1>Alumnos</h1>
+<div class="clearfix"></div>
+
+<div class="row innerTB">
+    <div class="widget widget-heading-simple widget-body-white">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Invitar a alumnos</h4>
+            </div>
+            <!-- // Widget heading END -->
+            
+            <div class="widget-body clearfix">
+                <label for="emailAlumnos">Email:</label>
+                <input class="innerB" type="hidden" ui-jq="select2" ui-options="select2Tags" style="width: 100%;"/>
+                <button class="pull-right btn btn-primary">Invitar</button>
+                <!-- <form action="" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="emailAlumnos">Email:</label>
+                            <input type="hidden" name="emailAlumnos" id="select2_5" class="form-control" style="width: 100%;"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button class="pull-right btn btn-primary">Invitar</button>
+                        </div>
+                    </div>
+                </form> -->
+            </div>
+        </div>
+        <div class="widget widget-heading-simple widget-body-white">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Asignar Grupos</h4>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+                <div class="sideBySide clearfix">
+                  <div class="col-md-12">
+                    <div class="alert alert-info text-center">
+                      <button type="button" class="close" data-dismiss="alert">×</button>
+                      <strong>Drag and Drop!</strong> Arrastre y suelte alumnos en sección Grupos.
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <ul class="source connected" ui-jq="sortable" ui-options="sortableOption">
+                      <li>
+                          <div class="media">
+                              <div class="pull-left">
+                                <span class="glyphicon glyphicon-user"></span>
+                              </div>
+                              <div class="media-body">
+                                  <a href="#">Adrian Demian</a>
+                              </div>
+                          </div>
+                      </li>
+                      <li>
+                          <div class="media">
+                              <div class="pull-left">
+                                <span class="glyphicon glyphicon-user"></span>
+                              </div>
+                              <div class="media-body">
+                                  <a href="#">Juan Perez</a>
+                              </div>
+                          </div>
+                      </li>
+                      <li>
+                          <div class="media">
+                              <div class="pull-left">
+                                <span class="glyphicon glyphicon-user"></span>
+                              </div>
+                              <div class="media-body">
+                                  <a href="#">Jose Gonzales</a>
+                              </div>
+                          </div>
+                      </li>
+                      <li>
+                          <div class="media">
+                              <div class="pull-left">
+                                <span class="glyphicon glyphicon-user"></span>
+                              </div>
+                              <div class="media-body">
+                                  <a href="#">Lucas Cuenca</a>
+                              </div>
+                          </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="widget widget-tabs widget-tabs-double widget-tabs-responsive">
+
+                        <!-- Tabs Heading -->
+                        <div class="widget-head">
+                            <ul>
+                                <li class="active"><a href data-target="#tab1-2" data-toggle="tab"><i></i><span>Grupo 1</span></a></li>
+                                <li><a href data-target="#tab2-2" data-toggle="tab"><i></i><span class="strong">Grupo 2</span></a></li>
+                                <li><a href data-target="#tab3-2" data-toggle="tab"><i></i><span>Grupo 3</span></a></li>
+                                <li><a href data-target="#tab4-2" data-toggle="tab"><i></i><span>Grupo 4</span></a></li>
+                                <li><a href data-target="#modal-createGroup" data-toggle="modal"><i class="fa fa-plus-square"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- // Tabs Heading END -->
+
+                        <div class="widget-body">
+                            <div class="tab-content">
+
+                                <!-- Tab content -->
+                                <div class="tab-pane active clearfix" id="tab1-2">
+                                    <h4>Grupo 1</h4>
+                                    <ul class="target connected" ui-jq="sortable" ui-options="sortableOption">
+                                    </ul>
+                                    <button class="pull-right btn btn-primary">Asignar</button>
+                                </div>
+                                <!-- // Tab content END -->
+
+                                <!-- Tab content -->
+                                <div class="tab-pane clearfix" id="tab2-2">
+                                    <h4>Grupo 2</h4>
+                                    <ul class="target connected" ui-jq="sortable" ui-options="sortableOption">
+                                    </ul>
+                                    <button class="pull-right btn btn-primary">Asignar</button>
+                                </div>
+                                <!-- // Tab content END -->
+
+                                <!-- Tab content -->
+                                <div class="tab-pane clearfix" id="tab3-2">
+                                    <h4>Grupo 3</h4>
+                                    <ul class="target connected" ui-jq="sortable" ui-options="sortableOption">
+                                    </ul>
+                                    <button class="pull-right btn btn-primary">Asignar</button>
+                                </div>
+                                <!-- // Tab content END -->
+
+                                <!-- Tab content -->
+                                <div class="tab-pane clearfix" id="tab4-2">
+                                    <h4>Grupo 4</h4>
+                                    <ul class="target connected" ui-jq="sortable" ui-options="sortableOption">
+                                    </ul>
+                                    <button class="pull-right btn btn-primary">Asignar</button>
+                                </div>
+                                <!-- // Tab content END -->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+        </div>
+</div>
+
+<div ng-include="'views/partials/modal-createGroup.html'"></div>

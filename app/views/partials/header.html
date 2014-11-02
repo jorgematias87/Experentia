@@ -1,0 +1,25 @@
+<div id="header" class="navbar hidden-print main navbar-default" role="navigation" ng-controller="MainCtrl">
+    <div class="user-action user-action-btn-navbar pull-right">
+        <button class="btn btn-sm btn-navbar btn-inverse btn-stroke hidden-lg hidden-md"><i class="fa fa-bars fa-2x"></i></button>
+    </div>
+    <a href="index.html" class="logo">
+        <img src="images/logo_experentia.png" alt="Experentia" />
+        <span class="hidden-xs hidden-sm inline-block">
+    </a>
+    
+    <ul class="main pull-right">
+        <li ng-if="viewProjectsCompany" class="hidden-xs hidden-sm"><a data-target="#modal-task" class="btn btn-info" data-toggle="modal">Crear Tareas  <i class="fa fa-fw icon-compose"></i></a></li>
+        <li ng-if="viewProjectsCompany" class="hidden-xs">Taresas Completadas:  <strong class="text-primary">24</strong></li>
+        <li class="dropdown username hidden-xs ">
+            <a href class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user text-muted"></span>  Empresa. <span class="caret"></span></a>
+
+            <ul class="dropdown-menu pull-right">
+                <li><a href="" class="glyphicons user"><i></i> Perfil</a></li>
+                <li><a href="" class="glyphicons envelope"><i></i>Mensajes</a></li>
+                <li><a href="" class="glyphicons settings"><i></i>Proyectos</a></li>
+                <li><a href="" class="glyphicons lock no-ajaxify"><i></i>Cerrar Sesión</a></li>
+            </ul>
+        </li>
+    </ul> 
+</div>
+<!-- // END navbar -->

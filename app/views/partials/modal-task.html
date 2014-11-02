@@ -1,0 +1,181 @@
+<!-- CREATE TASK MODAL -->
+<!-- Modal -->
+<div class="modal fade" id="modal-task">
+
+    <div class="modal-dialog">
+        <div class="modal-content bg-white">
+            <!-- Modal body -->
+
+            <div class="modal-header">
+                <h3 class="modal-title">Crear tarea</h3>
+            </div>
+
+            <div class="modal-body padding-none ">
+
+                <form class="form-horizontal " role="form">
+
+                    <div class="innerLR innerT">
+                        <div class="form-group">
+                            <label for="to" class="col-sm-12">Tarea:</label>
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="to">
+                                    <div class="input-group-btn">
+                                        <button type="button" data-toggle="collapse" data-target="#cc" class="btn btn-default">Fecha <span class="caret"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="cc" class="collapse">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Comienzo:</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group date datepicker2" ui-jq="datepicker" ui-options="datePickerOption">
+                                        <input class="form-control" type="text" value="14 February 2013" />
+                                        <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Fin:</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group date datepicker2" ui-jq="datepicker" ui-options="datePickerOption">
+                                        <input class="form-control" type="text" value="14 February 2013" />
+                                        <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-12">Descripción</label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="to" class="col-sm-12">Adjuntos:</label>
+                            <div class="col-sm-12">
+                                <div class="fileupload fileupload-new margin-none" data-provides="fileupload">
+                                    <span class="btn btn-default btn-file"><span class="fileupload-new">Seleccionar</span><span class="fileupload-exists">Cambiar</span><input type="file" class="margin-none"></span>
+                                    <span class="fileupload-preview"></span>
+                                    <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="innerLR">
+                        <div class="panel-group" id="accordion">
+                          <div class="panel panel-default">
+                            <div class="panel-heading clearfix">
+                              <h4 class="panel-title fontSizeMedium">
+                                <a data-toggle="collapse" data-parent="#accordion" href data-target="#collapseOne" class="pull-left">
+                                  Asignar a:
+                              </a>
+                              <a data-toggle="collapse" data-parent="#accordion" href data-target="#collapseOne" class="pull-right">
+                                  <span class="glyphicon glyphicon-chevron-down"></span>
+                              </a>
+                          </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse">
+                          <div class="panel-body">
+                            <ul class="unstyled list-hands">
+                                <li>
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <span class="glyphicon glyphicon-user text-muted"></span>                
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="pull-right">
+                                                <div class="radio">
+                                                    <label class="radio-custom checked" data-initialize="radio">
+                                                        <input type="radio" name="radio" checked="checked"> 
+                                                        <i class="fontSizeMedium fa fa-w fa-square-o"></i>
+                                                    </label> 
+                                                </div>
+                                            </div>
+                                            <a href="#">Adrian Demian</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <span class="glyphicon glyphicon-user text-muted"></span>              
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="pull-right">
+                                                <div class="radio">
+                                                    <label class="radio-custom checked" data-initialize="radio">
+                                                        <input type="radio" name="radio" checked="checked"> 
+                                                        <i class="fontSizeMedium fa fa-w fa-square-o"></i>
+                                                    </label> 
+                                                </div>
+                                            </div>
+                                            <a href="#">Laza Bogdan</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media">
+                                        <div class="pull-left">
+                                           <span class="glyphicon glyphicon-user text-muted"></span>              
+                                       </div>
+                                       <div class="media-body">
+                                        <div class="pull-right">
+                                            <div class="radio">
+                                                <label class="radio-custom checked" data-initialize="radio">
+                                                    <input type="radio" name="radio" checked="checked"> 
+                                                    <i class="fontSizeMedium fa fa-w fa-square-o"></i>
+                                                </label> 
+                                            </div>
+                                        </div>
+                                        <a href="#">Demian Adrian</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <span class="glyphicon glyphicon-user text-muted"></span>              
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="pull-right">
+                                            <div class="radio">
+                                                <label class="radio-custom checked" data-initialize="radio">
+                                                    <input type="radio" name="radio" checked="checked"> 
+                                                    <i class="fontSizeMedium fa fa-w fa-square-o"></i>
+                                                </label> 
+                                            </div>
+                                        </div>
+                                        <a href="#">Laza Bogdan</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+</div>
+<!-- // Modal body END -->
+
+<div class="innerLR innerB text-right">
+    <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
+    <a href="#" class="btn btn-primary"><i class="fa  fa-check"></i> Crear</a>
+</div>
+
+</div>
+</div>
+
+</div>
+<!-- // Modal END -->
