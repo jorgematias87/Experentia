@@ -11,12 +11,12 @@
                                     <a href="#" > <img class="innerTB half" src="images/logo_experentia_login.png" alt="people" width="150"/></a>
 
                                     <div class="innerAll">
-                                        <input class="form-control text-center bg-gray" type="text" placeholder="nombre de usuario"/>
+                                        <input ng-model="login.email" class="form-control text-center bg-gray" type="text" placeholder="nombre de usuario"/>
                                         <div class="innerB half"></div>
-                                        <input class="form-control text-center bg-gray" type="password" placeholder="contraseña"/>
+                                        <input ng-model="login.contrasenia" class="form-control text-center bg-gray" type="password" placeholder="contraseña"/>
                                     </div>
                                     <div class="innerTB half">
-                                        <a href="" class="btn btn-primary">Login <i class="fa fa-fw fa-unlock-alt"></i></a>
+                                        <a href="" ng-click="tryLogin()" class="btn btn-primary">Login <i class="fa fa-fw fa-unlock-alt"></i></a>
                                     </div>
 
                                 </div>

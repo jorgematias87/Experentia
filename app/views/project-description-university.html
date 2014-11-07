@@ -155,7 +155,7 @@
                 <div class="heading">Grupo asignado</div>
             </div>
             <div class="widget-body innerAll text-center">
-                <span ng-if="grupo.length > 0">No asignado</span>
+                <span>{{grupo.nombre}}</span>
 
                 <a ng-if="grupo.length === 0" data-target="#modal-assignTaskGroup" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
             </div>

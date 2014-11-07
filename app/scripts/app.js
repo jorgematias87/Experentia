@@ -19,7 +19,7 @@ angular
     'ui.jq',
     'ui.bootstrap'
   ])
-  .constant( 'baseURL', 'https://localhost:1096/' )
+  .constant( 'baseURL', 'http://localhost:2253/' )
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -28,7 +28,7 @@ angular
       })
       .when('/login', {
         templateUrl: 'views/login.html',
-        controller: 'MainCtrl'
+        controller: 'LoginCtrl'
       })
       .when('/proyectos-empresa', {
         templateUrl: 'views/project-list-company.html',
