@@ -97,3 +97,15 @@ ul.target {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+
+.thumbnail.widget-thumbnail .header {
+  color: rgb(170, 170, 170); 
+  width: 100%;
+  height: 200px;
+  line-height: 200px;
+  background-color: rgb(238, 238, 238);
+}
+
+.fa-10x {
+  font-size: 15em;
+}

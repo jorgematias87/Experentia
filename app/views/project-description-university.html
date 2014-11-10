@@ -1,13 +1,13 @@
-<h1 class="pull-left">Proyecto Final</h1>
+<h1 class="pull-left">{{proyecto.nombre}}</h1>
 <div class="innerT  pull-right">
     <a ng-if="viewProjectsCompany" href="#/proyectos-universidad" class="btn btn-primary">volver a proyectos</a>
-    <a ng-if="!viewProjectsCompany" href="#/proyectos-empresa" class="btn btn-primary">volver a proyectos</a>
+    <a ng-if="!viewProjectsCompany" href="#/proyectos-universidad" class="btn btn-primary">volver a proyectos</a>
 </div>
 <div class="clearfix"></div>
 <div class="separator"></div>
 <div class="widget widget-none">
     <div class="widget-body">
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, quia, illo, cupiditate, numquam consequuntur veritatis explicabo vero laboriosam aliquam fuga quas cumque ab voluptate dignissimos deleniti aspernatur obcaecati velit placeat.</p>
+        <p class="lead">{{proyecto.descripcion}}</p>
     </div>
 </div>
 <div class="row">

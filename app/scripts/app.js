@@ -19,7 +19,7 @@ angular
     'ui.jq',
     'ui.bootstrap'
   ])
-  .constant( 'baseURL', 'http://localhost:2253/' )
+  .constant( 'baseURL', 'http://localhost:1409/' )
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -32,13 +32,13 @@ angular
       })
       .when('/proyectos-empresa', {
         templateUrl: 'views/project-list-company.html',
-        controller: 'MainCtrl'
+        controller: 'ProyectoEmpresaCtrl'
       })
       .when('/proyectos-universidad', {
         templateUrl: 'views/project-list-university.html',
-        controller: 'MainCtrl'
+        controller: 'ProyectosUniversidadCtrl'
       })
-      .when('/proyecto-descripcion-universidad', {
+      .when('/proyecto-descripcion-universidad/:id', {
         templateUrl: 'views/project-description-university.html',
         controller: 'ProyectoDescripcionUniversidadCtrl'
       })

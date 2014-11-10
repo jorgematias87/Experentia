@@ -10,11 +10,6 @@
 angular.module('experentiaWebSiteApp')
 .factory('LoginSrv', function ($resource, baseURL) {
 
-  var login = $resource( baseURL + 'api/Coordinador', {}, {
-    update: {
-      method: 'GET',
-      isArray: false
-    }
-  });
+  var login = $resource( baseURL + 'api/login', {}, {});
   return login;
 });
