@@ -8,9 +8,9 @@
  * Controller of the experentiaWebSiteApp
  */
 angular.module('experentiaWebSiteApp')
-  .controller('LoginCtrl', function ($scope, LoginSrv) {
+  .controller('LoginCtrl', function ($scope, LoginSrv, $location) {
     var onLoginSucces = function(response){
-      $scope.msg = 'Ok';
+      $scope.usuario = response;
       $location.path('/proyectos-universidad');
     },
       onLoginError = function(rejection){
