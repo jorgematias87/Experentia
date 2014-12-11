@@ -33,13 +33,11 @@
 
         <div ng-include="'views/partials/header.html'"></div>
 
-        <div class="innerLR innerT">
+        <div id="wrap-ngview" class="innerLR innerT">
 
           <div ng-view=""></div>
 
         </div>
-
-        <div ng-include="'views/partials/modal-task.html'"></div>
 
       </div>
       <!-- // Content END -->
@@ -74,6 +72,7 @@
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
     <!-- endbower -->
     <script src="//www.fuelcdn.com/fuelux/3.1.0/js/fuelux.min.js"></script>
     <script src="assets/plugins/forms_elements_bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
@@ -94,6 +93,9 @@
         <script src="scripts/services/grupo.js"></script>
         <script src="scripts/services/login.js"></script>
         <script src="scripts/services/proyecto.js"></script>
+        <script src="scripts/services/tarea.js"></script>
+        <script src="scripts/services/alumno.js"></script>
+        <script src="scripts/controllers/tareas-alumno.js"></script>
         <!-- endbuild -->
 </body>
 </html>

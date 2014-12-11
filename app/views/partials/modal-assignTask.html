@@ -17,25 +17,7 @@
                             </div>
                             <div class="widget-body padding-none">
                                 <ul class="unstyled list-hands">
-                                    <li>
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <span class="glyphicon glyphicon-user text-muted"></span>                
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="pull-right">
-                                                    <div class="radio">
-                                                        <label class="radio-custom checked" data-initialize="radio">
-                                                            <input type="radio" name="radio" checked="checked"> 
-                                                            <i class="fontSizeSmall fa fa-w fa-square-o"></i>
-                                                        </label> 
-                                                    </div>
-                                                </div>
-                                                <a href="#">Adrian Demian</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
+                                    <li ng-repeat="alumno in alumnos">
                                         <div class="media">
                                             <div class="pull-left">
                                                 <span class="glyphicon glyphicon-user text-muted"></span>              
@@ -49,43 +31,7 @@
                                                         </label> 
                                                     </div>
                                                 </div>
-                                                <a href="#">Laza Bogdan</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="pull-left">
-                                               <span class="glyphicon glyphicon-user text-muted"></span>              
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="pull-right">
-                                                    <div class="radio">
-                                                        <label class="radio-custom checked" data-initialize="radio">
-                                                            <input type="radio" name="radio" checked="checked"> 
-                                                            <i class="fontSizeSmall fa fa-w fa-square-o"></i>
-                                                        </label> 
-                                                    </div>
-                                                </div>
-                                                <a href="#">Demian Adrian</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <span class="glyphicon glyphicon-user text-muted"></span>              
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="pull-right">
-                                                    <div class="radio">
-                                                        <label class="radio-custom checked" data-initialize="radio">
-                                                            <input type="radio" name="radio" checked="checked"> 
-                                                            <i class="fontSizeSmall fa fa-w fa-square-o"></i>
-                                                        </label> 
-                                                    </div>
-                                                </div>
-                                                <a href="#">Laza Bogdan</a>
+                                                <a href="#">{{alumno.nombre}} {{alumno.apellido}}</a>
                                             </div>
                                         </div>
                                     </li>
@@ -101,9 +47,13 @@
             </div>
             <!-- // Modal body END -->
 
+            <div ng-show="msg" class="nnerLR alert alert-success text-center">
+              <strong>{{msg}}
+            </div>
+
             <div class="innerLR innerB text-right">
                 <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
-                <a href="#" class="btn btn-primary"><i class="fa  fa-check"></i> Asignar</a>
+                <a ng-click="tryAsignar()" href class="btn btn-primary"><i class="fa  fa-check"></i> Asignar</a>
             </div>
 
         </div>

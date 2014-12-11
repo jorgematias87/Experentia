@@ -18,7 +18,7 @@
                     <h4>Tareas </h4>
                 </div>
 
-                <a ng-if="viewProjectsCompany" data-target="#modal-task" class="btn btn-primary btn-xs" data-toggle="modal"><i class="fa fa-plus"></i></a>
+                <a ng-if="usuario.user == 'coordinador'" data-target="#modal-task" class="btn btn-primary btn-xs" data-toggle="modal"><i class="fa fa-plus"></i></a>
             </div>
             <div class="pull-right innerR half">
                 <select ui-jq="selectpicker" data-style="btn btn-default strong filled" style="display: none;">
@@ -41,70 +41,26 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="widget widget-primary widget-small">
+        <div class="widget widget-primary widget-small" ng-repeat="tarea in tareas">
             <div class="media innerAll half">
                 <div class="pull-left h1 media-object hidden-xs margin-none innerR">
                     <i class="text-muted fa fa-ticket"></i>
                 </div>
-                <div class="pull-right text-right">
-                    <span class="label">No asignada</span>
+                <div class="pull-right text-right" ng-if="usuario.user == 'coordinador'">
+                    <span class="label">{{tarea.estado}}</span>
                     <div class="innerT half">
-                        <a ng-if="viewProjectsCompany" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
+                        <span>{{tarea.idAlumno}}</span>
+                        <a ng-if="tarea.idAlumno == null" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
                     </div>
                 </div>
 
                 <div class="media-body">
-                    <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal">Hacer login</a></h4>
+                    <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal">{{tarea.nombre}}</a></h4>
                     <div class="innerR">
                         <span class="strong">Inicio: </span>
-                        <span> 21 April 2014</span>
+                        <span> {{tarea.fechaInicio}}</span>
                     </div>
 
-                </div>
-            </div>
-        </div>
-
-        <div class="widget widget-warning widget-small">
-            <div class="media innerAll half">
-                <div class="pull-left h1 media-object hidden-xs margin-none innerR">
-                    <i class="text-muted fa fa-ticket"></i>
-                </div>
-                <div class="pull-right text-right">
-                    <span class="label label-warning">En progreso</span>
-                    <div class="strong text-muted innerT half">
-                        Matias
-                    </div>
-                </div>
-
-                <div class="media-body">
-                    <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal">Hacer login</a></h4>
-                    <div class="innerR">
-                        <span class="strong">Inicio: </span>
-                        <span> 21 April 2014</span>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="widget widget-success widget-small">
-            <div class="media innerAll half">
-                <div class="pull-left h1 media-object hidden-xs margin-none innerR">
-                    <i class="text-muted fa fa-ticket"></i>
-                </div>
-                <div class="pull-right text-right">
-                    <span class="label label-success">Finalizada</span>
-                    <div class="strong text-muted innerT half">
-                        Matias
-                    </div>
-                </div>
-
-                <div class="media-body">
-                    <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal">Hacer login</a></h4>
-                    <div class="innerR">
-                        <span class="strong">Inicio: </span>
-                        <span> 21 April 2014</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -164,6 +120,7 @@
 
 </div>
 
+<div ng-include="'views/partials/modal-task.html'"></div>
 <div ng-include="'views/partials/modal-assignTask.html'"></div>
 <div ng-include="'views/partials/modal-assignGroup.html'"></div>
 <div ng-include="'views/partials/modal-taskDescription.html'"></div>

@@ -27,6 +27,7 @@
  					return $element.addClass('body-wide');
  					case '/lock-screen':
  					return $element.addClass('body-wide body-lock');
+ 					case '/': {$element.addClass('body-wide'); $('#wrap-ngview').removeClass();};
  				}
  			};
  			addBg($location.path());

@@ -1,4 +1,3 @@
-<!-- CREATE TASK MODAL -->
 <!-- Modal -->
 <div class="modal fade" id="modal-task">
 
@@ -12,14 +11,14 @@
 
             <div class="modal-body padding-none ">
 
-                <form class="form-horizontal " role="form">
+                <form class="form-horizontal " role="form" ng-submit="tryTarea(idProyecto)">
 
                     <div class="innerLR innerT">
                         <div class="form-group">
                             <label for="to" class="col-sm-12">Tarea:</label>
                             <div class="col-sm-12">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="to">
+                                    <input type="text" class="form-control" id="to" ng-model="tarea.nombre">
                                     <div class="input-group-btn">
                                         <button type="button" data-toggle="collapse" data-target="#cc" class="btn btn-default">Fecha <span class="caret"></span></button>
                                     </div>
@@ -31,13 +30,13 @@
                                 <label class="col-sm-2 control-label">Comienzo:</label>
                                 <div class="col-sm-10">
                                     <div class="input-group date datepicker2" ui-jq="datepicker" ui-options="datePickerOption">
-                                        <input class="form-control" type="text" value="14 February 2013" />
+                                        <input class="form-control" type="text" value="14 February 2013" ng-model="tarea.fechaInicio"/>
                                         <span class="input-group-addon"><i class="fa fa-th"></i></span>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-sm-2 control-label">Fin:</label>
                                 <div class="col-sm-10">
                                     <div class="input-group date datepicker2" ui-jq="datepicker" ui-options="datePickerOption">
@@ -46,13 +45,13 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-12">Descripción</label>
                             <div class="col-sm-12">
-                                <textarea class="form-control" rows="4"></textarea>
+                                <textarea class="form-control" rows="4" ng-model="tarea.descripcion"></textarea>
                             </div>
                         </div>
 
@@ -86,7 +85,7 @@
                       <div id="collapseOne" class="panel-collapse collapse">
                           <div class="panel-body">
                             <ul class="unstyled list-hands">
-                                <li>
+                                <li ng-repeat="alumno in alumnos">
                                     <div class="media">
                                         <div class="pull-left">
                                             <span class="glyphicon glyphicon-user text-muted"></span>                
@@ -100,82 +99,27 @@
                                                     </label> 
                                                 </div>
                                             </div>
-                                            <a href="#">Adrian Demian</a>
+                                            <a href="#">{{alumno.nombre}} {{alumno.apellido}}</a>
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <span class="glyphicon glyphicon-user text-muted"></span>              
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="pull-right">
-                                                <div class="radio">
-                                                    <label class="radio-custom checked" data-initialize="radio">
-                                                        <input type="radio" name="radio" checked="checked"> 
-                                                        <i class="fontSizeMedium fa fa-w fa-square-o"></i>
-                                                    </label> 
-                                                </div>
-                                            </div>
-                                            <a href="#">Laza Bogdan</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="media">
-                                        <div class="pull-left">
-                                           <span class="glyphicon glyphicon-user text-muted"></span>              
-                                       </div>
-                                       <div class="media-body">
-                                        <div class="pull-right">
-                                            <div class="radio">
-                                                <label class="radio-custom checked" data-initialize="radio">
-                                                    <input type="radio" name="radio" checked="checked"> 
-                                                    <i class="fontSizeMedium fa fa-w fa-square-o"></i>
-                                                </label> 
-                                            </div>
-                                        </div>
-                                        <a href="#">Demian Adrian</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="pull-left">
-                                        <span class="glyphicon glyphicon-user text-muted"></span>              
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="pull-right">
-                                            <div class="radio">
-                                                <label class="radio-custom checked" data-initialize="radio">
-                                                    <input type="radio" name="radio" checked="checked"> 
-                                                    <i class="fontSizeMedium fa fa-w fa-square-o"></i>
-                                                </label> 
-                                            </div>
-                                        </div>
-                                        <a href="#">Laza Bogdan</a>
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="innerLR innerB text-right">
+        <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
+        <button type="submit" class="btn btn-primary"><i class="fa  fa-check"></i> Crear</button>
+    </div>
 </form>
 
 </div>
 <!-- // Modal body END -->
 
-<div class="innerLR innerB text-right">
-    <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
-    <a href="#" class="btn btn-primary"><i class="fa  fa-check"></i> Crear</a>
-</div>
-
 </div>
 </div>
 
 </div>
-<!-- // Modal END -->
+<!-- // Modal END

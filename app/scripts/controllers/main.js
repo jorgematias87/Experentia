@@ -8,12 +8,21 @@
  * Controller of the experentiaWebSiteApp
  */
 angular.module('experentiaWebSiteApp')
-  .controller('MainCtrl', function ($scope, $location) {
+  .controller('MainCtrl', function ($scope, $location, $cookieStore, $rootScope) {
 
-    $scope.viewProjectsCompany = true;
+    $rootScope.usuario = $cookieStore.get('usuario');
 
-    if($location.path() === '/proyecto-descripcion-empresa'){
-      $scope.viewProjectsCompany = false 
+    $scope.tryLogout = function(){
+      $cookieStore.remove('usuario');
+      $location.path('/');
+    }
+
+    $scope.trySendEmail = function(){
+      $scope.msg = 'Email enviado';
+    }
+
+    $scope.tryAsignar = function(){
+      $scope.msgAsignar = 'Asignado Correctamente';
     }
     
     $scope.sortableOption = {

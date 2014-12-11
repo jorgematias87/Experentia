@@ -10,7 +10,7 @@
     font-size: 16px;
 }
 
-ul.source, ul.target {
+ul.source, ul.target, ul.in-progress {
   min-height: 50px;
   margin: 0px 0px 10px 0px;
   padding: 2px;
@@ -25,7 +25,10 @@ ul.source {
 ul.target {
   border-color: #add38d;
 }
-.source li, .target li {
+ul.in-progress {
+  border-color: #295993;
+}
+.source li, .target li, .in-progress li {
   margin: 5px;
   padding: 5px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -34,6 +37,11 @@ ul.target {
   background-color: #fcf8e3;
   border: 1px solid #fbeed5;
   color: #c09853;
+}
+.in-progress li {
+  background-color: rgba(41,89,147,0.1);
+  border: 1px solid ##295993;
+  color: #295993;
 }
 .target li {
   background-color: #ebf5e6;
@@ -98,6 +106,17 @@ ul.target {
   transform: translateY(-50%);
 }
 
+.col-v-center {
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.one-edge-shadow {
+  box-shadow: 0 8px 8px -6px gray;
+}
+
 .thumbnail.widget-thumbnail .header {
   color: rgb(170, 170, 170); 
   width: 100%;
@@ -109,3 +128,100 @@ ul.target {
 .fa-10x {
   font-size: 15em;
 }
+
+/*landing*/
+.slider-content{
+  position: relative;
+}
+
+.slider {
+  width: 100%;
+  height: 400px;
+}
+
+.item {
+  height: 400px;
+}
+
+.item_1 {
+  background: url("../images/universidades.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.item_2 {
+  background: url("../images/empresas.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.item_3 {
+  background: url("../images/estudiantes.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.menu{
+  min-height: 19px;
+  margin-top: 15px;
+}
+
+.menu li{
+  padding-left: 10px;
+}
+
+.menu li a {
+  color: #5B6FC1;
+}
+
+.menu li.active a{
+  font-weight: bold;
+}
+
+.menu li a:focus{
+  text-decoration: none;
+}
+
+.menu li a:hover{
+  padding-bottom: 1px;
+  border-bottom: 1px solid #5B6FC1;
+}
+
+.logo_white{
+  width: 250px !important;
+  opacity: 0.6;
+}
+
+.img-center{
+  margin: 0 auto;
+}
+
+.img-features{
+  width: 180px !important;
+}
+
+.linea-separador{
+  border-bottom: 1px solid #bbb;
+}
+
+.section-primary{
+  width: 100%;
+  background-color: #5B6FC1;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.section-last{
+  margin-bottom: 60px;
+}
+
+.parrafo {
+  font-size: 16px;
+}
+/*end landing*/

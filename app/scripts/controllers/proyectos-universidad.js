@@ -8,9 +8,16 @@
  * Controller of the experentiaWebSiteApp
  */
 angular.module('experentiaWebSiteApp')
-  .controller('ProyectosUniversidadCtrl', function ($scope, ProyectoSrv, $location) {
+  .controller('ProyectosUniversidadCtrl', function ($scope, ProyectoSrv, $location, $rootScope, $cookieStore) {
 
-  	$scope.tecnologias = ['.NET', 'Javascript', 'HTML', 'CSS', 'Java', 'PHP', 'AngularJS', 'NodeJS'];
+    $rootScope.usuario = $cookieStore.get('usuario');
+
+    console.log($rootScope.usuario);
+
+    if($rootScope.usuario === ''){
+      $location.path('/');
+    }
+
   	$scope.proyecto = {};
 
   	//Lista de Proyectos

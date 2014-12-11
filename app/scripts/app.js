@@ -17,8 +17,10 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.jq',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'duScroll'
   ])
+  .value('duScrollOffset', 49)
   .constant( 'baseURL', 'http://localhost:1409/' )
   .config(function ($routeProvider) {
     $routeProvider
@@ -42,13 +44,17 @@ angular
         templateUrl: 'views/project-description-university.html',
         controller: 'ProyectoDescripcionUniversidadCtrl'
       })
-      .when('/proyecto-descripcion-empresa', {
+      .when('/proyecto-descripcion-empresa/:id', {
         templateUrl: 'views/project-description-university.html',
-        controller: 'MainCtrl'
+        controller: 'ProyectoDescripcionUniversidadCtrl'
       })
       .when('/alumnos', {
         templateUrl: 'views/students.html',
         controller: 'MainCtrl'
+      })
+      .when('/tareas-alumno', {
+        templateUrl: 'views/tareas-alumno.html',
+        controller: 'TareasAlumnosCtrl'
       })
       .otherwise({
         redirectTo: '/'

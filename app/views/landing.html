@@ -1,0 +1,126 @@
+<div class="navbar hidden-print main navbar-default one-edge-shadow" role="navigation" ng-controller="MainCtrl">
+    <div class="container">
+        <div class="user-action user-action-btn-navbar pull-right">
+            <button class="btn btn-sm btn-navbar btn-inverse btn-stroke hidden-lg hidden-md"><i class="fa fa-bars fa-2x"></i></button>
+        </div>
+        <a href="index.html" class="logo">
+            <img src="images/logo_experentia.png" alt="Experentia" />
+            <span class="hidden-xs hidden-sm inline-block">
+            </a>
+
+            <ul class="menu list-inline pull-right">
+                <li du-scrollspy="section_1"><a href="#section_1" du-smooth-scroll>QUE ES EXPERENTIA?</a></li>
+                <li du-scrollspy="section_2"><a href="#section_2" du-smooth-scroll>UNIVERSIDADES</a></li>
+                <li du-scrollspy="section_3"><a href="#section_3" du-smooth-scroll>EMPRESAS</a></li>
+                <li du-scrollspy="section_4"><a href="#section_4" du-smooth-scroll>ESTUDIANTES</a></li>
+                <a href="#/login" class="btn btn-primary" style="padding: 0 12px;">Login</a>
+            </ul> 
+        </div>
+    </div>
+    <!-- // END navbar -->
+
+    <div class="slider">    
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item item_1 active">
+            </div>
+            <div class="item item_2">
+            </div>
+            <div class="item item_3">
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<div du-scroll-container>
+    <section class="section-primary" id="section_1">
+        <div class="container innerTB">    
+            <div class="col-md-6 col-v-center">
+                <img class="img-responsive img-center logo_white" src="images/logo_experentia_white_2x.png" alt="logo experentia">
+            </div>
+            <div class="col-md-6 col-v-center">
+                <h3 class="text-center innerB half">Que es Experentia?</h3>
+                <p class="text-justify parrafo">Experentia es una plataforma que permite gestionar a través de una interfaz web proyectos empresariales que se desarrollan en el ámbito de una cátedra universitaria. Tanto las empresas como la universidad podrán visualizar diversos indicadores del proyecto para poder realizar un seguimiento al mismo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="section_2">
+        <div class="container linea-separador innerTB">    
+            <div class="col-md-6 col-v-center">
+                <h3 class="text-center innerB half">Universidades</h3>
+                <p class="parrafo text-justify">
+                    Conectando al ámbito empresarial con el académico, relacionando empresas y alumnos 
+
+                    usando como nexo las universidades. Estas estaran representadas por el coordinador de 
+
+                    cada materia el cual
+
+                    analizara el proyecto o funcionalidad a resolver luego lo dividira en tareas y lo asignara 
+
+                    a un grupo de alumnos finalmente de esta manera se crea el flujo de trabajo.
+                </p>
+            </div>
+            <div class="col-md-6 col-v-center">
+             <img class="img-responsive img-center img-features" src="images/universidad.png" alt="ico universidad">
+         </div>
+     </div>
+ </section>
+
+ <section id="section_3">
+    <div class="container linea-separador innerTB">    
+        <div class="col-md-6">
+            <img class="img-responsive img-center img-features" src="images/empresa.png" alt="ico empresa">
+        </div>
+        <div class="col-md-6">
+         <h3 class="text-center innerB half">Empresas</h3>
+         <p class="parrafo text-justify">
+             Muchas veces las empresas al no contar con el capital humano y los
+
+             recursos para resolver ciertos proyectos o funcionalidades deben terciarizar, a traves de 
+
+             experentia podran resolverlo de manera efectiva sin tener que hacer eso.
+         </p>
+     </div>
+ </div>
+</section>
+
+<section id="section_4">
+    <div class="container innerTB">    
+        <div class="col-md-6 col-v-center">
+            <h3 class="text-center innerB half">Estudiantes</h3>
+            <p class="parrafo text-justify">
+                Los alumnos podran profundizar sus aptitudes academicas en un escenario
+
+                real las cuales les serviran como experiencia de trabajo.
+            </p>
+        </div>
+        <div class="col-md-6 col-v-center">
+         <img class="img-responsive img-center img-features" src="images/estudiante.png" alt="ico estudiante">
+     </div>
+ </div>
+</section>
+<section class="section-primary section-last" style="padding-top: 80px; padding-bottom: 80px;">
+    <div class="container">
+        <a href="#/login" class="col-md-12 btn btn-default input-lg" style="padding-top: 5px;"><h3>LOGIN</h3></a>
+    </div>
+</section>
+</div>

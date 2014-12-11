@@ -8,7 +8,9 @@
  * Controller of the experentiaWebSiteApp
  */
 angular.module('experentiaWebSiteApp')
-  .controller('ProyectoEmpresaCtrl', function ($scope, ProyectoSrv, $location) {
+  .controller('ProyectoEmpresaCtrl', function ($scope, ProyectoSrv, $location, $rootScope, $cookieStore) {
+
+    $rootScope.usuario = $cookieStore.get('usuario');
 
   	$scope.tecnologias = ['.NET', 'Javascript', 'HTML', 'CSS', 'Java', 'PHP', 'AngularJS', 'NodeJS'];
   	$scope.proyecto = {};
@@ -26,7 +28,7 @@ angular.module('experentiaWebSiteApp')
   	//Crear Proyecto
 
   	var onCrearProyectoSucces = function(response){
-  		alert('Proyecto Creado Correctament');
+  		$scope.msg = 'Proyecto creado exitosamente';
   		$location.path('/proyectos-empresa');
   	},
   		onCrearProyectoError = function(rejection){
@@ -35,6 +37,8 @@ angular.module('experentiaWebSiteApp')
 
   	$scope.crearProyecto = function(){
   		$scope.proyecto.idEmpresa = 1;
+
+      console.log($scope.proyecto);
 
   		ProyectoSrv.save($scope.proyecto, onCrearProyectoSucces, onCrearProyectoError);
   	}
