@@ -47,18 +47,18 @@
                     <i class="text-muted fa fa-ticket"></i>
                 </div>
                 <div class="pull-right text-right" ng-if="usuario.user == 'coordinador'">
-                    <span class="label">{{tarea.estado}}</span>
+                    <span class="label">{{tarea.Estado}}</span>
                     <div class="innerT half">
-                        <span>{{tarea.idAlumno}}</span>
-                        <a ng-if="tarea.idAlumno == null" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
+                        <span>{{tarea.Alumno}}</span>
+                        <a ng-if="tarea.IdAlumno == null" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
                     </div>
                 </div>
 
                 <div class="media-body">
-                    <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal">{{tarea.nombre}}</a></h4>
+                    <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal">{{tarea.Nombre}}</a></h4>
                     <div class="innerR">
                         <span class="strong">Inicio: </span>
-                        <span> {{tarea.fechaInicio}}</span>
+                        <span> {{tarea.FechaInicio}}</span>
                     </div>
 
                 </div>
