@@ -11,6 +11,11 @@ angular.module('experentiaWebSiteApp')
   .controller('MainCtrl', function ($scope, $location, $cookieStore, $rootScope) {
 
     $rootScope.usuario = $cookieStore.get('usuario');
+    $scope.tecnologias = ['.NET', 'Javascript', 'HTML', 'CSS', 'Java', 'PHP', 'AngularJS', 'NodeJS'];
+
+    if($rootScope.usuario === ''){
+      $location.path('/');
+    }
 
     $scope.tryLogout = function(){
       $cookieStore.remove('usuario');

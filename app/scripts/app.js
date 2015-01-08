@@ -34,19 +34,19 @@ angular
       })
       .when('/proyectos-empresa', {
         templateUrl: 'views/project-list-company.html',
-        controller: 'ProyectoEmpresaCtrl'
+        controller: 'MainCtrl'
       })
       .when('/proyectos-universidad', {
         templateUrl: 'views/project-list-university.html',
-        controller: 'ProyectosUniversidadCtrl'
+        controller: 'MainCtrl'
       })
       .when('/proyecto-descripcion-universidad/:id', {
-        templateUrl: 'views/project-description-university.html',
-        controller: 'ProyectoDescripcionUniversidadCtrl'
+        templateUrl: 'views/project-description.html',
+        controller: 'MainCtrl'
       })
       .when('/proyecto-descripcion-empresa/:id', {
-        templateUrl: 'views/project-description-university.html',
-        controller: 'ProyectoDescripcionUniversidadCtrl'
+        templateUrl: 'views/project-description.html',
+        controller: 'MainCtrl'
       })
       .when('/alumnos', {
         templateUrl: 'views/students.html',
@@ -54,7 +54,7 @@ angular
       })
       .when('/tareas-alumno', {
         templateUrl: 'views/tareas-alumno.html',
-        controller: 'TareasAlumnosCtrl'
+        controller: 'MainCtrl'
       })
       .otherwise({
         redirectTo: '/'

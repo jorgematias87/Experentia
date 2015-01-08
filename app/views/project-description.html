@@ -1,0 +1,128 @@
+<div ng-controller="ProyectoIdCtrl">
+    <h1 class="pull-left">{{proyecto.nombre}}</h1>
+    <div class="innerT  pull-right">
+        <a ng-if="viewProjectsCompany" href="#/proyectos-universidad" class="btn btn-primary">volver a proyectos</a>
+        <a ng-if="!viewProjectsCompany" href="#/proyectos-universidad" class="btn btn-primary">volver a proyectos</a>
+    </div>
+    <div class="clearfix"></div>
+    <div class="separator"></div>
+    <div class="widget widget-none">
+        <div class="widget-body">
+            <p class="lead">{{proyecto.descripcion}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9" ng-controller="TareaProyectoCtrl">
+            <div class="row  half innerB">
+                <div class=" col-md-5 col-sm-5 col-xs-5">
+                    <div class="pull-left innerR half">
+                        <h4>Tareas </h4>
+                    </div>
+
+                    <a ng-if="usuario.user == 'coordinador'" data-target="#modal-task" class="btn btn-primary btn-xs" data-toggle="modal"><i class="fa fa-plus"></i></a>
+                </div>
+                <div class="pull-right innerR half">
+                    <select ui-jq="selectpicker" data-style="btn btn-default strong filled" style="display: none;">
+                        <option ng-disabled="true">Estado</option>
+                        <option>Todos</option>
+                        <option>Para hacer</option>
+                        <option>En progreso</option>
+                        <option>Finalizadas</option>
+                    </select>
+                </div>
+                <div class="pull-right innerR half">
+                    <select ui-jq="selectpicker" data-style="btn btn-default strong filled" style="display: none;">
+                        <option ng-disabled="true">Alumnos</option>
+                        <option>Todos</option>
+                        <option>Juan</option>
+                        <option>Matias</option>
+                        <option>Jon</option>
+                        <option>Monica</option>
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="widget widget-primary widget-small" ng-repeat="tarea in tareas">
+                <div class="media innerAll half">
+                    <div class="pull-left h1 media-object hidden-xs margin-none innerR">
+                        <i class="text-muted fa fa-ticket"></i>
+                    </div>
+                    <div class="pull-right text-right" ng-if="usuario.user == 'coordinador'">
+                        <span class="label">{{tarea.Estado}}</span>
+                        <div class="innerT half">
+                            <span>{{tarea.Alumno}}</span>
+                            <a ng-if="tarea.IdAlumno == null" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="media-body">
+                        <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal">{{tarea.Nombre}}</a></h4>
+                        <div class="innerR">
+                            <span class="strong">Inicio: </span>
+                            <span> {{tarea.FechaInicio}}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="widget widget-primary widget-small">
+                <div class="widget-head">
+                    <div class="heading">Detalles</div>
+                </div>
+                <div class="widget-body">
+                    <div class="row">
+                        <div class="col-xs-5 text-muted-dark"><div class="innerB half">Tecnología:</div></div>
+                        <div class="col-xs-7 text-inverse"><div class="innerB half">{{proyecto.tecnologia}}</div></div>
+                        <div class="col-xs-5 text-muted-dark"><div class="innerB half">Equipo:</div></div>
+                        <div class="col-xs-7 text-inverse"><div class="innerB half">3 Personas</div></div>
+                        <div class="col-xs-5 text-muted-dark"><div class="innerB half">Inicio:</div></div>
+                        <div class="col-xs-7 text-inverse"><div class="innerB half">21 de abril 2014</div></div>
+                        <div class="col-xs-5 text-muted-dark"><div class="innerB half">Fin:</div></div>
+                        <div class="col-xs-7 text-inverse"><div class="innerB half">21 de abril 2014</div></div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="widget widget-info widget-small">
+                <div class="widget-head">
+                    <div class="heading">Grupo asignado</div>
+                </div>
+                <div class="widget-body padding-none">
+                    <div class="media innerAll margin-none border-bottom">
+                        <div class="pull-left"><img src="img/people/50/2.jpg" width="40" alt="people" class="img-circle media-object"></div>
+                        <div class="media-body innerT half"><a href="#">Adrian Demian</a></div>
+                    </div>
+                    <div class="media innerAll margin-none border-bottom">
+                        <div class="pull-left"><img src="img/people/50/12.jpg" width="40" alt="people" class="img-circle media-object"></div>
+                        <div class="media-body innerT half"><a href="#">Jamie Doe</a></div>
+                    </div>
+                    <div class="media innerAll margin-none">
+                        <div class="pull-left"><img src="img/people/50/10.jpg" width="40" alt="people" class="img-circle media-object"></div>
+                        <div class="media-body innerT half"><a href="#">Bogdan Laza</a></div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="widget widget-info widget-small" ng-controller="GrupoIdCtrl">
+                <div class="widget-head">
+                    <div class="heading">Grupo asignado</div>
+                </div>
+                <div class="widget-body innerAll text-center">
+                    <span>{{grupo.nombre}}</span>
+
+                    <a ng-if="grupo.length === 0" data-target="#modal-assignTaskGroup" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div ng-include="'views/partials/modal-task.html'" ng-controller="CrearTareaCtrl"></div>
+    <div ng-include="'views/partials/modal-assignTask.html'"></div>
+    <div ng-include="'views/partials/modal-assignGroup.html'"></div>
+    <div ng-include="'views/partials/modal-taskDescription.html'"></div>
+</div>

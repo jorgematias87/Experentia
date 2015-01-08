@@ -7,7 +7,7 @@
                 <div class="innerT inner-2x">
                         <div class="widget innerLR innerB margin-none">
                             <div class="lock-container">
-                                <div class=" text-center innerT">
+                                <form class="text-center innerT" ng-submit="tryLogin()" name="formLogin">
                                     <a href="#" > <img class="innerTB half" src="images/logo_experentia_login.png" alt="people" width="150"/></a>
 
                                     <div class="innerAll">
@@ -16,11 +16,9 @@
                                         <input ng-model="login.contrasenia" class="form-control text-center bg-gray" type="password" placeholder="contraseña"/>
                                     </div>
                                     <div class="innerTB half">
-                                        <a href ng-click="tryLogin()" class="btn btn-primary">Login <i class="fa fa-fw fa-unlock-alt"></i></a>
+                                        <button type="submit" class="btn btn-primary" ng-disabled="formLogin.$invalid">Login <i class="fa fa-fw fa-unlock-alt"></i></button>
                                     </div>
-
-                                </div>
-
+                                </form>
                             </div>
                         </div>
                         <div class="text-right innerT half">

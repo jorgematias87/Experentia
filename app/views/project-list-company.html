@@ -6,7 +6,7 @@
 	</div>
 </div>
 <div class="clearfix"></div>    
-<div class="innerTB">
+<div class="innerTB" ng-controller="ListarProyectosCtrl">
 	<div class="widget widget-inverse widget-small " ng-repeat="project in proyectos">
 		<div class="widget-body padding-none">
 			<div class=" media innerAll overflow-visible margin-none">
@@ -49,4 +49,4 @@
 	<li><a href="#">&raquo;</a></li>
 </ul>
 
-<div ng-include="'views/partials/modal-project.html'"></div>
+<div ng-include="'views/partials/modal-project.html'" ng-controller="CrearProyectoCtrl"></div>
