@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="modal-task">
+<div class="modal fade" id="modal-task" ng-controller="CrearTareaCtrl">
 
     <div class="modal-dialog">
         <div class="modal-content bg-white">
@@ -94,7 +94,7 @@
                                             <div class="pull-right">
                                                 <div class="radio">
                                                     <label class="radio-custom checked" data-initialize="radio">
-                                                        <input type="radio" name="radio" checked="checked"> 
+                                                        <input type="radio" name="radio" checked="checked" ng-click="checkboxAssignStudent({{alumno.id}})"> 
                                                         <i class="fontSizeMedium fa fa-w fa-square-o"></i>
                                                     </label> 
                                                 </div>

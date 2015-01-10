@@ -20,4 +20,19 @@
 
     AlumnoSrv.query(onAlumnosSuccess, onAlumnosError);
 
+  })
+ .controller('AlumnoIdCtrl', function ($scope, AlumnoSrv) {
+    
+    //Proyecto por ID
+    var onAlumnoSucces = function(response){
+      return response;
+    },
+      onAlumnoError = function(rejection){
+        console.log(rejection);
+      }
+
+ 	$scope.getAlumno = function(idAlumno){
+ 		console.log(idAlumno);
+ 		AlumnoSrv.get({id: idAlumno}, onAlumnoSucces, onAlumnoError);
+ 	}
   });

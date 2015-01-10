@@ -29,6 +29,7 @@ angular.module('experentiaWebSiteApp')
     },
       onLoginError = function(rejection){
         console.log(rejection);
+        $scope.msg = "usuario/contraseña invalidos";
       };
 
     $scope.tryLogin = function(){

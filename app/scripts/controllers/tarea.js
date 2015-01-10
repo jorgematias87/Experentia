@@ -38,20 +38,26 @@
 
    TareaSrv.query({id: $scope.idProyecto}, onTareasSucces, onTareasError);
 
-  }).controller('CrearTareaCtrl', function ($scope, TareaSrv) {
+  }).controller('CrearTareaCtrl', function ($scope, TareaSrv, $location) {
 
   //Crear Tareas
   $scope.tarea= {};
 
+  $scope.checkboxAssignStudent = function(idAlumno){
+    $scope.tarea.idAlumno = idAlumno;
+  }
+
   var onSaveTareaSuccess = function(response){
-    alert('Tarea guardado exitosamente')
+    alert('Tarea guardado exitosamente');
+    $location.path('/proyecto-descripcion-universidad');
   },
   onSaveTareaError = function(rejection){
     console.log(rejection);
   }
 
   $scope.tryTarea = function(idProyecto){
-    $scope.tarea.idProyecto =  idProyecto;
+    $scope.tarea.idProyecto=  idProyecto;
+    $scope.tarea.estado= "pendiente";
     console.log($scope.tarea);
     TareaSrv.save($scope.tarea, onSaveTareaSuccess, onSaveTareaError);
   }

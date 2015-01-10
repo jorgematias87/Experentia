@@ -10,6 +10,6 @@
 angular.module('experentiaWebSiteApp')
 .factory('AlumnoSrv', function ($resource, baseURL) {
 
-  var alumno = $resource( baseURL + 'api/Alumnos/:id', {}, {});
+  var alumno = $resource( baseURL + 'api/Alumno/:id', {}, {});
   return alumno;
 });
