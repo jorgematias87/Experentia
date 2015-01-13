@@ -25,7 +25,7 @@
     
     //Proyecto por ID
     var onAlumnoSucces = function(response){
-      return response;
+      $scope.alumno= response;
     },
       onAlumnoError = function(rejection){
         console.log(rejection);

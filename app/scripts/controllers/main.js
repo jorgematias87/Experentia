@@ -17,18 +17,46 @@ angular.module('experentiaWebSiteApp')
       $location.path('/');
     }
 
+    setTimeout(function() {
+      $('.selectPicker').selectpicker();
+    }, 2000);
+
     $scope.tryLogout = function(){
       $cookieStore.remove('usuario');
       $location.path('/');
-    }
+    };
+
+    $scope.setFiltroEstado = function(){
+      $scope.filtroTareas = $('#filtroEstado').val();
+      console.log($scope.filtroTareas);
+    };
+
+    $scope.setFiltroAlumno = function(){
+      $scope.filtroTareas = $('#filtroAlumno').val();
+      console.log($scope.filtroTareas);
+    };
+
+    $scope.getClassEstado = function(estado, componente){
+      switch(estado) {
+          case 'en progreso':
+              return componente + '-info';
+              break;
+          case 'pendiente':
+              return componente + '-warning';
+              break;
+          case 'hecho':
+              return componente + '-success';
+              break;
+      }
+    } 
 
     $scope.trySendEmail = function(){
       $scope.msg = 'Email enviado';
-    }
+    };
 
     $scope.tryAsignar = function(){
       $scope.msgAsignar = 'Asignado Correctamente';
-    }
+    };
     
     $scope.sortableOption = {
       connectWith: '.connected',

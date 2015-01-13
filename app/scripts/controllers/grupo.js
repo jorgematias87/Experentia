@@ -6,7 +6,7 @@
  * Controller of the experentiaWebSiteApp
  */
  angular.module('experentiaWebSiteApp')
- .controller('GrupoIdCtrl', function ($scope, GrupoSrv) {
+ .controller('GrupoByIdCtrl', function ($scope, GrupoSrv) {
 
     var onGrupoSucces = function(response){
   		$scope.grupo = response;
@@ -15,6 +15,9 @@
   			console.log(rejection);
   		}
 
-  	GrupoSrv.get({id:1}, onGrupoSucces, onGrupoError);
+  	$scope.getGrupoById= function(idGrupo){
+  		cosole.log(idGrupo);
+  		GrupoSrv.get({id: idGrupo}, onGrupoSucces, onGrupoError);
+  	}
 
   });

@@ -159,22 +159,22 @@
                             _liA.push(
                                 '<div class="div-contain"><div class="divider"></div></div>'+
                                 '<dt>'+label+'</dt>'+
-                                that.createA(text, 'opt ' + optionClass, inline )
+                                that.createA(text, 'opt ' + optionClass, inline)
                                 );
                         } else {
                             _liA.push(
                                 '<dt>'+label+'</dt>'+
-                                that.createA(text, 'opt ' + optionClass, inline ));
+                                that.createA(text, 'opt ' + optionClass, inline));
                         }
                     } else {
-                         _liA.push(that.createA(text, 'opt ' + optionClass, inline ));
+                         _liA.push(that.createA(text, 'opt ' + optionClass, inline));
                     }
                 } else if ($this.data('divider') === true) {
                     _liA.push('<div class="div-contain"><div class="divider"></div></div>');
                 } else if ($(this).data('hidden') === true) {
                     _liA.push('');
                 } else {
-                    _liA.push(that.createA(text, optionClass, inline ));
+                    _liA.push(that.createA(text, optionClass, inline));
                 }
             });
 

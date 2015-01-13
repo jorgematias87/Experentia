@@ -8,14 +8,11 @@
  * Controller of the experentiaWebSiteApp
  */
 angular.module('experentiaWebSiteApp')
-  .controller('LoginCtrl', function ($scope, LoginSrv, $location, $cookieStore) {
-
-    var onLoginSucces = function(response){
-      var usuario = response;
-      console.log(usuario);
-      $cookieStore.put('usuario', response);
-
-      switch(usuario.user) {
+  .controller('LoginCtrl', function ($scope, LoginSrv, $location, $cookieStore, $rootScope) {
+    $rootScope.usuario = $cookieStore.get('usuario');
+    
+    var redirectToDashboard = function(user){
+      switch(user) {
           case 'empresa':
               $location.path('/proyectos-empresa');
               break;
@@ -26,6 +23,17 @@ angular.module('experentiaWebSiteApp')
               $location.path('/tareas-alumno');
               break;
       }
+    };
+
+    if($rootScope.usuario){
+      redirectToDashboard($rootScope.usuario.user);
+    }
+
+    var onLoginSucces = function(response){
+      var usuario = response;
+      $cookieStore.put('usuario', response);
+
+      redirectToDashboard(usuario.user);
     },
       onLoginError = function(rejection){
         console.log(rejection);
@@ -35,4 +43,5 @@ angular.module('experentiaWebSiteApp')
     $scope.tryLogin = function(){
       LoginSrv.save($scope.login, onLoginSucces, onLoginError);
     };
+
   });
