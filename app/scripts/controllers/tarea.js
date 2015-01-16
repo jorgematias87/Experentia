@@ -31,14 +31,35 @@
    //Lista de Tareas
    var onTareasSucces = function(response){
     $scope.tareas = response;
+
+    if($scope.tareas.length === 0){
+      $scope.msg= '<strong>No hay tareas!</strong>, puedes crearlas.'
+    };
+
    },
    onTareasError = function(rejection){
     console.log(rejection);
    }
 
-   TareaSrv.query({id: $scope.idProyecto}, onTareasSucces, onTareasError);
+   TareaSrv.query({id: $scope.idProyecto, action: 'GetTareasProyecto'}, onTareasSucces, onTareasError);
 
-  }).controller('CrearTareaCtrl', function ($scope, TareaSrv, $location) {
+  })
+ .controller('TareaByIdCtrl', function ($scope, TareaSrv, $rootScope) {
+
+   //Tarea por ID
+   var onTareaSucces = function(response){
+     $rootScope.tarea = response;
+   },
+     onTareaError = function(rejection){
+       console.log(rejection);
+     }
+
+  $scope.getTareaById= function(idTarea){
+    TareaSrv.get({id: idTarea, action: 'GetTarea'}, onTareaSucces, onTareaError);
+  }
+   
+ })
+ .controller('CrearTareaCtrl', function ($scope, TareaSrv, $location) {
 
   //Crear Tareas
   $scope.tarea= {};

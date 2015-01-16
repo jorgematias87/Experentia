@@ -1,5 +1,5 @@
 <!-- modal task description -->
-<div class="modal fade" id="modal-taskDescription">
+<div class="modal fade" id="modal-taskDescription" ng-controller="TareaByIdCtrl">
 
     <div class="modal-dialog">
         <div class="modal-content bg-white">
@@ -12,7 +12,7 @@
                         <div class="form-group">
                             <label for="alumnos" class="col-sm-2 control-label innerB">Descripción:</label>
                             <p class="col-sm-12">
-                                Proyecto Overcase en cual se procedera a realizar una actualizacion de menu
+                                {{tarea.descripcion}}
                             </p>
                         </div>
 

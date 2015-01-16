@@ -21,14 +21,14 @@
 
                     <a ng-if="usuario.user == 'coordinador'" data-target="#modal-task" class="btn btn-primary btn-xs" data-toggle="modal"><i class="fa fa-plus"></i></a>
                 </div>
-                <div class="pull-right innerR half">
+                <div class="pull-right innerR half" ng-hide="msg">
                     <select ng-model="filtroTarea" id="filtroEstado" class="selectPicker" data-style="btn btn-default strong filled" style="display: none;" ng-change="setFiltroEstado()">
                         <option ng-disabled="true" value="">Estado</option>
                         <option value="">Todos</option>
                         <option ng-repeat="tarea in tareas | unique:'Estado' " value="{{tarea.Estado}}"><span>{{tarea.Estado}}</span></option>
                     </select>
                 </div>
-                <div class="pull-right innerR half">
+                <div class="pull-right innerR half" ng-hide="msg">
                     <select ng-model="filtroTarea" id="filtroAlumno" class="selectPicker" data-style="btn btn-default strong filled" style="display: none;" ng-change="setFiltroAlumno()">
                         <option ng-disabled="true" value="">Alumnos</option>
                         <option value="">Todos</option>
@@ -37,21 +37,31 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
+
+            <div class="alert alert-info" ng-show="msg">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <span ng-bind-html="msg"></span>
+            </div>
+
             <div class="widget widget-small" ng-repeat="tarea in tareas | filter:filtroTareas" ng-class="getClassEstado('{{tarea.Estado}}', 'widget')">
                 <div class="media innerAll half">
                     <div class="pull-left h1 media-object hidden-xs margin-none innerR">
                         <i class="text-muted fa fa-ticket"></i>
                     </div>
+                    <ul class="list-unstyled pull-right media-action" ng-if="usuario.user == 'coordinador'">
+                        <li class="innerB half"><a href="" class="text-muted" title="eliminar"><span class="fa fa-trash"></span></a></li>
+                        <li><a href="" class="text-muted" title="editar"><span class="fa fa-pencil">
+                        </span></a></li>
+                    </ul>
                     <div class="pull-right text-right" ng-if="usuario.user == 'coordinador'">
                         <span class="label" ng-class="getClassEstado('{{tarea.Estado}}', 'label')">{{tarea.Estado}}</span>
                         <div class="innerT half">
                             <span>{{tarea.Alumno}}</span>
-                            <a ng-if="tarea.IdAlumno == null" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
+                            <a ng-if="!tarea.IdAlumno" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
                         </div>
                     </div>
-
-                    <div class="media-body">
-                        <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal">{{tarea.Nombre}}</a></h4>
+                    <div class="media-body" ng-controller="TareaByIdCtrl">
+                        <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal" ng-click="getTareaById({{tarea.Id}})">{{tarea.Nombre}}</a></h4>
                         <div class="innerR">
                             <span class="strong">Inicio: </span>
                             <span> {{tarea.FechaInicio | date:'dd/MM/yyyy'}}</span>
@@ -102,14 +112,14 @@
                 </div>
             </div> -->
 
-            <div class="widget widget-info widget-small" ng-controller="GrupoByIdCtrl">
+            <div class="widget widget-info widget-small" ng-controller="GrupoByIdCtrl" ng-init="getGrupoById()">
                 <div class="widget-head">
                     <div class="heading">Grupo asignado</div>
                 </div>
                 <div class="widget-body innerAll text-center">
                     <span>{{grupo.nombre}}</span>
 
-                    <a ng-if="grupo.length === 0" data-target="#modal-assignTaskGroup" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
+                    <a ng-if="!grupo" data-target="#modal-assignTaskGroup" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
                 </div>
             </div>
         </div>

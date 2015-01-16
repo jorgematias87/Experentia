@@ -129,6 +129,12 @@ ul.in-progress {
   font-size: 15em;
 }
 
+.media-action {
+  border-left: 1px solid #ccc;
+  padding-left: 8px !important;
+  margin-bottom: 0;
+}
+
 /*landing*/
 .slider-content{
   position: relative;

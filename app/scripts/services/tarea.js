@@ -10,6 +10,6 @@
 angular.module('experentiaWebSiteApp')
 .factory('TareaSrv', function ($resource, baseURL) {
 
-  var tarea = $resource( baseURL + 'api/Tarea/:id', {}, {});
+  var tarea = $resource( baseURL + 'api/Tarea/:action/:id', {}, {});
   return tarea;
 });
