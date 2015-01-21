@@ -1,18 +1,17 @@
 <!-- Modal -->
 <div class="modal fade" id="modal-task" ng-controller="CrearTareaCtrl">
-
-    <div class="modal-dialog">
+    <div class="modal-dialog" ng-controller="EditarTareaCtrl">
         <div class="modal-content bg-white">
             <!-- Modal body -->
 
             <div class="modal-header">
-                <h3 class="modal-title">Crear tarea</h3>
+                <h3 class="modal-title" ng-if="!editTarea">Crear tarea</h3>
+                <h3 class="modal-title" ng-if="editTarea">Editar tarea</h3>
             </div>
 
             <div class="modal-body padding-none ">
 
-                <form class="form-horizontal " role="form" ng-submit="tryTarea(idProyecto)">
-
+                <form class="form-horizontal " role="form" >
                     <div class="innerLR innerT">
                         <div class="form-group">
                             <label for="to" class="col-sm-12">Tarea:</label>
@@ -111,7 +110,8 @@
     </div>
     <div class="innerLR innerB text-right">
         <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
-        <button type="submit" class="btn btn-primary"><i class="fa  fa-check"></i> Crear</button>
+        <button ng-click="tryTarea(idProyecto)" ng-if="!editTarea" class="btn btn-primary"><i class="fa  fa-check"></i> Crear</button>
+        <button ng-submit="saveEditTarea()" ng-if="editTarea" class="btn btn-primary"><i class="fa  fa-check"></i> Editar</button>
     </div>
 </form>
 
