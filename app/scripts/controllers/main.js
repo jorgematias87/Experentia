@@ -21,6 +21,10 @@ angular.module('experentiaWebSiteApp')
       $('.selectPicker').selectpicker();
     }, 2000);
 
+    $scope.toggleNotification = function(){
+        $rootScope.showNotification = false;
+    };
+
     $scope.tryLogout = function(){
       $cookieStore.remove('usuario');
       $location.path('/');
@@ -89,4 +93,5 @@ angular.module('experentiaWebSiteApp')
     {stateOn: 'glyphicon-heart'},
     {stateOff: 'glyphicon-off'}
     ];
+
   });

@@ -10,6 +10,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/jquery-ui/themes/vader/jquery-ui.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -24,6 +25,21 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <ul id="notyfy_container_top" class="notyfy_container fadeInDown animated" ng-if="showNotification">
+        <li class="notyfy_wrapper {{notificationClass}}">
+            <div class="notyfy_bar" ng-controller="MainCtrl">
+                <div class="notyfy_message">
+                    <span class="notyfy_text"><strong>{{notificationStatus}}</strong></span>
+                    <span ng-repeat="msgObj in notificationMsgs">{{msgObj.msg}}</span>
+                </div>
+                <div class="notyfy_buttons" ng-if="notificationClass === 'notyfy_confirm'" >
+                    <button class="btn btn-success btn-small btn-icon glyphicons ok_2" ng-click="tryDeleteTarea({{idTarea}})"><i></i> Ok</button>
+                    <button class="btn btn-danger btn-small btn-icon glyphicons remove_2" ng-click="toggleNotification()"><i></i> Cancel</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+
     <div class="container-fluid menu-hidden">
 
       <div ng-include="'views/partials/sidebar.html'"></div>
@@ -97,6 +113,7 @@
         <script src="scripts/services/proyecto.js"></script>
         <script src="scripts/services/tarea.js"></script>
         <script src="scripts/services/alumno.js"></script>
+        <script src="scripts/services/notifications.js"></script>
 
         <script src="scripts/directives/custompage.js"></script>
 

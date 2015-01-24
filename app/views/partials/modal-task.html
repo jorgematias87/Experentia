@@ -1,6 +1,6 @@
 <!-- Modal -->
-<div class="modal fade" id="modal-task" ng-controller="CrearTareaCtrl">
-    <div class="modal-dialog" ng-controller="EditarTareaCtrl">
+<div class="modal fade" id="modal-task">
+    <div class="modal-dialog">
         <div class="modal-content bg-white">
             <!-- Modal body -->
 
@@ -111,7 +111,7 @@
     <div class="innerLR innerB text-right">
         <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
         <button ng-click="tryTarea(idProyecto)" ng-if="!editTarea" class="btn btn-primary"><i class="fa  fa-check"></i> Crear</button>
-        <button ng-submit="saveEditTarea()" ng-if="editTarea" class="btn btn-primary"><i class="fa  fa-check"></i> Editar</button>
+        <button ng-click="saveEditTarea()" ng-if="editTarea" class="btn btn-primary"><i class="fa  fa-check"></i> Editar</button>
     </div>
 </form>
 

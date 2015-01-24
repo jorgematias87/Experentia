@@ -87,14 +87,16 @@
   }
 
   })
- .controller('EditarTareaCtrl', function ($scope, TareaSrv, $location, $rootScope) {
+ .controller('EditarTareaCtrl', function ($scope, TareaSrv, $location, $rootScope, NotificationsSrv, $route) {
 
   var onEditTareaSuccess = function(response){
-    alert('Tarea editada exitosamente');
-    $location.path('/proyecto-descripcion-universidad');
+    NotificationsSrv.success('Tarea editada exitosamente.', 5000);
+    $route.reload();
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
   },
   onEditTareaError = function(rejection){
-    console.log(rejection);
+    NotificationsSrv.error(rejection.data, 5000);
   }
 
   $scope.tryEditTarea = function(tarea){
@@ -103,7 +105,31 @@
   }
 
   $scope.saveEditTarea = function(){
-    TareaSrv.save($scope.tarea, onEditTareaSuccess, onEditTareaError);
+    delete $scope.tarea.alumno;
+    TareaSrv.update({id: $scope.tarea.id},$scope.tarea, onEditTareaSuccess, onEditTareaError);
+  }
+
+  })
+ .controller('EliminarTareaCtrl', function ($scope, TareaSrv, $location, $rootScope, NotificationsSrv, $route) {
+
+  var onDeleteTareaSuccess = function(response){
+    NotificationsSrv.success('Tarea eliminada exitosamente.', 5000);
+    // $route.reload();
+    // $('body').removeClass('modal-open');
+    // $('.modal-backdrop').remove();
+  },
+  onDeleteTareaError = function(rejection){
+    NotificationsSrv.error(rejection.data, 5000);
+  }
+
+  $scope.tryDeleteTarea = function(idTarea){
+    console.log(idTarea);
+    // TareaSrv.delete({id: idTarea}, onDeleteTareaSuccess, onDeleteTareaError);
+  }
+
+  $scope.deleteConfirmTarea = function(nombreTarea, idTarea){
+    var controller = 'EliminarTareaCtrl'
+    NotificationsSrv.confirm('Estas seguro que quieres eliminar la tarea: '+nombreTarea+'?', idTarea, controller);
   }
 
   });

@@ -48,9 +48,9 @@
                     <div class="pull-left h1 media-object hidden-xs margin-none innerR">
                         <i class="text-muted fa fa-ticket"></i>
                     </div>
-                    <ul class="list-unstyled pull-right media-action" ng-if="usuario.user == 'coordinador'" ng-controller="EditarTareaCtrl">
-                        <li class="innerB half"><a href="" class="text-muted" title="eliminar"><span class="fa fa-trash"></span></a></li>
-                        <li><a href="" class="text-muted" title="editar" ng-click="tryEditTarea({{tarea}})" data-target="#modal-task" data-toggle="modal"><span class="fa fa-pencil">
+                    <ul class="list-unstyled pull-right media-action" ng-if="usuario.user == 'coordinador'" >
+                        <li class="innerB half" ng-controller="EliminarTareaCtrl"><a href="" class="text-muted" title="eliminar" ng-click="deleteConfirmTarea('{{tarea.nombre}}', {{tarea.id}})"><span class="fa fa-trash"></span></a></li>
+                        <li ng-controller="EditarTareaCtrl"><a href="" class="text-muted" title="editar" ng-click="tryEditTarea({{tarea}})" data-target="#modal-task" data-toggle="modal"><span class="fa fa-pencil">
                         </span></a></li>
                     </ul>
                     <div class="pull-right text-right" ng-if="usuario.user == 'coordinador'">
@@ -126,7 +126,10 @@
 
     </div>
 
-    <div ng-include="'views/partials/modal-task.html'" ng-controller="CrearTareaCtrl"></div>
+    <div ng-controller="CrearTareaCtrl">
+       <div ng-include="'views/partials/modal-task.html'" ng-controller="EditarTareaCtrl"></div> 
+    </div>
+    
     <div ng-include="'views/partials/modal-assignTask.html'"></div>
     <div ng-include="'views/partials/modal-assignGroup.html'"></div>
     <div ng-include="'views/partials/modal-taskDescription.html'"></div>
