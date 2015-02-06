@@ -20,4 +20,20 @@ angular.module('experentiaWebSiteApp')
     }
   });
   return grupo;
+})
+.factory('GruposSrv', function (GrupoSrv) {
+  var grupos= {};
+
+  //Grupo by Id
+  grupos.byId= function(idGrupo, grupoCallback){
+      var onGrupoSucces = function(response){
+        grupoCallback(response);
+      },
+        onGrupoError = function(rejection){
+          console.log(rejection);
+        }
+
+      GrupoSrv.get({id: idGrupo}, onGrupoSucces, onGrupoError);
+  } 
+  return grupos;
 });

@@ -19,22 +19,24 @@
     <!-- endbuild -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
-  <body ng-app="experentiaWebSiteApp" custom-page>
+  <body ng-app="experentiaWebSiteApp" custom-page ng-cloak>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <ul id="notyfy_container_top" class="notyfy_container fadeInDown animated" ng-if="showNotification">
+    <ul id="notyfy_container_top" class="notyfy_container animated" ng-class="{'fadeInDown': showNotification, 'fadeOutUp': !showNotification}">
         <li class="notyfy_wrapper {{notificationClass}}">
             <div class="notyfy_bar" ng-controller="MainCtrl">
                 <div class="notyfy_message">
                     <span class="notyfy_text"><strong>{{notificationStatus}}</strong></span>
                     <span ng-repeat="msgObj in notificationMsgs">{{msgObj.msg}}</span>
                 </div>
-                <div class="notyfy_buttons" ng-if="notificationClass === 'notyfy_confirm'" >
-                    <button class="btn btn-success btn-small btn-icon glyphicons ok_2" ng-click="tryDeleteTarea({{idTarea}})"><i></i> Ok</button>
-                    <button class="btn btn-danger btn-small btn-icon glyphicons remove_2" ng-click="toggleNotification()"><i></i> Cancel</button>
+                <div class="action">
+                    <div class="notyfy_buttons" ng-if="notificationClass === 'notyfy_confirm'">
+                        <button class="btn btn-success btn-small btn-icon glyphicons ok_2" ng-click="tryDeleteTarea({{idTarea}})"><i></i> Ok</button>
+                        <button class="btn btn-danger btn-small btn-icon glyphicons remove_2" ng-click="toggleNotification()"><i></i> Cancelar</button>
+                    </div>
                 </div>
             </div>
         </li>
@@ -51,7 +53,7 @@
 
         <div id="wrap-ngview" class="innerLR innerT">
 
-          <div ng-view=""></div>
+          <div ng-view="" ng-cloak ng-controller="MainCtrl"></div>
 
         </div>
 
@@ -103,10 +105,8 @@
 
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/proyectos.js"></script>
-        <script src="scripts/controllers/grupo.js"></script>
-        <script src="scripts/controllers/tarea.js"></script>
-        <script src="scripts/controllers/alumno.js"></script>
+        <script src="scripts/controllers/dashboard.js"></script>
+        <script src="scripts/controllers/proyecto-coordinador.js"></script>
 
         <script src="scripts/services/grupo.js"></script>
         <script src="scripts/services/login.js"></script>

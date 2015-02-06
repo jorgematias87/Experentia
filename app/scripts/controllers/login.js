@@ -17,7 +17,7 @@ angular.module('experentiaWebSiteApp')
               $location.path('/proyectos-empresa');
               break;
           case 'coordinador':
-              $location.path('/proyectos-universidad');
+              $location.path('/dashboard');
               break;
           case 'alumno':
               $location.path('/tareas-alumno');

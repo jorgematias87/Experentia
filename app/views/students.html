@@ -49,45 +49,15 @@
                       <strong>Drag and Drop!</strong> Arrastre y suelte alumnos en sección Grupos.
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-4" ng-controller="ListarAlumnosCtrl">
                     <ul class="source connected" ui-jq="sortable" ui-options="sortableOption">
-                      <li>
+                      <li ng-repeat="alumno in alumnos">
                           <div class="media">
                               <div class="pull-left">
                                 <span class="glyphicon glyphicon-user"></span>
                               </div>
                               <div class="media-body">
-                                  <a href="#">Adrian Demian</a>
-                              </div>
-                          </div>
-                      </li>
-                      <li>
-                          <div class="media">
-                              <div class="pull-left">
-                                <span class="glyphicon glyphicon-user"></span>
-                              </div>
-                              <div class="media-body">
-                                  <a href="#">Juan Perez</a>
-                              </div>
-                          </div>
-                      </li>
-                      <li>
-                          <div class="media">
-                              <div class="pull-left">
-                                <span class="glyphicon glyphicon-user"></span>
-                              </div>
-                              <div class="media-body">
-                                  <a href="#">Jose Gonzales</a>
-                              </div>
-                          </div>
-                      </li>
-                      <li>
-                          <div class="media">
-                              <div class="pull-left">
-                                <span class="glyphicon glyphicon-user"></span>
-                              </div>
-                              <div class="media-body">
-                                  <a href="#">Lucas Cuenca</a>
+                                  <span>{{alumno.nombre}} {{alumno.apellido}}</span>
                               </div>
                           </div>
                       </li>
@@ -99,10 +69,7 @@
                         <!-- Tabs Heading -->
                         <div class="widget-head">
                             <ul>
-                                <li class="active"><a href data-target="#tab1-2" data-toggle="tab"><i></i><span>Grupo 1</span></a></li>
-                                <li><a href data-target="#tab2-2" data-toggle="tab"><i></i><span class="strong">Grupo 2</span></a></li>
-                                <li><a href data-target="#tab3-2" data-toggle="tab"><i></i><span>Grupo 3</span></a></li>
-                                <li><a href data-target="#tab4-2" data-toggle="tab"><i></i><span>Grupo 4</span></a></li>
+                                <!-- <li class="active"><a href data-target="#tab1-2" data-toggle="tab"><i></i><span>Grupo 1</span></a></li> -->
                                 <li><a href data-target="#modal-createGroup" data-toggle="modal"><i class="fa fa-plus-square"></i></a></li>
                             </ul>
                         </div>
@@ -112,40 +79,12 @@
                             <div class="tab-content">
 
                                 <!-- Tab content -->
-                                <div class="tab-pane active clearfix" id="tab1-2">
+                                <!-- <div class="tab-pane active clearfix" id="tab1-2">
                                     <h4>Grupo 1</h4>
                                     <ul class="target connected" ui-jq="sortable" ui-options="sortableOption">
                                     </ul>
                                     <button ng-click="tryAsignar()" class="pull-right btn btn-primary">Asignar</button>
-                                </div>
-                                <!-- // Tab content END -->
-
-                                <!-- Tab content -->
-                                <div class="tab-pane clearfix" id="tab2-2">
-                                    <h4>Grupo 2</h4>
-                                    <ul class="target connected" ui-jq="sortable" ui-options="sortableOption">
-                                    </ul>
-                                    <button ng-click="tryAsignar()" class="pull-right btn btn-primary">Asignar</button>
-                                </div>
-                                <!-- // Tab content END -->
-
-                                <!-- Tab content -->
-                                <div class="tab-pane clearfix" id="tab3-2">
-                                    <h4>Grupo 3</h4>
-                                    <ul class="target connected" ui-jq="sortable" ui-options="sortableOption">
-                                    </ul>
-                                    <button ng-click="tryAsignar()" class="pull-right btn btn-primary">Asignar</button>
-                                </div>
-                                <!-- // Tab content END -->
-
-                                <!-- Tab content -->
-                                <div class="tab-pane clearfix" id="tab4-2">
-                                    <h4>Grupo 4</h4>
-                                    <ul class="target connected" ui-jq="sortable" ui-options="sortableOption">
-                                    </ul>
-
-                                    <button ng-click="tryAsignar()" class="pull-right btn btn-primary">Asignar</button>
-                                </div>
+                                </div> -->
                                 <!-- // Tab content END -->
 
                                 <div ng-show="msgAsignar" class="alert alert-success text-center">

@@ -21,8 +21,8 @@ angular.module('experentiaWebSiteApp')
       $('.selectPicker').selectpicker();
     }, 2000);
 
-    $scope.toggleNotification = function(){
-        $rootScope.showNotification = false;
+    $rootScope.toggleNotification = function(){
+      $rootScope.showNotification = false;
     };
 
     $scope.tryLogout = function(){
@@ -32,7 +32,6 @@ angular.module('experentiaWebSiteApp')
 
     $scope.setFiltroEstado = function(){
       $scope.filtroTareas = $('#filtroEstado').val();
-      console.log($scope.filtroTareas);
     };
 
     $scope.setFiltroAlumno = function(){

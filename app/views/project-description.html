@@ -1,4 +1,4 @@
-<div ng-controller="ProyectoIdCtrl">
+<div>
     <h1 class="pull-left">{{proyecto.nombre}}</h1>
     <div class="innerT  pull-right">
         <a ng-if="viewProjectsCompany" href="#/proyectos-universidad" class="btn btn-primary">volver a proyectos</a>
@@ -12,9 +12,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9" ng-controller="TareaProyectoCtrl">
+        <div class="col-md-9">
             <div class="row  half innerB">
-                <div class=" col-md-5 col-sm-5 col-xs-5" ng-controller="CrearTareaCtrl">
+                <div class=" col-md-5 col-sm-5 col-xs-5">
                     <div class="pull-left innerR half">
                         <h4>Tareas</h4>
                     </div>
@@ -32,7 +32,7 @@
                     <select ng-model="filtroTarea" id="filtroAlumno" class="selectPicker" data-style="btn btn-default strong filled" style="display: none;" ng-change="setFiltroAlumno()">
                         <option ng-disabled="true" value="">Alumnos</option>
                         <option value="">Todos</option>
-                        <option ng-repeat="tarea in tareas" value="{{tarea.alumno}}">{{tarea.alumno}}</option>
+                        <option ng-repeat="tarea in tareas | unique:'alumno'" value="{{tarea.alumno}}">{{tarea.alumno}}</option>
                     </select>
                 </div>
                 <div class="clearfix"></div>
@@ -49,8 +49,8 @@
                         <i class="text-muted fa fa-ticket"></i>
                     </div>
                     <ul class="list-unstyled pull-right media-action" ng-if="usuario.user == 'coordinador'" >
-                        <li class="innerB half" ng-controller="EliminarTareaCtrl"><a href="" class="text-muted" title="eliminar" ng-click="deleteConfirmTarea('{{tarea.nombre}}', {{tarea.id}})"><span class="fa fa-trash"></span></a></li>
-                        <li ng-controller="EditarTareaCtrl"><a href="" class="text-muted" title="editar" ng-click="tryEditTarea({{tarea}})" data-target="#modal-task" data-toggle="modal"><span class="fa fa-pencil">
+                        <li class="innerB half"><a href="" class="text-muted" title="eliminar" ng-click="deleteConfirmTarea('{{tarea.nombre}}', {{tarea.id}})"><span class="fa fa-trash"></span></a></li>
+                        <li><a href="" class="text-muted" title="editar" ng-click="tryEditTarea({{tarea}})" data-target="#modal-task" data-toggle="modal"><span class="fa fa-pencil">
                         </span></a></li>
                     </ul>
                     <div class="pull-right text-right" ng-if="usuario.user == 'coordinador'">
@@ -60,7 +60,7 @@
                             <a ng-if="!tarea.idAlumno" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
                         </div>
                     </div>
-                    <div class="media-body" ng-controller="TareaByIdCtrl">
+                    <div class="media-body">
                         <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal" ng-click="getTareaById({{tarea.id}})">{{tarea.nombre}}</a></h4>
                         <div class="innerR">
                             <span class="strong">Inicio: </span>
@@ -112,7 +112,7 @@
                 </div>
             </div> -->
 
-            <div class="widget widget-info widget-small" ng-controller="GrupoByIdCtrl" ng-init="getGrupoById()">
+            <div class="widget widget-info widget-small">
                 <div class="widget-head">
                     <div class="heading">Grupo asignado</div>
                 </div>
@@ -126,9 +126,7 @@
 
     </div>
 
-    <div ng-controller="CrearTareaCtrl">
-       <div ng-include="'views/partials/modal-task.html'" ng-controller="EditarTareaCtrl"></div> 
-    </div>
+    <div ng-include="'views/partials/modal-task.html'"></div>
     
     <div ng-include="'views/partials/modal-assignTask.html'"></div>
     <div ng-include="'views/partials/modal-assignGroup.html'"></div>

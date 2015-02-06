@@ -36,13 +36,17 @@ angular
         templateUrl: 'views/project-list-company.html',
         controller: 'MainCtrl'
       })
+      .when('/dashboard', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl'
+      })
       .when('/proyectos-universidad', {
         templateUrl: 'views/project-list-university.html',
         controller: 'MainCtrl'
       })
       .when('/proyecto-descripcion-universidad/:id', {
         templateUrl: 'views/project-description.html',
-        controller: 'MainCtrl'
+        controller: 'ProyectoCoordinadorCtrl'
       })
       .when('/proyecto-descripcion-empresa/:id', {
         templateUrl: 'views/project-description.html',

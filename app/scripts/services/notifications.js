@@ -8,7 +8,7 @@
  * Service in the experentiaWebSiteApp.
  */
 angular.module('experentiaWebSiteApp')
- .factory('NotificationsSrv', function($timeout, $rootScope) {
+ .factory('NotificationsSrv', function($timeout, $rootScope, $compile) {
  	var notifications = {},
 
  	showNotification = function(msg, time) {
@@ -42,11 +42,11 @@ angular.module('experentiaWebSiteApp')
 		$rootScope.notificationStatus = '';
  		showNotification(msg, time);
  	};
- 	notifications.confirm = function(msg, idTarea, controller) {
+ 	notifications.confirm = function(msg, idTarea) {
 		$rootScope.notificationClass = 'notyfy_confirm';
 		$rootScope.notificationStatus = '';
 		$rootScope.idTarea = idTarea;
-		$rootScope.controller = controller;
+			
 		var msgs = [{msg: msg}];
  		showNotificationConfirm(msgs);
  	};

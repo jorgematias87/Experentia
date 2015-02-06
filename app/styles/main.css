@@ -70,7 +70,7 @@ ul.in-progress {
 }
 
 .source.connected li:hover, .target.connected li:hover{
-  cursor: pointer;
+  cursor: move;
 }
 
 .body-wide #header,.body-wide #menu {
@@ -229,5 +229,15 @@ ul.in-progress {
 
 .parrafo {
   font-size: 16px;
+}
+
+.list-unbordered li{
+  border: 0 !important
+}
+
+.label.label-unbordered{
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important 
 }
 /*end landing*/
