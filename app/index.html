@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/jquery-ui/themes/vader/jquery-ui.css" />
     <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+    <link rel="stylesheet" href="bower_components/select2/select2.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -34,7 +35,7 @@
                 </div>
                 <div class="action">
                     <div class="notyfy_buttons" ng-if="notificationClass === 'notyfy_confirm'">
-                        <button class="btn btn-success btn-small btn-icon glyphicons ok_2" ng-click="tryDeleteTarea({{idTarea}})"><i></i> Ok</button>
+                        <button class="btn btn-success btn-small btn-icon glyphicons ok_2" ng-click="tryDelete{{elemento}}({{id}})"><i></i> Ok</button>
                         <button class="btn btn-danger btn-small btn-icon glyphicons remove_2" ng-click="toggleNotification()"><i></i> Cancelar</button>
                     </div>
                 </div>
@@ -91,10 +92,12 @@
     <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
+    <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="bower_components/select2/select2.js"></script>
+    <script src="bower_components/angular-ui-select2/src/select2.js"></script>
     <!-- endbower -->
     <script src="//www.fuelcdn.com/fuelux/3.1.0/js/fuelux.min.js"></script>
     <script src="assets/plugins/forms_elements_bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script src="assets/plugins/forms_elements_select2/js/select2.js"></script>
     <script src="assets/plugins/forms_elements_bootstrap-select/js/bootstrap-select.js"></script>
 
     <!-- endbuild -->
@@ -107,12 +110,14 @@
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
         <script src="scripts/controllers/proyecto-coordinador.js"></script>
+        <script src="scripts/controllers/grupos.js"></script>
 
         <script src="scripts/services/grupo.js"></script>
         <script src="scripts/services/login.js"></script>
         <script src="scripts/services/proyecto.js"></script>
         <script src="scripts/services/tarea.js"></script>
         <script src="scripts/services/alumno.js"></script>
+        <script src="scripts/services/materia.js"></script>
         <script src="scripts/services/notifications.js"></script>
 
         <script src="scripts/directives/custompage.js"></script>

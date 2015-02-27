@@ -10,7 +10,7 @@
 angular.module('experentiaWebSiteApp')
 .factory('GrupoSrv', function ($resource, baseURL) {
 
-  var grupo = $resource( baseURL + 'api/Grupo/:id', {
+  var grupo = $resource( baseURL + 'api/Grupo/:action/:id', {
       id: '@id',
   }, {
     update: {
@@ -21,8 +21,20 @@ angular.module('experentiaWebSiteApp')
   });
   return grupo;
 })
-.factory('GruposSrv', function (GrupoSrv) {
+.factory('GruposSrv', function ($location, $route, GrupoSrv, NotificationsSrv) {
   var grupos= {};
+
+  //Lista de grupos
+  grupos.listar= function(idComision, gruposCallback){
+    var onGruposSuccess = function(response){
+     gruposCallback(response);
+    },
+    onGruposError = function(rejection){
+     NotificationsSrv.error(rejection.data, 5000);
+    }
+
+    GrupoSrv.query({id: idComision, action: 'GetGrupos'}, onGruposSuccess, onGruposError);
+  };
 
   //Grupo by Id
   grupos.byId= function(idGrupo, grupoCallback){
@@ -30,10 +42,38 @@ angular.module('experentiaWebSiteApp')
         grupoCallback(response);
       },
         onGrupoError = function(rejection){
-          console.log(rejection);
+          NotificationsSrv.error(rejection.data, 5000);
         }
 
-      GrupoSrv.get({id: idGrupo}, onGrupoSucces, onGrupoError);
-  } 
+      GrupoSrv.get({id: idGrupo, action: 'GetGrupo'}, onGrupoSucces, onGrupoError);
+  };
+
+  //Crear grupo
+  grupos.crear= function(grupo, alumnos){
+    var onSaveGrupoSuccess = function(response){
+      NotificationsSrv.success('grupo creado exitosamente.', 5000);
+      $location.path('/grupos');
+    },
+    onSaveGrupoError = function(rejection){
+      NotificationsSrv.error(rejection.data, 5000);
+    }
+
+    GrupoSrv.save({grupo: grupo, alumnos: alumnos}, onSaveGrupoSuccess, onSaveGrupoError);
+  };
+
+  //Eliminar grupo
+  grupos.eliminar= function(idGrupo){
+    var onSaveGrupoSuccess = function(response){
+      NotificationsSrv.success('grupo eliminado exitosamente.', 5000);
+      $route.reload();
+      $location.path('/grupos');
+    },
+    onSaveGrupoError = function(rejection){
+      NotificationsSrv.error(rejection.data, 5000);
+    }
+
+    GrupoSrv.delete({id: idGrupo}, onSaveGrupoSuccess, onSaveGrupoError);
+  };
+
   return grupos;
 });

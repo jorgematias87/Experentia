@@ -1,99 +1,243 @@
-<div class="innerLR">
-	<h1>Dashboard</h1>
-	<div class="row innerTB">
-		<div class="col-md-3">
-			<div class="widget icon-widget widget-primary">
-				<div class="widget-body innerAll half">
-					<div class="background-icon">
-						<i class="icon-tv-play icon-faded"></i>
-					</div>
-					<div class="text-muted">Proyectos</div>
-				</div>		
-				<div class="border-top innerTB half text-large text-center">
-					{{proyectos.length}}
+
+<h1>Dashboard</h1>
+<div class="row innerTB">
+	<div class="col-md-3">
+		<div class="widget icon-widget widget-primary">
+			<div class="widget-body innerAll half">
+				<div class="background-icon">
+					<i class="icon-tv-play icon-faded"></i>
 				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="widget icon-widget widget-warning">
-				<div class="widget-body innerAll half">
-					<div class="background-icon">
-						<i class="icon-book-shelf icon-faded"></i>
-					</div>
-					<div class="text-muted">Materias</div>
-				</div>		
-				<div class="border-top innerTB half text-large text-center">
-					{{proyectos.length}}
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="widget icon-widget widget-success">
-				<div class="widget-body innerAll half">
-					<div class="background-icon">
-						<i class="icon-group icon-faded"></i>
-					</div>
-					<div class="text-muted">Grupos</div>
-				</div>		
-				<div class="border-top innerTB half text-large text-center">
-					1
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="widget icon-widget widget-danger">
-				<div class="widget-body innerAll half">
-					<div class="background-icon">
-						<i class="icon-user-2 icon-faded"></i>
-					</div>
-					<div class="text-muted">Alumnos</div>
-				</div>		
-				<div class="border-top innerTB half text-large text-center">
-					{{alumnos.length}}
-				</div>
+				<div class="text-muted">Proyectos</div>
+			</div>		
+			<div class="border-top innerTB half text-large text-center">
+				{{proyectos.length}}
 			</div>
 		</div>
 	</div>
-
-	<div class="row innerB">
-		<div class="col-md-6">
-			<div class="widget widget-small widget-primary">
-				<div class="widget-head clearfix">
-					<div class="pull-left strong">
-						Mis Proyectos
-					</div>
+	<div class="col-md-3">
+		<div class="widget icon-widget widget-warning">
+			<div class="widget-body innerAll half">
+				<div class="background-icon">
+					<i class="icon-book-shelf icon-faded"></i>
 				</div>
-				<div class="widget-body padding-none">
-					<ul class="unstyled list-hands">
-						<li ng-repeat="proyecto in proyectos">
-							<div class="media">
-								<div class="pull-left">
-									<i class="icon-tv-play fa-3x icon-faded"></i>				
-								</div>
-								<div class="media-body">
-									<h4>
-										<a href="#/proyecto-descripcion-universidad/{{proyecto.id}}">{{proyecto.nombre}}</a>
-									</h4>
-									<ul class="list-inline list-unbordered">
-										<li>
-											<i class="fa fa-fw fa-clock-o"></i>
-											{{proyecto.fechaLimite | date:'dd/MM/yyyy'}}
-										</li>
-										<li>
-											<span class="label label-unbordered" ng-class="getClassEstado('{{proyecto.estado}}', 'label')">
-												<i class="icon-sliders"> </i>
-												{{proyecto.estado}}
-											</span> 
-										</li>
-										<li>
-											<i class="icon-wrench"> </i> {{proyecto.tecnologia}}
-										</li>
-									</ul>
+				<div class="text-muted">Materias</div>
+			</div>		
+			<div class="border-top innerTB half text-large text-center">
+				{{materias.length}}
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="widget icon-widget widget-success">
+			<div class="widget-body innerAll half">
+				<div class="background-icon">
+					<i class="icon-group icon-faded"></i>
+				</div>
+				<div class="text-muted">Grupos</div>
+			</div>		
+			<div class="border-top innerTB half text-large text-center">
+				{{grupos.length}}
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="widget icon-widget widget-danger">
+			<div class="widget-body innerAll half">
+				<div class="background-icon">
+					<i class="icon-user-2 icon-faded"></i>
+				</div>
+				<div class="text-muted">Alumnos</div>
+			</div>		
+			<div class="border-top innerTB half text-large text-center">
+				{{alumnos.length}}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="widget innerAll half widget-primary widget-small">
+			<div class="strong innerB half">Oferta de proyectos</div>
+			<div id="clients-slider" class="carousel slide innerLR half margin-none" data-ride="carousel">
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+					<div class="item active">
+						<div class="row">
+							<div class="col-md-3" ng-repeat="item in listaProyectos">
+								<div class="innerAll bg-white text-center border-all">
+									<i class="icon-tv-play fa-5x icon-faded"></i>
+									<div class="innerTB half">
+										<div class="strong">{{item.nombre}} </div>
+										<span class="text-muted">{{item.fechaLimite | date:'dd/MM/yyyy'}} </span>
+									</div>
+									<a href="#/proyecto-descripcion-universidad/{{item.id}}" class="btn btn-default btn-sm"> Ver</a>
 								</div>
 							</div>
-						</li>
-					</ul>
+						</div>
+					</div>
 				</div>
+				<!-- Indicators -->
+				<ol class="carousel-indicators innerT position-relative">
+					<li data-target="#clients-slider" data-slide-to="0" class="active"></li>
+				</ol>
+			</div>
+		</div>
+
+<div class="row innerB">
+	<div class="col-md-6">
+		<div class="alert alert-info clearfix" ng-show="msg">
+		    <span class="pull-left"ng-bind-html="msg"></span>
+		    <a href="" class="pull-right btn btn-info">Proyectos</a>
+		</div>
+
+		<div class="widget widget-small widget-primary" ng-if="!msg">
+			<div class="widget-head clearfix">
+				<div class="pull-left strong">
+					Mis Proyectos
+				</div>
+			</div>
+			<div class="widget-body padding-none">
+				<ul class="unstyled list-hands">
+					<li ng-repeat="proyecto in proyectos">
+						<div class="media">
+							<div class="pull-left">
+								<i class="icon-tv-play fa-3x icon-faded"></i>				
+							</div>
+							<div class="media-body">
+								<h4>
+									<a href="#/proyecto-descripcion-universidad/{{proyecto.id}}">{{proyecto.nombre}}</a>
+								</h4>
+								<ul class="list-inline list-unbordered">
+									<li>
+										<i class="fa fa-fw fa-clock-o"></i>
+										{{proyecto.fechaLimite | date:'dd/MM/yyyy'}}
+									</li>
+									<li>
+										<span class="label label-unbordered" ng-class="getClassEstado('{{proyecto.estado}}', 'label')">
+											<i class="icon-sliders"> </i>
+											{{proyecto.estado}}
+										</span> 
+									</li>
+									<li>
+										<i class="icon-wrench"> </i> {{proyecto.tecnologia}}
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="widget widget-small widget-primary">
+			<div class="widget-head clearfix">
+				<div class="pull-left strong">
+					Mis Materias
+				</div>
+			</div>
+			<div class="widget-body padding-none">
+				<ul class="unstyled list-hands">
+					<li ng-repeat="materia in materias">
+						<div class="media">
+							<div class="pull-left">
+								<i class="fa-3x icon-book-shelf icon-faded"></i>				
+							</div>
+							<div class="media-body">
+								<h4>
+									<a ng-href="#/proyecto-descripcion-universidad/{{proyecto.id}}">{{materia.nombre}}</a>
+								</h4>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row innerB">
+	<div class="col-md-6">
+		<div class="widget widget-small widget-primary" ng-if="!msg">
+			<div class="widget-head clearfix">
+				<div class="pull-left strong">
+					Tareas
+				</div>
+			</div>
+			<div class="widget-body padding-none">
+				<div class="alert alert-info clearfix" ng-show="msgTareas">
+				    <span class="pull-left"ng-bind-html="msgTareas"></span>
+				    <a data-target="#modal-task" class="pull-right btn btn-info" data-toggle="modal"><i class="fa fa-ticket"></i> Crear</a>
+				</div>
+				<ul class="unstyled list-hands">
+					<li ng-repeat="tarea in tareas | orderBy : tarea.item.fechaCreacion">
+						<div class="media">
+							<div class="pull-left">
+								<i class="text-muted fa fa-ticket fa-2x"></i>				
+							</div>
+							<div class="media-body">
+								<h4>
+									<a href="">{{tarea.item.nombre}}</a>
+								</h4>
+								<ul class="list-inline list-unbordered">
+									<li>
+										<i class="fa fa-fw fa-clock-o"></i>
+										{{tarea.item.fechaCreacion | date:'dd/MM/yyyy'}}
+									</li>
+									<li>
+										<span class="label label-unbordered" ng-class="getClassEstado('{{tarea.item.estado}}', 'label')">
+											<i class="icon-sliders"> </i>
+											{{tarea.item.estado}}
+										</span> 
+									</li>
+									<li>
+										<i class="glyphicon glyphicon-user"> </i> {{tarea.alumnoNombre}} {{tarea.alumnoApellido}}
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="widget widget-small widget-primary">
+			<div class="widget-head clearfix">
+				<div class="pull-left strong">
+					Grupos
+				</div>
+			</div>
+			<div class="widget-body padding-none">
+				<div class="alert alert-info clearfix" ng-show="msgGrupos">
+				    <span class="pull-left"ng-bind-html="msgGrupos"></span>
+				    <a href="" class="pull-right btn btn-info"><i class="icon-group"></i> Crear</a>
+				</div>
+				<ul class="unstyled list-hands">
+					<li ng-repeat="grupo in grupos">
+						<div class="media">
+							<div class="pull-left">
+								<i class="icon-group fa-3x icon-faded"></i>				
+							</div>
+							<div class="media-body">
+								<h4>
+									<a ng-href="#/grupo/{{grupo.id}}">{{grupo.nombre}}</a>
+								</h4>
+								<ul class="list-inline list-unbordered">
+									<li>
+										<i class="fa fa-fw fa-clock-o"></i>
+										{{grupo.fechaCreacion | date:'dd/MM/yyyy'}}
+									</li>
+									<li>
+										<i class="icon-book-shelf"> </i> {{grupo.materia}}
+									</li>
+									<li>
+										<i class="icon-wrench"> </i> {{grupo.tecnologia}}
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

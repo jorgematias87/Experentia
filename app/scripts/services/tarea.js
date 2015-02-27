@@ -24,10 +24,22 @@ angular.module('experentiaWebSiteApp')
 		 tareasCallback(response);
 		},
 		onTareasError = function(rejection){
-		 console.log(rejection);
+		 NotificationsSrv.error(rejection.data, 5000);
 		}
 
 		TareaSrv.query({id: idProyecto, action: 'GetTareasProyecto'}, onTareasSucces, onTareasError);
+	};
+
+	//Lista de Tareas
+	tareas.listarByIdCoordinador= function(idProyecto, tareasCallback){
+		var onTareasSucces = function(response){
+		 tareasCallback(response);
+		},
+		onTareasError = function(rejection){
+		 NotificationsSrv.error(rejection.data, 5000);
+		}
+
+		TareaSrv.query({id: idProyecto, action: 'GetTareasCoordinador'}, onTareasSucces, onTareasError);
 	};
 
 	//Tarea por ID

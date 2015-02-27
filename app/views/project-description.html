@@ -49,7 +49,7 @@
                         <i class="text-muted fa fa-ticket"></i>
                     </div>
                     <ul class="list-unstyled pull-right media-action" ng-if="usuario.user == 'coordinador'" >
-                        <li class="innerB half"><a href="" class="text-muted" title="eliminar" ng-click="deleteConfirmTarea('{{tarea.nombre}}', {{tarea.id}})"><span class="fa fa-trash"></span></a></li>
+                        <li class="innerB half"><a href="" class="text-muted" title="eliminar" ng-click="deleteConfirm('{{tarea.nombre}}', {{tarea.id}}, 'Tarea')"><span class="fa fa-trash"></span></a></li>
                         <li><a href="" class="text-muted" title="editar" ng-click="tryEditTarea({{tarea}})" data-target="#modal-task" data-toggle="modal"><span class="fa fa-pencil">
                         </span></a></li>
                     </ul>

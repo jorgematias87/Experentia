@@ -9,7 +9,7 @@
  */
 
  angular.module('experentiaWebSiteApp')
-  .controller('ProyectoCoordinadorCtrl', function ($scope, $rootScope, $routeParams, ProyectosSrv, TareasSrv, GruposSrv, AlumnosSrv, NotificationsSrv) {
+  .controller('ProyectoCoordinadorCtrl', function ($scope, $rootScope, $routeParams, $filter, ProyectosSrv, TareasSrv, GruposSrv, AlumnosSrv, NotificationsSrv) {
 
     $scope.idProyecto = $routeParams.id;
 
@@ -58,7 +58,9 @@
 
     $scope.tryTarea = function(idProyecto){
       $scope.tarea.idProyecto=  idProyecto;
-      $scope.tarea.estado= "pendiente";
+      $scope.tarea.estado= 'pendiente';
+      $scope.tarea.fechaCreacion = $filter('date')(new Date(), 'yyyy-MM-dd');
+      console.log($scope.tarea);
       TareasSrv.crear($scope.tarea);
     }
 
@@ -78,9 +80,9 @@
       TareasSrv.eliminar(idTarea);
     }
 
-    $scope.deleteConfirmTarea = function(nombreTarea, idTarea){
-      NotificationsSrv.confirm('Estas seguro que quieres eliminar la tarea: '+nombreTarea+'?', idTarea);
-    }
+    $scope.deleteConfirm = function(nombre, id, elemento){
+      NotificationsSrv.confirm('Estas seguro que quieres eliminar: '+nombre+'?', id, elemento);
+    };
 
     //listar alumnos
     var alumnosCallback = function(response){

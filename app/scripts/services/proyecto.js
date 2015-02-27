@@ -10,10 +10,10 @@
 angular.module('experentiaWebSiteApp')
 .factory('ProyectoSrv', function ($resource, baseURL) {
 
-  var proyecto = $resource( baseURL + 'api/Proyecto/:id', {}, {});
+  var proyecto = $resource( baseURL + 'api/Proyecto/:action/:id', {}, {});
   return proyecto;
 })
-.factory('ProyectosSrv', function (ProyectoSrv, $location) {
+.factory('ProyectosSrv', function (ProyectoSrv, $location, NotificationsSrv) {
 	var proyectos= {};
 
 	//Lista de Proyectos
@@ -22,7 +22,7 @@ angular.module('experentiaWebSiteApp')
 		   callback(response);
 		},
 		  onProyectosError = function(rejection){
-		    console.log(rejection);
+		    NotificationsSrv.error(rejection.data, 5000);
 		  }
 
 		ProyectoSrv.query(onProyectosSuccess, onProyectosError);
@@ -35,10 +35,23 @@ angular.module('experentiaWebSiteApp')
 		  proyectoCallback(response);
 		},
 		  onProyectoError = function(rejection){
-		    console.log(rejection);
+		    NotificationsSrv.error(rejection.data, 5000);
 		  }
 
-		ProyectoSrv.get({id: id}, onProyectoSucces, onProyectoError);
+		ProyectoSrv.get({id: id, action: 'GetProyecto'}, onProyectoSucces, onProyectoError);
+	};
+
+	//Proyectos por ID
+	proyectos.listarById= function(id, proyectoCallback){
+
+		var onProyectoSucces = function(response){
+		  proyectoCallback(response);
+		},
+		  onProyectoError = function(rejection){
+		    NotificationsSrv.error(rejection.data, 5000);
+		  }
+
+		ProyectoSrv.query({id: id, action: 'GetProyectosById'}, onProyectoSucces, onProyectoError);
 	}
 
 	proyectos.crear = function(){

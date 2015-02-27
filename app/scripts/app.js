@@ -18,7 +18,9 @@ angular
     'ngTouch',
     'ui.jq',
     'ui.bootstrap',
-    'duScroll'
+    'duScroll',
+    'ui.sortable',
+    'ui.select2'
   ])
   .value('duScrollOffset', 49)
   .constant( 'baseURL', 'http://localhost:1409/' )
@@ -52,9 +54,21 @@ angular
         templateUrl: 'views/project-description.html',
         controller: 'MainCtrl'
       })
-      .when('/alumnos', {
-        templateUrl: 'views/students.html',
-        controller: 'MainCtrl'
+      .when('/grupos', {
+        templateUrl: 'views/grupos.html',
+        controller: 'GruposCtrl'
+      })
+      .when('/grupo/:id', {
+        templateUrl: 'views/grupo.html',
+        controller: 'GrupoCtrl'
+      })
+      .when('/crear-grupo', {
+        templateUrl: 'views/grupo-datos.html',
+        controller: 'GrupoCrearCtrl'
+      })
+      .when('/editar-grupo/:id', {
+        templateUrl: 'views/grupo-datos.html',
+        controller: 'GrupoEditarCtrl'
       })
       .when('/tareas-alumno', {
         templateUrl: 'views/tareas-alumno.html',

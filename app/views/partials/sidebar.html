@@ -1,15 +1,44 @@
 <!-- Sidebar Menu -->
-<div id="menu" class="hidden-print hidden-xs">
+<div id="menu" class="hidden-print hidden-xs" ng-controller="MainCtrl">
 
     <div ng-if="usuario.user == 'coordinador'" id="sidebar-fusion-wrapper">
         <ul class="menu list-unstyled">
-        	<li class="active">
+        	<li ng-class="{ active: isActive('/dashboard')}">
         		<a href="#/dashboard" class="index">
         			<i class="fa fa-home"></i>
         			<span>Dashboard</span>
         		</a>
         	</li>
-            <li><a href="#/alumnos">Alumnos</a></li>
+            <li>
+                <a href="#/oferta-de-proyectos">
+                    <i class="icon-tv-play"></i>
+                    <span>Oferta Proyectos</span>
+                </a>
+            </li>
+            <li>
+                <a href="#/mis-proyectos">
+                    <i class="icon-tv-play"></i>
+                    <span>Mis Proyectos</span>
+                </a>
+            </li>
+            <li>
+                <a href="#/materias">
+                    <i class="icon-book-shelf"></i>
+                    <span>Materias</span>
+                </a>
+            </li>
+            <li ng-class="{active: isActive('/grupos') || isActive('/crear-grupo') || isActive('/grupo-detalle/{{idGrupo}}')}">
+                <a href="#/grupos">
+                    <i class="icon-group"></i>
+                    <span>Grupos</span>
+                </a>
+            </li>
+            <li>
+                <a href="#/alumnos">
+                    <i class="icon-user-2"></i>
+                    <span>Alumnos</span>
+                </a>
+            </li>
         </ul>
     </div>
 

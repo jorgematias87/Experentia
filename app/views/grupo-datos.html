@@ -1,0 +1,104 @@
+<form  name="formGrupo" ng-submit="crearGrupo()" class="form-horizontal">
+  <div class="clearfix innerB">
+    <h1 class="pull-left">Crear Grupo</h1>
+    <button type="submit" class="pull-right btn btn-primary" ng-disabled="formGrupo.$invalid">Crear</button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="widget widget-small widget-primary">
+        <div class="widget-head clearfix">
+          <div class="pull-left strong">
+            Grupo
+          </div>
+        </div>
+        <div class="widget-body padding-none">
+          <div class="innerLR innerT">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="alumnos">Nombre:</label>
+                <input type="text" ng-model="formGrupo.nombre" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="">Materia:</label>
+                <select id class="form-control" ng-model="formGrupo.materia" ng-change="getAlumnosByMaterias()">
+                  <option ng-disabled="true" value="">Elija una materia</option>
+                  <option ng-repeat="materia in materias " value="{{materia.id}}"><span>{{materia.nombre}}</span></option>
+                </select>
+              </div>
+            </div>
+                  <!-- <div class="form-group innerB">
+                      <div class="col-md-12">
+                          <label for="">Comisión:</label>
+                          <select class="form-control">
+                              <option>Comisión 1</option>
+                              <option>Comisión 2</option>
+                              <option>Comision 3</option>
+                              <option>Comision 4</option>
+                              <option>Comision 5</option>
+                              <option>Comision 6</option>
+                          </select>
+                      </div>
+                    </div> -->
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="emailAlumnos">Tecnología:</label>
+                        <input ng-model="formGrupo.tecnologia" class="innerB" type="hidden" ui-select2="select2Tags" style="width: 100%;"/>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="widget widget-small widget-primary">
+        <div class="widget-head clearfix">
+          <div class="pull-left strong">
+            Alumnos asignados
+          </div>
+        </div>
+        <div class="widget-body">
+          <ul class="target connected" ng-model="alumnosAsignados" ui-sortable="sortableOption">
+            <li ng-repeat="alumnosAsignado in alumnosAsignados">  
+              <div class="media">
+                <div class="pull-left">
+                  <span class="glyphicon glyphicon-user"></span>
+                </div>
+                <div class="media-body">
+                  <a href>{{alumnosAsignado.nombre}} {{alumnosAsignado.apellido}}</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="widget widget-small widget-primary">
+        <div class="widget-head clearfix">
+          <div class="pull-left strong">
+            Alumnos disponibles
+          </div>
+        </div>
+        <div class="widget-body">
+          <ul class="source connected" ng-model="alumnos" ui-sortable="sortableOption">
+            <li ng-repeat="alumno in alumnos">  
+              <div class="media">
+                <div class="pull-left">
+                  <span class="glyphicon glyphicon-user"></span>
+                </div>
+                <div class="media-body">
+                  <a href>{{alumno.nombre}} {{alumno.apellido}}</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+

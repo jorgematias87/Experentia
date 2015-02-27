@@ -1,0 +1,55 @@
+
+<div class="clearfix innerB">
+  <h1 class="pull-left">{{grupo.nombre}}</h1>
+  <div class="pull-right">
+    <a href class="btn btn-primary" title="Eliminar" ng-click="deleteConfirm('{{grupo.nombre}}', {{grupo.id}}, 'Grupo')"><i class="fa fa-trash"></i></a>
+    <a ng-href="#/editar-grupo/{{grupo.id}}" class="btn btn-primary" title="Editar"><i class="fa fa-pencil"></i></a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="widget widget-primary widget-small">
+      <div class="widget-head">
+        <div class="heading">Detalles</div>
+      </div>
+      <div class="widget-body">
+        <div class="row">
+          <div class="col-xs-3 text-muted-dark"><div class="innerB half">Nombre:</div></div>
+          <div class="col-xs-9 text-inverse"><div class="innerB half">{{grupo.nombre}}</div></div>
+          <div class="col-xs-3 text-muted-dark"><div class="innerB half">Creación:</div></div>
+          <div class="col-xs-9 text-inverse"><div class="innerB half">{{grupo.fechaCreacion | date:'dd/MM/yyyy'}}</div></div>
+          <div class="col-xs-3 text-muted-dark"><div class="innerB half">Materia:</div></div>
+          <div class="col-xs-9 text-inverse"><div class="innerB half">{{grupo.materia}}</div></div>
+          <div class="col-xs-3 text-muted-dark"><div class="innerB half">Tecnología:</div></div>
+          <div class="col-xs-9 text-inverse"><div class="innerB half">{{grupo.tecnologia}}</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="widget widget-small widget-primary">
+      <div class="widget-head clearfix">
+        <div class="pull-left strong">
+          Alumnos
+        </div>
+      </div>
+      <div class="widget-body padding-none">
+        <ul class="unstyled list-hands">
+          <li ng-repeat="alumno in alumnos">
+            <div class="media">
+              <div class="pull-left">
+                <i class="fa-2x icon-user-2 icon-faded"></i>        
+              </div>
+              <div class="media-body">
+                <a href>{{alumno.nombre}} {{alumno.apellido}} </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+

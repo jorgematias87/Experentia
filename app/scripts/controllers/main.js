@@ -8,7 +8,7 @@
  * Controller of the experentiaWebSiteApp
  */
 angular.module('experentiaWebSiteApp')
-  .controller('MainCtrl', function ($scope, $location, $cookieStore, $rootScope) {
+  .controller('MainCtrl', function ($scope, $location, $routeParams, $cookieStore, $rootScope) {
 
     $rootScope.usuario = $cookieStore.get('usuario');
     $scope.tecnologias = ['.NET', 'Javascript', 'HTML', 'CSS', 'Java', 'PHP', 'AngularJS', 'NodeJS'];
@@ -16,6 +16,10 @@ angular.module('experentiaWebSiteApp')
     if($rootScope.usuario === ''){
       $location.path('/');
     }
+
+    $scope.isActive = function (viewLocation) { 
+      return viewLocation === $location.path();
+    };
 
     setTimeout(function() {
       $('.selectPicker').selectpicker();
@@ -72,7 +76,7 @@ angular.module('experentiaWebSiteApp')
   		startDate: '2013-02-14'
 	 };
 
-   $scope.select2Tags = {tags:[]};
+   $scope.select2Tags = {tags:$scope.tecnologias};
 
   })
   .controller('RatingCtrl', function ($scope) {

@@ -145,7 +145,7 @@ ul.in-progress {
   height: 400px;
 }
 
-.item {
+.slider .item {
   height: 400px;
 }
 
@@ -235,9 +235,19 @@ ul.in-progress {
   border: 0 !important
 }
 
+.list-unoutered {
+  margin-bottom: 0;
+}
+
 .label.label-unbordered{
   box-shadow: none !important;
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important 
 }
 /*end landing*/
+
+/*custom*/
+.bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]){
+  width: 180px !important
+}
+/*en custom*/
