@@ -36,6 +36,18 @@ angular.module('experentiaWebSiteApp')
     GrupoSrv.query({id: idComision, action: 'GetGrupos'}, onGruposSuccess, onGruposError);
   };
 
+  //grupos by materia
+  grupos.byMateria= function(idMateria, gruposCallback){
+    var onGruposSuccess = function(response){
+     gruposCallback(response);
+    },
+    onGruposError = function(rejection){
+     NotificationsSrv.error(rejection.data, 5000);
+    }
+
+    GrupoSrv.query({id: idMateria, action: 'GetGruposByMateria'}, onGruposSuccess, onGruposError);
+  };
+
   //Grupo by Id
   grupos.byId= function(idGrupo, grupoCallback){
       var onGrupoSucces = function(response){

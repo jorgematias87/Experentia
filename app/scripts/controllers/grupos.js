@@ -50,6 +50,12 @@
   })
   .controller('GrupoCrearCtrl', function ($scope, $rootScope, $cookieStore, $filter, MateriasSrv, AlumnosSrv, GruposSrv) {
     $rootScope.usuario = $cookieStore.get('usuario');
+
+    $scope.conf={};
+    $scope.conf.titulo= 'Crear Grupo';
+    $scope.conf.accion= 'crearGrupo';
+    $scope.conf.boton= 'crear';
+
     $scope.alumnosAsignados= [];
 
     //Lista de Materias
@@ -63,9 +69,22 @@
         $scope.alumnos= response;
       };
 
+    //buscar materia en array
+    var getMateriaInArray = function(materias, materia){
+      var result;
+      materias.forEach(function(item){
+        if(item.nombre === materia){
+          result= item;
+        }
+      });
+
+      return result;
+    };
+
     $scope.getAlumnosByMaterias = function(){
       $scope.alumnosAsignados= [];
-      AlumnosSrv.byMateria($scope.formGrupo.materia, onAlumnosSuccess);
+      $scope.changedMateria= getMateriaInArray($scope.materias, $scope.formGrupo.materia);
+      AlumnosSrv.byMateria($scope.changedMateria.id, onAlumnosSuccess);
     };
 
     //crear grupo
@@ -111,28 +130,97 @@
   };
   AlumnosSrv.byGrupo($scope.idGrupo, onAlumnosSuccess);
 })
-.controller('GrupoEditarCtrl', function ($scope, $routeParams, GruposSrv, AlumnosSrv) {
+.controller('GrupoEditarCtrl', function ($scope, $rootScope, $cookieStore, $routeParams, GruposSrv, AlumnosSrv, MateriasSrv) {
+  $rootScope.usuario = $cookieStore.get('usuario');
+
+  $scope.conf={};
+  $scope.conf.titulo= 'Editar Grupo';
+  $scope.conf.accion= 'editarGrupo';
+  $scope.conf.boton= 'editar';
+
+
   $scope.idGrupo = $routeParams.id;
 
   //Grupo by id
   var onGrupoSuccess = function(response){
     $scope.formGrupo= response;
+
+    var tecnologias= response.tecnologia.split(',');
+    preSelectedTecnologias(tecnologias);
+
+    MateriasSrv.listar($rootScope.usuario.id, onMateriasSuccess);
   };
   GruposSrv.byId($scope.idGrupo, onGrupoSuccess);
 
+  var preSelectedTecnologias= function(tecnologias){
+    var tecnologia= {};
+    $scope.formGrupo.tecnologia= [];
+    tecnologias.forEach(function(item){
+      tecnologia.id= item;
+      tecnologia.text= item;
+      $scope.formGrupo.tecnologia.push(tecnologia);
+    });
+  }
+
+  //buscar materia en array
+  var getMateriaInArray = function(materias, materia){
+    var result;
+    materias.forEach(function(item){
+      if(item.nombre === materia){
+        result= item;
+      }
+    });
+
+    return result;
+  };
+
+  //Lista de Materias
+  var onMateriasSuccess = function(response){
+    $scope.materias= response;
+    $scope.materia= getMateriaInArray($scope.materias, $scope.formGrupo.materia);
+
+    $scope.getAlumnosByMaterias();
+  };
+
   //Lista de alumnos asignados
   var onAlumnosSuccess = function(response){
-    $scope.alumnosAsignados= response;
+    $scope.auxAlumnosAsignados= response
+    $scope.alumnosAsignados= $scope.auxAlumnosAsignados;
   };
   AlumnosSrv.byGrupo($scope.idGrupo, onAlumnosSuccess);
 
-  //Lista de alumnos
-    var onAlumnosSuccess = function(response){
-        $scope.alumnos= response;
-      };
+  var onAlumnosByGrupoMateriaSuccess = function(response){
+      $scope.alumnosGrupoMateria= response;
+      AlumnosSrv.byMateria($scope.changedMateria.id, onAlumnosSuccess);
+  };
 
-    $scope.getAlumnosByMaterias = function(){
+  //grupos by materia
+  var onGruposSuccess = function(response){
+    $scope.grupos= response;
+  };
+
+  //Lista de alumnos
+  var onAlumnosSuccess = function(response){
+    $scope.alumnos= response;
+
+    $scope.alumnosGrupoMateria.forEach(function(alumnoGrupoMateria){
+      for (var i = $scope.alumnos.length - 1; i >= 0; i--) {
+        if($scope.alumnos[i].id === alumnoGrupoMateria.id ){
+          $scope.alumnos.splice(i,1);
+        };
+      };
+    });
+  };
+
+  $scope.getAlumnosByMaterias = function(){
+    $scope.changedMateria= getMateriaInArray($scope.materias, $scope.formGrupo.materia);
+
+    if($scope.materia.nombre === $scope.changedMateria.nombre){
+      $scope.alumnosAsignados= $scope.auxAlumnosAsignados;
+    }else{
       $scope.alumnosAsignados= [];
-      AlumnosSrv.byMateria($scope.formGrupo.materia, onAlumnosSuccess);
-    };
+    }
+
+    AlumnosSrv.byGrupoMateria($scope.changedMateria.idComision, onAlumnosByGrupoMateriaSuccess);
+  };
 });

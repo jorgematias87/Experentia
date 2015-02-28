@@ -50,7 +50,7 @@ angular.module('experentiaWebSiteApp')
 	      }
 
 	    AlumnoSrv.query({id: idMateria, action: 'GetAlumnosByMateria'}, onAlumnosSucces, onAlumnosError);
-	}  
+	};  
 
 	//alumnos by Grupo
 	alumnos.byGrupo= function(idGrupo, alumnoCallback){
@@ -62,7 +62,19 @@ angular.module('experentiaWebSiteApp')
 	      }
 
 	    AlumnoSrv.query({id: idGrupo, action: 'GetAlumnosByGrupo'}, onAlumnosSucces, onAlumnosError);
-	}  
+	};
+
+	//alumnos by Grupo-Materia
+	alumnos.byGrupoMateria= function(idMateria, alumnoCallback){
+	    var onAlumnosSucces = function(response){
+	      alumnoCallback(response);
+	    },
+	      onAlumnosError = function(rejection){
+	        NotificationsSrv.error(rejection.data, 5000);
+	      }
+
+	    AlumnoSrv.query({id: idMateria, action: 'GetAlumnosByGrupoMateria'}, onAlumnosSucces, onAlumnosError);
+	}   
 
 	return alumnos;
 	

@@ -1,7 +1,7 @@
-<form  name="formGrupo" ng-submit="crearGrupo()" class="form-horizontal">
+<form  name="formGrupo" class="form-horizontal">
   <div class="clearfix innerB">
-    <h1 class="pull-left">Crear Grupo</h1>
-    <button type="submit" class="pull-right btn btn-primary" ng-disabled="formGrupo.$invalid">Crear</button>
+    <h1 class="pull-left">{{conf.titulo}}</h1>
+    <button type="submit" class="pull-right btn btn-primary" ng-click="{{conf.accion}}()" ng-disabled="formGrupo.$invalid">{{conf.boton}}</button>
   </div>
 
   <div class="row">
@@ -25,7 +25,7 @@
                 <label for="">Materia:</label>
                 <select id class="form-control" ng-model="formGrupo.materia" ng-change="getAlumnosByMaterias()">
                   <option ng-disabled="true" value="">Elija una materia</option>
-                  <option ng-repeat="materia in materias " value="{{materia.id}}"><span>{{materia.nombre}}</span></option>
+                  <option ng-repeat="materia in materias " value="{{materia.nombre}}" ng-selected="formGrupo.materia === materia.nombre"><span>{{materia.nombre}}</span></option>
                 </select>
               </div>
             </div>
@@ -45,7 +45,7 @@
                     <div class="form-group">
                       <div class="col-md-12">
                         <label for="emailAlumnos">Tecnología:</label>
-                        <input ng-model="formGrupo.tecnologia" class="innerB" type="hidden" ui-select2="select2Tags" style="width: 100%;"/>
+                        <input ng-model="formGrupo.tecnologia" class="innerB" type="hidden" ui-select2="select2Tags" data-placeholder="Elija una opción" style="width: 100%;"/>
                       </div>
                     </div>
                     <div class="clearfix"></div>
