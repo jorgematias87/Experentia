@@ -1,0 +1,60 @@
+<h1 class="pull-left">Tareas</h1>
+<div class="clearfix"></div>
+<div class="separator"></div>
+<div class="widget widget-none">
+    <div class="widget-body clearfix" ng-controller="MainCtrl">
+        <div class="col-md-4">
+        	<h4 class="innerB half">Pendientes</h4>
+        	<ul class="source connected" ng-model="tareas.pendientes" ui-jq="sortable" ui-options="sortableOption">
+        		<li ng-repeat="tarea in tareas.pendientes">	
+        			<div class="media">
+        				<div class="pull-left media-object hidden-xs margin-none innerR">
+        					<i class="text-muted fa fa-ticket fa-2x"></i>
+        				</div>
+        				<div class="media-body">
+        					<a href data-target="#modal-taskDescription" data-toggle="modal">{{tarea.nombre}}</a>
+        				</div>
+        			</div>
+        		</li>
+        	</ul>
+        </div>
+        <div class="col-md-4">
+        	<h4 class="innerB half">En progreso</h4>
+        	<ul class="in-progress connected" ng-model="tareas.enProgresos" ui-jq="sortable" ui-options="sortableOption">
+        		<li ng-repeat="tarea in tareas.enProgresos">   
+                    <div class="media">
+                        <div class="pull-left h1 media-object hidden-xs margin-none innerR">
+                            <i class="text-muted fa fa-ticket"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal">{{tarea.Nombre}}</a></h4>
+                            <div class="innerR">
+                                <span class="strong">Inicio: </span>
+                                <span> {{tarea.FechaInicio}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+        	</ul>
+        </div>
+        <div class="col-md-4">
+        	<h4 class="innerB half">Hecho</h4>
+        	<ul class="target connected" ng-model="tareas.hechos" ui-jq="sortable" ui-options="sortableOption">
+                <li ng-repeat="tarea in tareas.hechos">   
+                    <div class="media">
+                        <div class="pull-left h1 media-object hidden-xs margin-none innerR">
+                            <i class="text-muted fa fa-ticket"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal">{{tarea.Nombre}}</a></h4>
+                            <div class="innerR">
+                                <span class="strong">Inicio: </span>
+                                <span> {{tarea.FechaInicio}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+        	</ul>
+        </div>
+    </div>
+</div>

@@ -58,16 +58,15 @@
 
     $scope.alumnosAsignados= [];
 
+    if(!$scope.alumnos){
+      $scope.msg='Seleccione una materia';
+    }
+
     //Lista de Materias
     var onMateriasSuccess = function(response){
       $scope.materias= response;
     };
     MateriasSrv.listar($rootScope.usuario.id, onMateriasSuccess);
-
-    //Lista de alumnos
-    var onAlumnosSuccess = function(response){
-        $scope.alumnos= response;
-      };
 
     //buscar materia en array
     var getMateriaInArray = function(materias, materia){
@@ -81,10 +80,34 @@
       return result;
     };
 
+    //Lista de alumnos
+    var onAlumnosSuccess = function(response){
+      $scope.msg='';
+      $scope.alumnos= response;
+
+      $scope.alumnosGrupoMateria.forEach(function(alumnoGrupoMateria){
+        for (var i = $scope.alumnos.length - 1; i >= 0; i--) {
+          if($scope.alumnos[i].id === alumnoGrupoMateria.id ){
+            $scope.alumnos.splice(i,1);
+
+            if($scope.alumnos.length === 0){
+              $scope.msg= 'Todos los alumnos estan asignados'
+            }
+          };
+        };
+      });
+    };
+
+    //Lista de alumnos asignados
+    var onAlumnosByGrupoMateriaSuccess = function(response){
+        $scope.alumnosGrupoMateria= response;
+        AlumnosSrv.byMateria($scope.changedMateria.id, onAlumnosSuccess);
+    };
+
     $scope.getAlumnosByMaterias = function(){
       $scope.alumnosAsignados= [];
       $scope.changedMateria= getMateriaInArray($scope.materias, $scope.formGrupo.materia);
-      AlumnosSrv.byMateria($scope.changedMateria.id, onAlumnosSuccess);
+      AlumnosSrv.byGrupoMateria($scope.changedMateria.idComision, onAlumnosByGrupoMateriaSuccess);
     };
 
     //crear grupo
@@ -102,21 +125,16 @@
     };
 
     $scope.crearGrupo= function(){
-      //Lista de Materias
-      var onMateriaSuccess = function(response){
-        var materia= response;
-        $scope.formGrupo.idComision= materia.idComision;
-        $scope.formGrupo.fechaCreacion = $filter('date')(new Date(), 'yyyy-MM-dd');
-        $scope.formGrupo.tecnologia= parseArray($scope.formGrupo.tecnologia, 'text');
-        delete $scope.formGrupo.materia;
+      $scope.formGrupo.idComision= $scope.changedMateria.idComision;
+      $scope.formGrupo.fechaCreacion = $filter('date')(new Date(), 'yyyy-MM-dd');
+      $scope.formGrupo.tecnologia= parseArray($scope.formGrupo.tecnologia, 'text');
+      delete $scope.formGrupo.materia;
 
-        GruposSrv.crear($scope.formGrupo, $scope.alumnosAsignados);
-      };
-      MateriasSrv.byId($scope.formGrupo.materia, onMateriaSuccess);
+      GruposSrv.crear($scope.formGrupo, $scope.alumnosAsignados);
     };
   })
-.controller('GrupoCtrl', function ($scope, $routeParams, GruposSrv, AlumnosSrv) {
-  $scope.idGrupo = $routeParams.id;
+.controller('GrupoCtrl', function ($scope, $rootScope, $routeParams, NotificationsSrv, GruposSrv, AlumnosSrv) {
+  $scope.idGrupo = $rootScope.itemId = $routeParams.id;
 
   //Grupo by id
   var onGrupoSuccess = function(response){
@@ -127,8 +145,22 @@
   //Lista de alumnos
   var onAlumnosSuccess = function(response){
     $scope.alumnos= response;
+
+    if($scope.alumnos.length === 0){
+      $scope.msg= 'No hay alumnos asignados';
+    }
   };
   AlumnosSrv.byGrupo($scope.idGrupo, onAlumnosSuccess);
+
+  //eliminar Grupo
+  $rootScope.tryDeleteGrupo = function(idGrupo){
+    GruposSrv.eliminar(idGrupo);
+  };
+
+  $scope.deleteConfirm = function(nombre, id, elemento){
+    NotificationsSrv.confirm('Estas seguro que quieres eliminar: '+nombre+'?', id, elemento);
+  };
+
 })
 .controller('GrupoEditarCtrl', function ($scope, $rootScope, $cookieStore, $routeParams, GruposSrv, AlumnosSrv, MateriasSrv) {
   $rootScope.usuario = $cookieStore.get('usuario');
@@ -138,8 +170,7 @@
   $scope.conf.accion= 'editarGrupo';
   $scope.conf.boton= 'editar';
 
-
-  $scope.idGrupo = $routeParams.id;
+  $scope.idGrupo = $rootScope.itemId = $routeParams.id;
 
   //Grupo by id
   var onGrupoSuccess = function(response){
@@ -153,9 +184,10 @@
   GruposSrv.byId($scope.idGrupo, onGrupoSuccess);
 
   var preSelectedTecnologias= function(tecnologias){
-    var tecnologia= {};
+    
     $scope.formGrupo.tecnologia= [];
     tecnologias.forEach(function(item){
+      var tecnologia= {};
       tecnologia.id= item;
       tecnologia.text= item;
       $scope.formGrupo.tecnologia.push(tecnologia);
@@ -189,11 +221,6 @@
   };
   AlumnosSrv.byGrupo($scope.idGrupo, onAlumnosSuccess);
 
-  var onAlumnosByGrupoMateriaSuccess = function(response){
-      $scope.alumnosGrupoMateria= response;
-      AlumnosSrv.byMateria($scope.changedMateria.id, onAlumnosSuccess);
-  };
-
   //grupos by materia
   var onGruposSuccess = function(response){
     $scope.grupos= response;
@@ -201,15 +228,25 @@
 
   //Lista de alumnos
   var onAlumnosSuccess = function(response){
+    $scope.msg='';
     $scope.alumnos= response;
 
     $scope.alumnosGrupoMateria.forEach(function(alumnoGrupoMateria){
       for (var i = $scope.alumnos.length - 1; i >= 0; i--) {
         if($scope.alumnos[i].id === alumnoGrupoMateria.id ){
           $scope.alumnos.splice(i,1);
+
+          if($scope.alumnos.length === 0){
+            $scope.msg= 'Todos los alumnos estan asignados'
+          }
         };
       };
     });
+  };
+
+  var onAlumnosByGrupoMateriaSuccess = function(response){
+      $scope.alumnosGrupoMateria= response;
+      AlumnosSrv.byMateria($scope.changedMateria.id, onAlumnosSuccess);
   };
 
   $scope.getAlumnosByMaterias = function(){
@@ -223,4 +260,28 @@
 
     AlumnosSrv.byGrupoMateria($scope.changedMateria.idComision, onAlumnosByGrupoMateriaSuccess);
   };
+
+  var parseArray= function(object, item){
+      var result= '';
+
+      for (var i = object.length - 1; i >= 0; i--) {
+        if(i === 0){
+          result+= object[i][item];
+        }else{
+          result+= object[i][item]+',';
+        }
+      }
+      return result;
+    };
+
+  $scope.editarGrupo= function(){
+    delete $scope.formGrupo.materia;
+    $scope.formGrupo.idComision= $scope.changedMateria.idComision;
+    $scope.formGrupo.tecnologia= parseArray($scope.formGrupo.tecnologia, 'text');
+
+    console.log($scope.formGrupo, $scope.alumnosAsignados);
+
+    GruposSrv.editar($scope.idGrupo, $scope.formGrupo, $scope.alumnosAsignados);
+  };
+
 });

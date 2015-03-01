@@ -1,8 +1,8 @@
 <div>
     <h1 class="pull-left">{{proyecto.nombre}}</h1>
     <div class="innerT  pull-right">
-        <a ng-if="viewProjectsCompany" href="#/proyectos-universidad" class="btn btn-primary">volver a proyectos</a>
-        <a ng-if="!viewProjectsCompany" href="#/proyectos-universidad" class="btn btn-primary">volver a proyectos</a>
+        <a ng-if="viewProjectsCompany" href="#/coordinador/proyectos" class="btn btn-primary">volver a proyectos</a>
+        <a ng-if="!viewProjectsCompany" href="#/coordinador/proyectos" class="btn btn-primary">volver a proyectos</a>
     </div>
     <div class="clearfix"></div>
     <div class="separator"></div>
@@ -57,7 +57,7 @@
                         <span class="label" ng-class="getClassEstado('{{tarea.estado}}', 'label')">{{tarea.estado}}</span>
                         <div class="innerT half">
                             <span>{{tarea.alumno}}</span>
-                            <a ng-if="!tarea.idAlumno" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
+                            <a ng-if="!tarea.idAlumno" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal" ng-click="setTarea(tarea)">Asignar <i class="fa fa-plus"></i></a>
                         </div>
                     </div>
                     <div class="media-body">
@@ -81,8 +81,6 @@
                     <div class="row">
                         <div class="col-xs-5 text-muted-dark"><div class="innerB half">Tecnología:</div></div>
                         <div class="col-xs-7 text-inverse"><div class="innerB half">{{proyecto.tecnologia}}</div></div>
-                        <div class="col-xs-5 text-muted-dark"><div class="innerB half">Equipo:</div></div>
-                        <div class="col-xs-7 text-inverse"><div class="innerB half">3 Personas</div></div>
                         <div class="col-xs-5 text-muted-dark"><div class="innerB half">Inicio:</div></div>
                         <div class="col-xs-7 text-inverse"><div class="innerB half">21 de abril 2014</div></div>
                         <div class="col-xs-5 text-muted-dark"><div class="innerB half">Fin:</div></div>
@@ -116,10 +114,20 @@
                 <div class="widget-head">
                     <div class="heading">Grupo asignado</div>
                 </div>
-                <div class="widget-body innerAll text-center">
-                    <span>{{grupo.nombre}}</span>
-
-                    <a ng-if="!grupo" data-target="#modal-assignTaskGroup" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
+                <div class="widget-body innerAll">
+                    <div class="row" ng-if="grupo">
+                        <div class="col-xs-5 text-muted-dark"><div class="innerB half">Nombre:</div></div>
+                        <div class="col-xs-7 text-inverse">
+                            <div class="innerB half">
+                                <a href="#/grupo/{{grupo.id}}">{{grupo.nombre}}</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-5 text-muted-dark"><div class="innerB half">Materia:</div></div>
+                        <div class="col-xs-7 text-inverse"><div class="innerB half">{{grupo.materia}}</div></div>
+                    </div>
+                    <div class="text-center">
+                        <a ng-if="!grupo" data-target="#modal-assignTaskGroup" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

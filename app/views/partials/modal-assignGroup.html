@@ -1,23 +1,39 @@
 <!-- assignTaskGroup -->
-<div class="modal fade" id="modal-assignTaskGroup">
+<div class="modal fade" id="modal-assignTaskGroup" ng-controller="ProyectoCoordinadorCtrl">
 
     <div class="modal-dialog">
         <div class="modal-content bg-white">
             <!-- Modal body -->
+            <div class="modal-header">
+                <h3 class="modal-title">Asignar Grupo</h3>
+            </div>
+
             <div class="modal-body padding-none ">
 
                 <form class="form-horizontal " role="form">
-
                     <div class="innerLR innerT">
+                        <div class="form-group">
+                            <label class="col-sm-12" for="">Materia:</label>
+                            <div class="col-sm-12">
+                                <select id class="form-control" ng-model="changedMateria" ng-change="getGruposByMateria()">
+                                  <option ng-disabled="true" value="">Elija una materia</option>
+                                  <option ng-repeat="materia in materias " value="{{materia.nombre}}"><span>{{materia.nombre}}</span></option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="widget widget-small widget-primary">
                             <div class="widget-head ">
                                 <div class="strong">
-                                    Asignar Grupos:
+                                    Grupos - {{changedMateria}}
                                 </div>
                             </div>
-                            <div class="widget-body padding-none">
+                            <div class="widget-body" ng-class="{'padding-none': grupos.length>0}">
+                                <div class="alert alert-info clearfix" ng-show="msgGrupos">
+                                    <span class="pull-left"ng-bind-html="msgGrupos"></span>
+                                    <a href="#/crear-grupo" class="pull-right btn btn-info"><i class="icon-group"></i> Crear</a>
+                                </div>
                                 <ul class="unstyled list-hands">
-                                    <li>
+                                    <li ng-repeat="grupo in grupos">
                                         <div class="media">
                                             <div class="pull-left">
                                                 <i class="text-muted fontSizeMedium fa fa-users"></i>
@@ -26,66 +42,12 @@
                                                 <div class="pull-right">
                                                     <div class="radio">
                                                         <label class="radio-custom checked" data-initialize="radio">
-                                                            <input type="radio" name="radio" checked="checked"> 
+                                                            <input type="radio" name="radio" checked="checked" ng-click="proyecto.idGrupo = grupo.id"> 
                                                             <i class="fontSizeSmall fa fa-w fa-square-o"></i>
                                                         </label> 
                                                     </div>
                                                 </div>
-                                                <a href="#">Grupo 1</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <i class="text-muted fontSizeMedium fa fa-users"></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="pull-right">
-                                                    <div class="radio">
-                                                        <label class="radio-custom checked" data-initialize="radio">
-                                                            <input type="radio" name="radio" checked="checked"> 
-                                                            <i class="fontSizeSmall fa fa-w fa-square-o"></i>
-                                                        </label> 
-                                                    </div>
-                                                </div>
-                                                <a href="#">Grupo 2</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <i class="text-muted fontSizeMedium fa fa-users"></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="pull-right">
-                                                    <div class="radio">
-                                                        <label class="radio-custom checked" data-initialize="radio">
-                                                            <input type="radio" name="radio" checked="checked"> 
-                                                            <i class="fontSizeSmall fa fa-w fa-square-o"></i>
-                                                        </label> 
-                                                    </div>
-                                                </div>
-                                                <a href="#">Grupo 3</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <i class="text-muted fontSizeMedium fa fa-users"></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="pull-right">
-                                                    <div class="radio">
-                                                        <label class="radio-custom checked" data-initialize="radio">
-                                                            <input type="radio" name="radio" checked="checked"> 
-                                                            <i class="fontSizeSmall fa fa-w fa-square-o"></i>
-                                                        </label> 
-                                                    </div>
-                                                </div>
-                                                <a href="#">Grupo 4</a>
+                                                <a href="#/grupo/{{grupo.id}}">{{grupo.nombre}}</a>
                                             </div>
                                         </div>
                                     </li>
@@ -102,8 +64,8 @@
             <!-- // Modal body END -->
 
             <div class="innerLR innerB text-right">
-                <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
-                <a href="#" class="btn btn-primary"><i class="fa  fa-check"></i> Asignar</a>
+                <a href="" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</a>
+                <a href="" class="btn btn-primary" ng-click="editarProyecto()" data-dismiss="modal"><i class="fa  fa-check"></i> Asignar</a>
             </div>
 
         </div>

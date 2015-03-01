@@ -24,7 +24,7 @@ angular.module('experentiaWebSiteApp')
 		 tareasCallback(response);
 		},
 		onTareasError = function(rejection){
-		 NotificationsSrv.error(rejection.data, 5000);
+		 NotificationsSrv.error(rejection.data.Message, 5000);
 		}
 
 		TareaSrv.query({id: idProyecto, action: 'GetTareasProyecto'}, onTareasSucces, onTareasError);
@@ -36,10 +36,22 @@ angular.module('experentiaWebSiteApp')
 		 tareasCallback(response);
 		},
 		onTareasError = function(rejection){
-		 NotificationsSrv.error(rejection.data, 5000);
+		 NotificationsSrv.error(rejection.data.Message, 5000);
 		}
 
 		TareaSrv.query({id: idProyecto, action: 'GetTareasCoordinador'}, onTareasSucces, onTareasError);
+	};
+
+	//Tareas by alumno
+	tareas.byAlumno= function(idAlumno, tareasCallback){
+		var onTareasSucces = function(response){
+		 tareasCallback(response);
+		},
+		onTareasError = function(rejection){
+		 NotificationsSrv.error(rejection.data.Message, 5000);
+		}
+
+		TareaSrv.query({id: idAlumno, action: 'GetTareasAlumno'}, onTareasSucces, onTareasError);
 	};
 
 	//Tarea por ID
@@ -78,7 +90,7 @@ angular.module('experentiaWebSiteApp')
 		  $('.modal-backdrop').remove();
 		},
 		onEditTareaError = function(rejection){
-		  NotificationsSrv.error(rejection.data, 5000);
+		  NotificationsSrv.error(rejection.data.Message, 5000);
 		}
 
 		TareaSrv.update({id: idTarea},tarea, onEditTareaSuccess, onEditTareaError);
@@ -91,7 +103,7 @@ angular.module('experentiaWebSiteApp')
 		  $route.reload();
 		},
 		onDeleteTareaError = function(rejection){
-		  NotificationsSrv.error(rejection.data, 5000);
+		  NotificationsSrv.error(rejection.data.Message, 5000);
 		}
 
 		TareaSrv.delete({id: idTarea}, onDeleteTareaSuccess, onDeleteTareaError);

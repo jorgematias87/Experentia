@@ -20,7 +20,7 @@ angular.module('experentiaWebSiteApp')
               $location.path('/dashboard');
               break;
           case 'alumno':
-              $location.path('/tareas-alumno');
+              $location.path('/alumno/tareas');
               break;
       }
     };

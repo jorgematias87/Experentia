@@ -83,6 +83,10 @@
                       </div>
                       <div id="collapseOne" class="panel-collapse collapse">
                           <div class="panel-body">
+                            <div class="alert alert-info clearfix" ng-show="msgAlumnos">
+                                <span class="pull-left"ng-bind-html="msgAlumnos"></span>
+                                <a ng-href="#/editar-grupo/{{grupo.id}}" ng-click="closeModal('#modal-assignTask')" class="pull-right btn btn-info"><i class="icon-group"></i> Asignar</a>
+                            </div>
                             <ul class="unstyled list-hands">
                                 <li ng-repeat="alumno in alumnos">
                                     <div class="media">
@@ -109,7 +113,7 @@
         </div>
     </div>
     <div class="innerLR innerB text-right">
-        <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
+        <a href="#" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</a>
         <button ng-click="tryTarea(idProyecto)" ng-if="!editTarea" class="btn btn-primary"><i class="fa  fa-check"></i> Crear</button>
         <button ng-click="saveEditTarea()" ng-if="editTarea" class="btn btn-primary"><i class="fa  fa-check"></i> Editar</button>
     </div>

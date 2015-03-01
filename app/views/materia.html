@@ -1,0 +1,73 @@
+
+<div class="clearfix innerB">
+  <h1 class="pull-left">{{materia.nombre}}</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+      <div class="widget widget-small widget-primary">
+        <div class="widget-head clearfix">
+          <div class="pull-left strong">
+            Grupos
+          </div>
+        </div>
+        <div class="widget-body" ng-class="{'padding-none': grupos.length>0}">
+          <div class="alert alert-info clearfix" ng-show="msgGrupos">
+              <span class="pull-left"ng-bind-html="msgGrupos"></span>
+              <a href="#/crear-grupo" class="pull-right btn btn-info"><i class="icon-group"></i> Crear</a>
+          </div>
+          <ul class="unstyled list-hands">
+            <li ng-repeat="grupo in grupos">
+              <div class="media">
+                <div class="pull-left">
+                  <i class="icon-group fa-3x icon-faded"></i>       
+                </div>
+                <div class="media-body">
+                  <h4>
+                    <a ng-href="#/grupo/{{grupo.id}}">{{grupo.nombre}}</a>
+                  </h4>
+                  <ul class="list-inline list-unbordered">
+                    <li>
+                      <i class="fa fa-fw fa-clock-o"></i>
+                      {{grupo.fechaCreacion | date:'dd/MM/yyyy'}}
+                    </li>
+                    <li>
+                      <i class="icon-book-shelf"> </i> {{grupo.materia}}
+                    </li>
+                    <li>
+                      <i class="icon-wrench"> </i> {{grupo.tecnologia}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <div class="col-md-6">
+    <div class="widget widget-small widget-primary">
+      <div class="widget-head clearfix">
+        <div class="pull-left strong">
+          Alumnos
+        </div>
+      </div>
+      <div class="widget-body" ng-class="{'padding-none': alumnos.length>0}">
+        <ul class="unstyled list-hands">
+          <li ng-repeat="alumno in alumnos">
+            <div class="media">
+              <div class="pull-left">
+                <i class="fa-2x icon-user-2 icon-faded"></i>        
+              </div>
+              <div class="media-body">
+                <a href>{{alumno.nombre}} {{alumno.apellido}} </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+

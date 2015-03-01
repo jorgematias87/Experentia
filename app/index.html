@@ -31,7 +31,7 @@
             <div class="notyfy_bar" ng-controller="MainCtrl">
                 <div class="notyfy_message">
                     <span class="notyfy_text"><strong>{{notificationStatus}}</strong></span>
-                    <span ng-repeat="msgObj in notificationMsgs">{{msgObj.msg}}</span>
+                    <span>{{notificationMsgs}}</span>
                 </div>
                 <div class="action">
                     <div class="notyfy_buttons" ng-if="notificationClass === 'notyfy_confirm'">
@@ -109,8 +109,11 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
-        <script src="scripts/controllers/proyecto-coordinador.js"></script>
+        <script src="scripts/controllers/proyecto.js"></script>
         <script src="scripts/controllers/grupos.js"></script>
+        <script src="scripts/controllers/materia.js"></script>
+        <script src="scripts/controllers/alumno.js"></script>
+        <script src="scripts/controllers/tarea.js"></script>
 
         <script src="scripts/services/grupo.js"></script>
         <script src="scripts/services/login.js"></script>

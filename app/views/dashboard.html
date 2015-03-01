@@ -69,7 +69,7 @@
 										<div class="strong">{{item.nombre}} </div>
 										<span class="text-muted">{{item.fechaLimite | date:'dd/MM/yyyy'}} </span>
 									</div>
-									<a href="#/proyecto-descripcion-universidad/{{item.id}}" class="btn btn-default btn-sm"> Ver</a>
+									<a href="#/coordinador/proyecto/{{item.id}}" class="btn btn-default btn-sm"> Ver</a>
 								</div>
 							</div>
 						</div>
@@ -97,14 +97,14 @@
 			</div>
 			<div class="widget-body padding-none">
 				<ul class="unstyled list-hands">
-					<li ng-repeat="proyecto in proyectos">
+					<li ng-repeat="proyecto in proyectos | limitTo:5">
 						<div class="media">
 							<div class="pull-left">
 								<i class="icon-tv-play fa-3x icon-faded"></i>				
 							</div>
 							<div class="media-body">
 								<h4>
-									<a href="#/proyecto-descripcion-universidad/{{proyecto.id}}">{{proyecto.nombre}}</a>
+									<a href="#/coordinador/proyecto/{{proyecto.id}}">{{proyecto.nombre}}</a>
 								</h4>
 								<ul class="list-inline list-unbordered">
 									<li>
@@ -137,14 +137,14 @@
 			</div>
 			<div class="widget-body padding-none">
 				<ul class="unstyled list-hands">
-					<li ng-repeat="materia in materias">
+					<li ng-repeat="materia in materias | limitTo:5">
 						<div class="media">
 							<div class="pull-left">
 								<i class="fa-3x icon-book-shelf icon-faded"></i>				
 							</div>
 							<div class="media-body">
 								<h4>
-									<a ng-href="#/proyecto-descripcion-universidad/{{proyecto.id}}">{{materia.nombre}}</a>
+									<a ng-href="#/materia/{{materia.id}}">{{materia.nombre}}</a>
 								</h4>
 							</div>
 						</div>
@@ -169,7 +169,7 @@
 				    <a data-target="#modal-task" class="pull-right btn btn-info" data-toggle="modal"><i class="fa fa-ticket"></i> Crear</a>
 				</div>
 				<ul class="unstyled list-hands">
-					<li ng-repeat="tarea in tareas | orderBy : tarea.item.fechaCreacion">
+					<li ng-repeat="tarea in tareas | orderBy : tarea.item.fechaCreacion | limitTo:5">
 						<div class="media">
 							<div class="pull-left">
 								<i class="text-muted fa fa-ticket fa-2x"></i>				
@@ -207,13 +207,13 @@
 					Grupos
 				</div>
 			</div>
-			<div class="widget-body padding-none">
+			<div class="widget-body" ng-class="{'padding-none': grupos.length>0}">
 				<div class="alert alert-info clearfix" ng-show="msgGrupos">
 				    <span class="pull-left"ng-bind-html="msgGrupos"></span>
-				    <a href="" class="pull-right btn btn-info"><i class="icon-group"></i> Crear</a>
+				    <a href="#/crear-grupo" class="pull-right btn btn-info"><i class="icon-group"></i> Crear</a>
 				</div>
 				<ul class="unstyled list-hands">
-					<li ng-repeat="grupo in grupos">
+					<li ng-repeat="grupo in grupos | limitTo:5">
 						<div class="media">
 							<div class="pull-left">
 								<i class="icon-group fa-3x icon-faded"></i>				

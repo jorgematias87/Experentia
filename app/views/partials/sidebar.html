@@ -1,45 +1,61 @@
 <!-- Sidebar Menu -->
 <div id="menu" class="hidden-print hidden-xs" ng-controller="MainCtrl">
 
-    <div ng-if="usuario.user == 'coordinador'" id="sidebar-fusion-wrapper">
-        <ul class="menu list-unstyled">
+    <div id="sidebar-fusion-wrapper">
+        <ul class="menu list-unstyled" ng-if="usuario.user === 'coordinador'">
         	<li ng-class="{ active: isActive('/dashboard')}">
         		<a href="#/dashboard" class="index">
         			<i class="fa fa-home"></i>
         			<span>Dashboard</span>
         		</a>
         	</li>
-            <li>
-                <a href="#/oferta-de-proyectos">
+            <li ng-class="{ active: isActive('/coordinador/oferta-proyectos')}">
+                <a href="#/coordinador/oferta-proyectos">
                     <i class="icon-tv-play"></i>
                     <span>Oferta Proyectos</span>
                 </a>
             </li>
-            <li>
-                <a href="#/mis-proyectos">
+            <li ng-class="{ active: isActive('/{{usuario.user}}/proyectos') || isActive('/{{usuario.user}}/proyecto/{{itemId}}') }">
+                <a href="#/{{usuario.user}}/proyectos">
                     <i class="icon-tv-play"></i>
                     <span>Mis Proyectos</span>
                 </a>
             </li>
-            <li>
+            <li ng-class="{ active: isActive('/materias') || isActive('/materia/{{itemId}}') }">
                 <a href="#/materias">
                     <i class="icon-book-shelf"></i>
                     <span>Materias</span>
                 </a>
             </li>
-            <li ng-class="{active: isActive('/grupos') || isActive('/crear-grupo') || isActive('/grupo-detalle/{{idGrupo}}')}">
+            <li ng-class="{active: isActive('/grupos') || isActive('/crear-grupo') || isActive('/grupo/{{itemId}}') || isActive('/editar-grupo/{{itemId}}')}">
                 <a href="#/grupos">
                     <i class="icon-group"></i>
                     <span>Grupos</span>
                 </a>
             </li>
-            <li>
+            <li ng-class="{ active: isActive('/alumnos')}">
                 <a href="#/alumnos">
                     <i class="icon-user-2"></i>
                     <span>Alumnos</span>
                 </a>
             </li>
         </ul>
+
+        <ul class="menu list-unstyled" ng-if="usuario.user === 'alumno'">
+            <li ng-class="{ active: isActive('/dashboard')}">
+                <a href="#/dashboard" class="index">
+                    <i class="fa fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li ng-class="{ active: isActive('/alumno/tareas')}">
+                <a href="#/alumno/tareas">
+                    <i class="fa fa-ticket"></i>
+                    <span>Tareas</span>
+                </a>
+            </li>
+        </ul>
+
     </div>
 
 </div>

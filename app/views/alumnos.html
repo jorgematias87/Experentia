@@ -1,3 +1,5 @@
+<h1 class="innerB">Alumnos</h1>
+
 <div class="widget widget-heading-simple widget-body-white">
 
     <!-- Widget heading -->
@@ -8,7 +10,7 @@
 
     <div class="widget-body clearfix">
         <label for="emailAlumnos">Email:</label>
-        <input class="innerB" type="hidden" ui-jq="select2" ui-options="select2Tags" style="width: 100%;"/>
+        <input class="innerB" type="hidden" ui-jq="select2" ui-options="select2Email" style="width: 100%;"/>
         <div ng-show="msg" class="alert alert-success text-center">
           <strong>{{msg}}</strong>
           </div>
@@ -27,4 +29,22 @@
                     </div>
                 </form> -->
             </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6" ng-repeat="alumno in alumnos">
+    <div class="widget widget-small" >
+    <!-- <div class="widget widget-small"> -->
+        <div class="media innerAll half">
+            <div class="pull-left h1 media-object hidden-xs margin-none innerR">
+                <i class="icon-user-2 icon-faded"></i>
+            </div>
+            <!-- <ul class="list-unstyled pull-right media-action" ng-if="usuario.user == 'coordinador'" > -->
+            
+            <div class="media-body">
+                <h4><a ng-href="">{{alumno.nombre}} {{alumno.apellido}} </a></h4>
+            </div>
+        </div>
+    </div>
+  </div>
 </div>

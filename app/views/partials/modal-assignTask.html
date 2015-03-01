@@ -15,7 +15,11 @@
                                     Asignar Alumnos:
                                 </div>
                             </div>
-                            <div class="widget-body padding-none">
+                            <div class="widget-body" ng-class="{'padding-none': alumnos.length>0} ">
+                                <div class="alert alert-info clearfix" ng-show="msgAlumnos">
+                                    <span class="pull-left"ng-bind-html="msgAlumnos"></span>
+                                    <a ng-href="#/editar-grupo/{{grupo.id}}" ng-click="closeModal('#modal-assignTask')" class="pull-right btn btn-info"><i class="icon-group"></i> Asignar</a>
+                                </div>
                                 <ul class="unstyled list-hands">
                                     <li ng-repeat="alumno in alumnos">
                                         <div class="media">
@@ -26,7 +30,7 @@
                                                 <div class="pull-right">
                                                     <div class="radio">
                                                         <label class="radio-custom checked" data-initialize="radio">
-                                                            <input type="radio" name="radio" checked="checked"> 
+                                                            <input type="radio" name="radio" checked="checked" ng-click="tarea.idAlumno = alumno.id"> 
                                                             <i class="fontSizeSmall fa fa-w fa-square-o"></i>
                                                         </label> 
                                                     </div>
@@ -52,8 +56,8 @@
             </div>
 
             <div class="innerLR innerB text-right">
-                <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
-                <a ng-click="tryAsignar()" href class="btn btn-primary"><i class="fa  fa-check"></i> Asignar</a>
+                <a href="#" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</a>
+                <a ng-click="saveEditTarea()" href class="btn btn-primary" ng-hide="alumnos.length===0"><i class="fa  fa-check"></i> Asignar</a>
             </div>
 
         </div>

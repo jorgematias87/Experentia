@@ -34,7 +34,7 @@ angular.module('experentiaWebSiteApp')
 	      alumnoCallback(response);
 	    },
 	      onAlumnoError = function(rejection){
-	        NotificationsSrv.error(rejection.data, 5000);
+	        NotificationsSrv.error(rejection.data.Message, 5000);
 	      }
 
 	    alumnoSrv.get({id: idAlumno, action: 'GetAlumno'}, onAlumnoSucces, onAlumnoError);
@@ -46,7 +46,7 @@ angular.module('experentiaWebSiteApp')
 	      alumnoCallback(response);
 	    },
 	      onAlumnosError = function(rejection){
-	        NotificationsSrv.error(rejection.data, 5000);
+	        NotificationsSrv.error(rejection.data.Message, 5000);
 	      }
 
 	    AlumnoSrv.query({id: idMateria, action: 'GetAlumnosByMateria'}, onAlumnosSucces, onAlumnosError);
@@ -58,10 +58,22 @@ angular.module('experentiaWebSiteApp')
 	      alumnoCallback(response);
 	    },
 	      onAlumnosError = function(rejection){
-	        NotificationsSrv.error(rejection.data, 5000);
+	        NotificationsSrv.error(rejection.data.Message, 5000);
 	      }
 
 	    AlumnoSrv.query({id: idGrupo, action: 'GetAlumnosByGrupo'}, onAlumnosSucces, onAlumnosError);
+	};
+
+	//alumnos by Coordinador
+	alumnos.byCoordinador= function(idCoordinador, alumnoCallback){
+	    var onAlumnosSucces = function(response){
+	      alumnoCallback(response);
+	    },
+	      onAlumnosError = function(rejection){
+	        NotificationsSrv.error(rejection.data.Message, 5000);
+	      }
+
+	    AlumnoSrv.query({id: idCoordinador, action: 'GetAlumnosByCoordinador'}, onAlumnosSucces, onAlumnosError);
 	};
 
 	//alumnos by Grupo-Materia
@@ -70,7 +82,7 @@ angular.module('experentiaWebSiteApp')
 	      alumnoCallback(response);
 	    },
 	      onAlumnosError = function(rejection){
-	        NotificationsSrv.error(rejection.data, 5000);
+	        NotificationsSrv.error(rejection.data.Message, 5000);
 	      }
 
 	    AlumnoSrv.query({id: idMateria, action: 'GetAlumnosByGrupoMateria'}, onAlumnosSucces, onAlumnosError);

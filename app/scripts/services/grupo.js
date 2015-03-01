@@ -15,8 +15,7 @@ angular.module('experentiaWebSiteApp')
   }, {
     update: {
       method: 'PUT',
-      isArray: false,
-      params: { id: '@id'}
+      isArray: false
     }
   });
   return grupo;
@@ -30,7 +29,7 @@ angular.module('experentiaWebSiteApp')
      gruposCallback(response);
     },
     onGruposError = function(rejection){
-     NotificationsSrv.error(rejection.data, 5000);
+     NotificationsSrv.error(rejection.data.Message, 5000);
     }
 
     GrupoSrv.query({id: idComision, action: 'GetGrupos'}, onGruposSuccess, onGruposError);
@@ -42,7 +41,7 @@ angular.module('experentiaWebSiteApp')
      gruposCallback(response);
     },
     onGruposError = function(rejection){
-     NotificationsSrv.error(rejection.data, 5000);
+     NotificationsSrv.error(rejection.data.Message, 5000);
     }
 
     GrupoSrv.query({id: idMateria, action: 'GetGruposByMateria'}, onGruposSuccess, onGruposError);
@@ -54,7 +53,7 @@ angular.module('experentiaWebSiteApp')
         grupoCallback(response);
       },
         onGrupoError = function(rejection){
-          NotificationsSrv.error(rejection.data, 5000);
+          NotificationsSrv.error(rejection.data.Message, 5000);
         }
 
       GrupoSrv.get({id: idGrupo, action: 'GetGrupo'}, onGrupoSucces, onGrupoError);
@@ -67,7 +66,7 @@ angular.module('experentiaWebSiteApp')
       $location.path('/grupos');
     },
     onSaveGrupoError = function(rejection){
-      NotificationsSrv.error(rejection.data, 5000);
+      NotificationsSrv.error(rejection.data.Message, 5000);
     }
 
     GrupoSrv.save({grupo: grupo, alumnos: alumnos}, onSaveGrupoSuccess, onSaveGrupoError);
@@ -81,10 +80,24 @@ angular.module('experentiaWebSiteApp')
       $location.path('/grupos');
     },
     onSaveGrupoError = function(rejection){
-      NotificationsSrv.error(rejection.data, 5000);
+      NotificationsSrv.error(rejection.data.Message, 5000);
     }
 
     GrupoSrv.delete({id: idGrupo}, onSaveGrupoSuccess, onSaveGrupoError);
+  };
+
+  //Editar grupo
+  grupos.editar= function(idGrupo, grupo, alumnos){
+    var onSaveGrupoSuccess = function(response){
+      NotificationsSrv.success('grupo editado exitosamente.', 5000);
+      $route.reload();
+      $location.path('/grupos');
+    },
+    onSaveGrupoError = function(rejection){
+      NotificationsSrv.error(rejection.data.Message, 5000);
+    }
+
+    GrupoSrv.update({id: idGrupo, grupo: grupo, alumnos: alumnos}, onSaveGrupoSuccess, onSaveGrupoError);
   };
 
   return grupos;

@@ -42,16 +42,20 @@ angular
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl'
       })
-      .when('/proyectos-universidad', {
-        templateUrl: 'views/project-list-university.html',
-        controller: 'MainCtrl'
+      .when('/coordinador/proyectos', {
+        templateUrl: 'views/proyectos.html',
+        controller: 'ProyectosCoordinadorCtrl'
       })
-      .when('/proyecto-descripcion-universidad/:id', {
-        templateUrl: 'views/project-description.html',
+      .when('/coordinador/proyecto/:id', {
+        templateUrl: 'views/proyecto.html',
         controller: 'ProyectoCoordinadorCtrl'
       })
-      .when('/proyecto-descripcion-empresa/:id', {
-        templateUrl: 'views/project-description.html',
+      .when('/coordinador/oferta-proyectos', {
+        templateUrl: 'views/proyectos.html',
+        controller: 'OfertaProyectosCtrl'
+      })
+      .when('/proyecto/:id', {
+        templateUrl: 'views/proyecto.html',
         controller: 'MainCtrl'
       })
       .when('/grupos', {
@@ -70,9 +74,21 @@ angular
         templateUrl: 'views/grupo-datos.html',
         controller: 'GrupoEditarCtrl'
       })
-      .when('/tareas-alumno', {
-        templateUrl: 'views/tareas-alumno.html',
-        controller: 'MainCtrl'
+      .when('/materias', {
+        templateUrl: 'views/materias.html',
+        controller: 'MateriasCtrl'
+      })
+      .when('/materia/:id', {
+        templateUrl: 'views/materia.html',
+        controller: 'MateriaCtrl'
+      })
+      .when('/alumnos', {
+        templateUrl: 'views/alumnos.html',
+        controller: 'AlumnosCtrl'
+      })
+      .when('/alumno/tareas', {
+        templateUrl: 'views/tareas.html',
+        controller: 'TareasAlumnoCtrl'
       })
       .otherwise({
         redirectTo: '/'

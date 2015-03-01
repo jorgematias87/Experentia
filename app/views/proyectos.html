@@ -1,0 +1,68 @@
+<h1 class="pull-left">Proyectos &nbsp; 
+    <a ng-if="isActive('/empresa/proyectos')" data-target="#modal-project" data-toggle="modal" class="btn btn-success">Crear Proyecto <i class="icon-add-symbol"></i> </a> 
+</h1>
+
+<div class="clearfix"></div>
+
+<div class="row innerTB" ng-controller="MainCtrl">
+    <div class="col-md-4" ng-repeat="project in proyectos" ng-if="isActive('/coordinador/oferta-proyectos')">
+        <div class="thumbnail widget-thumbnail">
+            <div class="header text-center"><i class="icon-tv-play fa-10x icon-faded"></i></div>
+            <div class="caption">
+                <h4>{{project.nombre}}</h4>
+                <p class="text-muted">{{project.descripcion}}</p>
+                <a href="#/{{usuario.user}}/proyecto/{{project.id}}" class="btn btn-primary">Ver..</a>
+            </div>
+        </div>
+    </div>
+    <div class="widget widget-inverse widget-small " ng-repeat="project in proyectos" ng-if="!isActive('/coordinador/oferta-proyectos')">
+        <div class="alert alert-info clearfix" ng-show="msg">
+            <span class="pull-left"ng-bind-html="msg"></span>
+            <a href="" class="pull-right btn btn-info">Proyectos</a>
+        </div>
+        <div class="widget-body padding-none" ng-hide="msg">
+            <div class=" media innerAll overflow-visible margin-none">
+                <div class="pull-left innerR half hidden-xs">
+                    <i class="icon-tv-play fa-4x icon-faded"></i>
+                </div>
+                <div class="pull-right hidden-xs">
+                    <div class="strong text-muted-dark innerB half">Asignado a:</div>
+                    <p class="text-center">
+                    <span ng-show="!project.grupo">Sin asignar</span> 
+                    <a href="#/grupo/{{project.grupo.id}}">{{project.grupo.nombre}}</a></p>
+                </div>
+                <div class="media-body">
+                    <h4><a href="#/{{usuario.user}}/proyecto/{{project.id}}" class="media-heading">{{project.nombre}}</a></h4>
+                    <p class="text-muted">{{project.descripcion}}</p>
+                    <div class="clearfix"></div>
+                    <ul class="list-inline list-unbordered">
+                        <li>
+                            <i class="fa fa-fw fa-clock-o"></i>
+                            {{project.fechaLimite | date:'dd/MM/yyyy'}}
+                        </li>
+                        <li>
+                            <span class="label label-unbordered" ng-class="getClassEstado('{{project.estado}}', 'label')">
+                                <i class="icon-sliders"> </i>
+                                {{project.estado}}
+                            </span> 
+                        </li>
+                        <li>
+                            <i class="icon-wrench"> </i> {{project.tecnologia}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <ul class="pagination pagination-centered margin-none">
+    <li class="disabled"><a href="#">&laquo;</a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">&raquo;</a></li>
+</ul> -->
+
+<div ng-include="'views/partials/modal-project.html'"></div>

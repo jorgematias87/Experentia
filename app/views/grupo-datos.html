@@ -1,7 +1,10 @@
 <form  name="formGrupo" class="form-horizontal">
   <div class="clearfix innerB">
     <h1 class="pull-left">{{conf.titulo}}</h1>
-    <button type="submit" class="pull-right btn btn-primary" ng-click="{{conf.accion}}()" ng-disabled="formGrupo.$invalid">{{conf.boton}}</button>
+    <div class="pull-right">
+      <a href="#/grupos" class="btn btn-primary" title="Cancelar"><i class="fa fa-close"></i></a>
+      <button type="submit" class="btn btn-primary" ng-click="{{conf.accion}}()" ng-disabled="formGrupo.$invalid" title="{{conf.boton}}"><i class="fa fa-check"></i></button>
+    </div>
   </div>
 
   <div class="row">
@@ -80,10 +83,13 @@
       <div class="widget widget-small widget-primary">
         <div class="widget-head clearfix">
           <div class="pull-left strong">
-            Alumnos disponibles
+            Alumnos - {{formGrupo.materia}}
           </div>
         </div>
         <div class="widget-body">
+          <div class="alert alert-info text-center" ng-show="alumnos.length===0 || !alumnos">
+              {{msg}}
+          </div>
           <ul class="source connected" ng-model="alumnos" ui-sortable="sortableOption">
             <li ng-repeat="alumno in alumnos">  
               <div class="media">

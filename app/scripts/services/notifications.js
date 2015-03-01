@@ -29,8 +29,7 @@ angular.module('experentiaWebSiteApp')
  	notifications.success = function(msg, time) {
  		$rootScope.notificationClass = 'notyfy_success';
  		$rootScope.notificationStatus = 'success';
- 		var msgs = [{msg: msg}];
- 		showNotification(msgs, time);
+ 		showNotification(msg, time);
  	};
  	notifications.error = function(msg, time) {
 		$rootScope.notificationClass = 'notyfy_error';
@@ -48,8 +47,7 @@ angular.module('experentiaWebSiteApp')
 		$rootScope.id = id;
 		$rootScope.elemento= elemento;
 			
-		var msgs = [{msg: msg}];
- 		showNotificationConfirm(msgs);
+ 		showNotificationConfirm(msg);
  	};
 
  	return notifications;

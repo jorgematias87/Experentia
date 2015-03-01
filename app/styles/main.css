@@ -69,7 +69,7 @@ ul.in-progress {
     float: none;
 }
 
-.source.connected li:hover, .target.connected li:hover{
+.source.connected li:hover, .target.connected li:hover, .in-progress.connected li:hover{
   cursor: move;
 }
 

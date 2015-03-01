@@ -22,7 +22,7 @@ angular.module('experentiaWebSiteApp')
      materiasCallback(response);
     },
     onMateriasError = function(rejection){
-     NotificationsSrv.error(rejection.data, 5000);
+     NotificationsSrv.error(rejection.data.Message, 5000);
     }
 
     MateriaSrv.query({id: idComision, action: 'GetMaterias'}, onMateriasSucces, onMateriasError);

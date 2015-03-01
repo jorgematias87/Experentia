@@ -11,13 +11,14 @@ angular.module('experentiaWebSiteApp')
   .controller('MainCtrl', function ($scope, $location, $routeParams, $cookieStore, $rootScope) {
 
     $rootScope.usuario = $cookieStore.get('usuario');
+    $scope.itemId= $rootScope.itemId;
     $scope.tecnologias = ['.NET', 'Javascript', 'HTML', 'CSS', 'Java', 'PHP', 'AngularJS', 'NodeJS'];
 
     if($rootScope.usuario === ''){
       $location.path('/');
     }
 
-    $scope.isActive = function (viewLocation) { 
+    $scope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
     };
 
@@ -77,6 +78,7 @@ angular.module('experentiaWebSiteApp')
 	 };
 
    $scope.select2Tags = {tags:$scope.tecnologias};
+   $scope.select2Email = {tags:[]};
 
   })
   .controller('RatingCtrl', function ($scope) {

@@ -34,7 +34,11 @@
           Alumnos
         </div>
       </div>
-      <div class="widget-body padding-none">
+      <div class="widget-body" ng-class="{'padding-none': alumnos.length>0}">
+        <div class="alert alert-info clearfix" ng-show="alumnos.length===0 || !alumnos">
+            <span class="pull-left"ng-bind-html="msg"></span>
+            <a href="#/editar-grupo/{{grupo.id}}" class="pull-right btn btn-info">Asignar</a>
+        </div>
         <ul class="unstyled list-hands">
           <li ng-repeat="alumno in alumnos">
             <div class="media">
