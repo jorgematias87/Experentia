@@ -39,5 +39,18 @@ angular.module('experentiaWebSiteApp')
 
     MateriaSrv.get({id: idMateria, action: 'GetMateria'}, onMateriaSuccess, onMateriaError);
   };
+
+  //Materia por ID
+  materias.byAlumno= function(idAlumno, materiasCallback){
+     var onMateriaSuccess = function(response){
+       materiasCallback(response);
+     },
+       onMateriaError = function(rejection){
+         console.log(rejection);
+       }
+
+    MateriaSrv.query({id: idAlumno, action: 'GetMateriasByAlumno'}, onMateriaSuccess, onMateriaError);
+  };
+
   return materias;
 });

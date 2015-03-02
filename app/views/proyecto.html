@@ -1,8 +1,11 @@
 <div>
     <h1 class="pull-left">{{proyecto.nombre}}</h1>
-    <div class="innerT  pull-right">
-        <a ng-if="viewProjectsCompany" href="#/coordinador/proyectos" class="btn btn-primary">volver a proyectos</a>
-        <a ng-if="!viewProjectsCompany" href="#/coordinador/proyectos" class="btn btn-primary">volver a proyectos</a>
+    <div class="innerT pull-right" ng-if="usuario.user === 'coordinador'" ng-show="proyecto.idCoordinador">
+        <select ng-model="proyecto.estado" data-style="btn btn-default strong filled" ng-change="changeProyectoEstado(proyecto)" class="form-control">
+            <option value="pendiente">Pendiente</option>
+            <option value="en progreso">En Progreso</option>
+            <option value="hecho">Hecho</option>
+        </select>
     </div>
     <div class="clearfix"></div>
     <div class="separator"></div>
@@ -13,64 +16,66 @@
     </div>
     <div class="row">
         <div class="col-md-9">
-            <div class="row  half innerB">
-                <div class=" col-md-5 col-sm-5 col-xs-5">
-                    <div class="pull-left innerR half">
-                        <h4>Tareas</h4>
-                    </div>
-
-                    <a ng-if="usuario.user == 'coordinador'" data-target="#modal-task" class="btn btn-primary btn-xs" data-toggle="modal" ng-click="initTarea()"><i class="fa fa-plus"></i></a>
-                </div>
-                <div class="pull-right innerR half" ng-hide="msg">
-                    <select ng-model="filtroTarea" id="filtroEstado" class="selectPicker" data-style="btn btn-default strong filled" style="display: none;" ng-change="setFiltroEstado()">
-                        <option ng-disabled="true" value="">Estado</option>
-                        <option value="">Todos</option>
-                        <option ng-repeat="tarea in tareas | unique:'estado' " value="{{tarea.estado}}"><span>{{tarea.estado}}</span></option>
-                    </select>
-                </div>
-                <div class="pull-right innerR half" ng-hide="msg">
-                    <select ng-model="filtroTarea" id="filtroAlumno" class="selectPicker" data-style="btn btn-default strong filled" style="display: none;" ng-change="setFiltroAlumno()">
-                        <option ng-disabled="true" value="">Alumnos</option>
-                        <option value="">Todos</option>
-                        <option ng-repeat="tarea in tareas | unique:'alumno'" value="{{tarea.alumno}}">{{tarea.alumno}}</option>
-                    </select>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-
-            <div class="alert alert-info" ng-show="msg">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <span ng-bind-html="msg"></span>
-            </div>
-
-            <div class="widget widget-small" ng-repeat="tarea in tareas | filter:filtroTareas" ng-class="getClassEstado('{{tarea.estado}}', 'widget')">
-                <div class="media innerAll half">
-                    <div class="pull-left h1 media-object hidden-xs margin-none innerR">
-                        <i class="text-muted fa fa-ticket"></i>
-                    </div>
-                    <ul class="list-unstyled pull-right media-action" ng-if="usuario.user == 'coordinador'" >
-                        <li class="innerB half"><a href="" class="text-muted" title="eliminar" ng-click="deleteConfirm('{{tarea.nombre}}', {{tarea.id}}, 'Tarea')"><span class="fa fa-trash"></span></a></li>
-                        <li><a href="" class="text-muted" title="editar" ng-click="tryEditTarea({{tarea}})" data-target="#modal-task" data-toggle="modal"><span class="fa fa-pencil">
-                        </span></a></li>
-                    </ul>
-                    <div class="pull-right text-right" ng-if="usuario.user == 'coordinador'">
-                        <span class="label" ng-class="getClassEstado('{{tarea.estado}}', 'label')">{{tarea.estado}}</span>
-                        <div class="innerT half">
-                            <span>{{tarea.alumno}}</span>
-                            <a ng-if="!tarea.idAlumno" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal" ng-click="setTarea(tarea)">Asignar <i class="fa fa-plus"></i></a>
-                        </div>
-                    </div>
-                    <div class="media-body">
-                        <h4>    <a href data-target="#modal-taskDescription" data-toggle="modal" ng-click="getTareaById({{tarea.id}})">{{tarea.nombre}}</a></h4>
-                        <div class="innerR">
-                            <span class="strong">Inicio: </span>
-                            <span> {{tarea.fechaInicio | date:'dd/MM/yyyy'}}</span>
+            <a ng-click="asignarProyectoConfirm('{{proyecto.nombre}}')" ng-show="proyecto.idCoordinador != usuario.id && usuario.user === 'coordinador'" class="btn btn-primary">Asignar <i class="fa fa-check"></i></a>
+            <div ng-if="proyecto.idCoordinador === usuario.id || usuario.user === 'empresa'">
+                <div class="row  half innerB">
+                    <div class=" col-md-5 col-sm-5 col-xs-5">
+                        <div class="pull-left innerR half">
+                            <h4>Tareas</h4>
                         </div>
 
+                        <a ng-if="usuario.user == 'coordinador'" data-target="#modal-task" class="btn btn-primary btn-xs" data-toggle="modal" ng-click="initTarea()"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div class="pull-right innerR half" ng-hide="msg">
+                        <select ng-model="filtroTarea" id="filtroEstado" data-style="btn btn-default strong filled" ng-change="setFiltroEstado()" class="form-control">
+                            <option ng-disabled="true" value="">Estado</option>
+                            <option value="">Todos</option>
+                            <option ng-repeat="tarea in tareas | unique:'estado' " value="{{tarea.estado}}"><span>{{tarea.estado}}</span></option>
+                        </select>
+                    </div>
+                    <div class="pull-right innerR half" ng-hide="msg">
+                        <select ng-model="filtroTarea" id="filtroAlumno" data-style="btn btn-default strong filled" ng-change="setFiltroAlumno()" class="form-control">
+                            <option ng-disabled="true" value="">Alumnos</option>
+                            <option value="">Todos</option>
+                            <option ng-repeat="tarea in tareas | unique:'alumno'" value="{{tarea.alumno}}">{{tarea.alumno}}</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="alert alert-info" ng-show="msg">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <span ng-bind-html="msg"></span>
+                </div>
+
+                <div class="widget widget-small" ng-repeat="tarea in tareas | filter:filtroTareas" ng-class="getClassEstado('{{tarea.estado}}', 'widget')">
+                    <div class="media innerAll half">
+                        <div class="pull-left h1 media-object hidden-xs margin-none innerR">
+                            <i class="text-muted fa fa-ticket"></i>
+                        </div>
+                        <ul class="list-unstyled pull-right media-action" ng-if="usuario.user == 'coordinador'" >
+                            <li class="innerB half"><a href="" class="text-muted" title="eliminar" ng-click="deleteConfirm('{{tarea.nombre}}', {{tarea.id}}, 'Tarea')"><span class="fa fa-trash"></span></a></li>
+                            <li><a href="" class="text-muted" title="editar" ng-click="tryEditTarea({{tarea}})" data-target="#modal-task" data-toggle="modal"><span class="fa fa-pencil">
+                            </span></a></li>
+                        </ul>
+                        <div class="pull-right text-right">
+                            <span class="label" ng-class="getClassEstado('{{tarea.estado}}', 'label')">{{tarea.estado}}</span>
+                            <div class="innerT half">
+                                <span>{{tarea.alumno}}</span>
+                                <a ng-if="!tarea.idAlumno && usuario.user==='coordinador'" data-target="#modal-assignTask" class="btn btn-primary btn-xs" data-toggle="modal" ng-click="setTarea(tarea)">Asignar <i class="fa fa-plus"></i></a>
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <h4><a href data-target="#modal-taskDescription" data-toggle="modal" ng-click="getTareaById({{tarea.id}})">{{tarea.nombre}}</a></h4>
+                            <div class="innerR">
+                                <span class="strong">Inicio: </span>
+                                <span> {{tarea.fechaInicio | date:'dd/MM/yyyy'}}</span>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="col-md-3">
             <div class="widget widget-primary widget-small">
@@ -81,11 +86,17 @@
                     <div class="row">
                         <div class="col-xs-5 text-muted-dark"><div class="innerB half">Tecnología:</div></div>
                         <div class="col-xs-7 text-inverse"><div class="innerB half">{{proyecto.tecnologia}}</div></div>
-                        <div class="col-xs-5 text-muted-dark"><div class="innerB half">Inicio:</div></div>
-                        <div class="col-xs-7 text-inverse"><div class="innerB half">21 de abril 2014</div></div>
-                        <div class="col-xs-5 text-muted-dark"><div class="innerB half">Fin:</div></div>
-                        <div class="col-xs-7 text-inverse"><div class="innerB half">{{proyecto.fechaLimite | date:'dd/MM/yyyy'}}</div></div>
-
+                        <div class="col-xs-5 text-muted-dark"><div class="innerB half">Creación:</div></div>
+                        <div class="col-xs-7 text-inverse"><div class="innerB half">{{proyecto.fechaCreacion | date:'dd/MM/yyyy'}}</div></div>
+                        <div class="col-xs-5 text-muted-dark"><div class="innerB half">Estado:</div></div>
+                        <div class="col-xs-7 text-inverse"><div class="innerB half">
+                            <span class="label label-unbordered" ng-class="getClassEstado('{{proyecto.estado}}', 'label')">
+                                {{proyecto.estado}}
+                            </span>
+                            <span ng-show="proyecto.estado === null">
+                                Sin asignar
+                            </span>
+                        </div></div>
                     </div>
                 </div>
             </div>
@@ -110,7 +121,7 @@
                 </div>
             </div> -->
 
-            <div class="widget widget-info widget-small">
+            <div class="widget widget-info widget-small" ng-if="proyecto.idCoordinador === usuario.id || usuario.user === 'empresa'">
                 <div class="widget-head">
                     <div class="heading">Grupo asignado</div>
                 </div>
@@ -126,7 +137,8 @@
                         <div class="col-xs-7 text-inverse"><div class="innerB half">{{grupo.materia}}</div></div>
                     </div>
                     <div class="text-center">
-                        <a ng-if="!grupo" data-target="#modal-assignTaskGroup" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
+                        <span ng-if="!grupo && usuario.user === 'empresa'">no asignado</span>
+                        <a ng-if="!grupo && usuario.user === 'coordinador'" data-target="#modal-assignTaskGroup" class="btn btn-primary btn-xs" data-toggle="modal">Asignar <i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>

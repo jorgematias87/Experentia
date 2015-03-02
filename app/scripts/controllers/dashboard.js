@@ -9,7 +9,7 @@
  */
 
  angular.module('experentiaWebSiteApp')
-  .controller('DashboardCtrl', function ($scope, $rootScope, $cookieStore,ProyectosSrv, AlumnosSrv, TareasSrv, MateriasSrv, GruposSrv) {
+  .controller('CoordinadorDashboardCtrl', function ($scope, $rootScope, $cookieStore,ProyectosSrv, AlumnosSrv, TareasSrv, MateriasSrv, GruposSrv) {
 
     $rootScope.usuario = $cookieStore.get('usuario');
 
@@ -29,12 +29,25 @@
     //Lista de Proyectos
     ProyectosSrv.listarById($rootScope.usuario.id, onProyectosByIdSuccess);
 
+    //Lista de Alumnos
     var onAlumnosSuccess = function(response){
       $scope.alumnos = response;
     };
+    AlumnosSrv.byCoordinador($rootScope.usuario.id,onAlumnosSuccess);
 
-    //Lista de Alumnos
-    AlumnosSrv.listar(onAlumnosSuccess);
+    //tarea by id
+    $scope.tarea= {};
+    var tareaCallback= function(response){
+      $scope.tarea = response;
+    };
+
+    $scope.getTareaById= function(idTarea){
+      TareasSrv.byId(idTarea, tareaCallback);
+    };
+
+    $scope.calificarTarea= function(){
+      TareasSrv.editar($scope.tarea.id, $scope.tarea);
+    };
 
     //Lista de Tareas
     var onTareasSuccess = function(response){
@@ -59,4 +72,61 @@
       }
     };
     GruposSrv.listar($rootScope.usuario.id, onGruposSuccess);
+  })
+.controller('DashboardAlumnoCtrl', function ($scope, $rootScope, $cookieStore,ProyectosSrv, AlumnosSrv, TareasSrv, MateriasSrv, GruposSrv) {
+
+    $rootScope.usuario = $cookieStore.get('usuario');
+
+    //Lista de Proyectos by Alumno
+    var onProyectosSuccess = function(response){
+      $scope.proyectos= response;
+
+      if($scope.proyectos.length === 0){
+        $scope.msg= '<strong>No tienes proyectos asignados!</strong>.'
+      }
+    };
+    ProyectosSrv.byAlumno($rootScope.usuario.id, onProyectosSuccess);
+
+    var onTareasSuccess = function(tareas){
+      $scope.tareas= tareas;
+
+      $scope.pendientes = [];
+      $scope.enProgresos = [];
+      $scope.hechos = [];
+
+      if(tareas.length === 0){
+        $scope.msg = 'Todavia no tienes tareas asignadas';
+      }else{
+        tareas.forEach(function(tarea){
+          switch(tarea.estado) {
+            case 'en progreso':
+                $scope.enProgresos.push(tarea);
+                break;
+            case 'pendiente':
+                $scope.pendientes.push(tarea);;
+                break;
+            case 'hecho':
+                $scope.hechos.push(tarea);;
+                break;
+          }
+        })
+      }
+    };
+    TareasSrv.byAlumno($rootScope.usuario.id, onTareasSuccess);
+
+    //tarea by id
+    $scope.tarea= {};
+    var tareaCallback= function(response){
+      $scope.tarea = response;
+    };
+
+    $scope.getTareaById= function(idTarea){
+      TareasSrv.byId(idTarea, tareaCallback);
+    };
+
+    //Lista de Materias
+    var onMateriasSuccess = function(response){
+      $scope.materias= response;
+    };
+    MateriasSrv.byAlumno($rootScope.usuario.id, onMateriasSuccess);
   });

@@ -14,10 +14,10 @@ angular.module('experentiaWebSiteApp')
     var redirectToDashboard = function(user){
       switch(user) {
           case 'empresa':
-              $location.path('/proyectos-empresa');
+              $location.path('/empresa/proyectos');
               break;
           case 'coordinador':
-              $location.path('/dashboard');
+              $location.path('/coordinador/dashboard');
               break;
           case 'alumno':
               $location.path('/alumno/tareas');

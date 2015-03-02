@@ -5,10 +5,13 @@
     <div class="modal-dialog">
         <div class="modal-content bg-white">
             <!-- Modal body -->
+            <div class="modal-header">
+                <h3 class="modal-title" ng-if="!editProyecto">Crear proyecto</h3>
+                <h3 class="modal-title" ng-if="editProyecto">Editar proyecto</h3>
+            </div>
+
             <div class="modal-body padding-none ">
-
-                <form ng-submit="crearProyecto()" class="form-horizontal " role="form">
-
+                <form class="form-horizontal " role="form">
                     <div class="innerLR innerT">
                         <div class="form-group">
                             <label for="to" class="col-sm-12">Proyecto:</label>
@@ -36,9 +39,7 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label for="">Tecnologias:</label>
-                                <select class="form-control" ng-model="proyecto.tecnologia" ng-options="tecnology for tecnology in tecnologias">
-                                    <option value="" disabled>Elija una opción</option>
-                                </select>
+                                <input ng-model="proyecto.tecnologia" class="innerB" type="hidden" ui-select2="select2Tags" data-placeholder="Elija una opción" style="width: 100%;"/>
                             </div>
                         </div>
 
@@ -68,8 +69,9 @@
                     </div> -->
 
                     <div class="innerLR innerB text-right">
-                        <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa  fa-check"></i> Crear</button>
+                        <a href="" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</a>
+                        <button type="submit" ng-if="!editProyecto" ng-click="crearProyecto()" class="btn btn-primary"><i class="fa  fa-check"></i> Crear</button>
+                        <button type="submit" ng-if="editProyecto" ng-click="saveEditarProyecto()" class="btn btn-primary"><i class="fa  fa-check"></i> Editar</button>
                     </div>
 
                 </form>

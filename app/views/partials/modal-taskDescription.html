@@ -1,49 +1,83 @@
 <!-- modal task description -->
-<div class="modal fade" id="modal-taskDescription">
+<div class="modal fade" id="modal-taskDescription" ng-controller="MainCtrl">
 
     <div class="modal-dialog">
         <div class="modal-content bg-white">
             <!-- Modal body -->
+            <div class="modal-header">
+                <h3 class="modal-title">Tarea - Detalle</h3>
+            </div>
             <div class="modal-body padding-none ">
 
                 <form class="form-horizontal " role="form">
 
                     <div class="innerLR innerT">
                         <div class="form-group">
-                            <label for="alumnos" class="col-sm-2 control-label innerB">Descripción:</label>
-                            <p class="col-sm-12">
+                            <strong for="alumnos" class="col-sm-2 innerB">Nombre:</strong>
+                            <p class="col-sm-10">
+                                {{tarea.nombre}}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <strong for="alumnos" class="col-sm-2 innerB">Descripción:</strong>
+                            <p class="col-sm-10">
                                 {{tarea.descripcion}}
                             </p>
                         </div>
-
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label innerB">Feedback:</label>
-                            <div class="col-sm-12">
-                                <div class="widget-body">
-                                    <textarea id="mustHaveId" class="wysihtml5 col-md-12 form-control" rows="5"></textarea>
-                                    <div class="clearfix"></div>
+                            <strong for="alumnos" class="col-sm-2 innerB">Creación:</strong>
+                            <p class="col-sm-10">
+                                {{tarea.fechaCreacion | date:'dd/MM/yyyy'}}
+                            </p>
+                        </div>
+                         <div class="form-group">
+                            <strong for="alumnos" class="col-sm-2 innerB">Estado:</strong>
+                            <p class="col-sm-10">
+                                <span class="label label-unbordered" ng-class="getClassEstado('{{tarea.estado}}', 'label')">
+                                    <i class="icon-sliders"> </i>
+                                    {{tarea.estado}}
+                                </span>
+                            </p>
+                        </div>
+
+                        <div ng-if="tarea.estado === 'hecho'">
+                            <div class="form-group">
+                                <strong for="" class="col-sm-2 innerB">Feedback:</strong>
+                                <span class="col-md-10" ng-show="usuario.user != 'coordinador'">{{tarea.comentario}}</span>
+                                <div class="col-sm-12" ng-show="usuario.user === 'coordinador'">
+                                    <div class="widget-body">
+                                        <textarea id="mustHaveId" class="wysihtml5 col-md-12 form-control" rows="5" ng-model="tarea.comentario"></textarea>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <strong class="col-sm-2">Calificación</strong>
+                                <div class="innerB" ng-controller="RatingCtrl" ng-show="usuario.user === 'coordinador'">
+                                    <rating class="ui-rating size-h3"
+                                    ng-model="tarea.calificacion"
+                                    max="max"
+                                    readonly="isReadonly"
+                                    on-hover="hoveringOver(value)"
+                                    on-leave="overStar = null"
+                                    state-on="'fa fa-star fa-2x'"
+                                    state-off="'fa fa-star-o fa-2x'"></rating>
+                                    <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+                                </div>
+                                <div class="innerB" ng-controller="RatingCtrl" ng-show="usuario.user != 'coordinador'">
+                                    <rating class="ui-rating size-h3"
+                                    ng-model="tarea.calificacion"
+                                    max="max"
+                                    readonly="true"
+                                    on-hover="hoveringOver(value)"
+                                    on-leave="overStar = null"
+                                    state-on="'fa fa-star fa-2x'"
+                                    state-off="'fa fa-star-o fa-2x'"></rating>
+                                    <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2">Calificación</label>
-                            <control-label></control-label>
-                            <div class="innerB" ng-controller="RatingCtrl">
-
-                                <rating class="ui-rating size-h3"
-                                ng-model="rate"
-                                max="max"
-                                readonly="isReadonly"
-                                on-hover="hoveringOver(value)"
-                                on-leave="overStar = null"
-                                state-on="'fa fa-star fa-2x'"
-                                state-off="'fa fa-star-o fa-2x'"></rating>
-                                <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
-                                
-                            </div>
-                        </div>
-
 
                         <div class="clearfix"></div>
                     </div>
@@ -54,8 +88,8 @@
             <!-- // Modal body END -->
 
             <div class="innerLR innerB text-right">
-                <a href="#" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</a>
-                <a href="#" class="btn btn-primary"><i class="fa  fa-check"></i> Guardar</a>
+                <a href="#" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</a>
+                <a href class="btn btn-primary" ng-if="tarea.estado === 'hecho' && usuario.user != 'alumno' && usuario.user != 'empresa'" ng-click="calificarTarea()"><i class="fa  fa-check"></i> Guardar</a>
             </div>
 
         </div>

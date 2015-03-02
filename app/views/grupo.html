@@ -2,7 +2,7 @@
 <div class="clearfix innerB">
   <h1 class="pull-left">{{grupo.nombre}}</h1>
   <div class="pull-right">
-    <a href class="btn btn-primary" title="Eliminar" ng-click="deleteConfirm('{{grupo.nombre}}', {{grupo.id}}, 'Grupo')"><i class="fa fa-trash"></i></a>
+    <a href class="btn btn-primary" title="Eliminar" ng-click="deleteConfirm('{{grupo.nombre}}',{{grupo.id}},'Grupo')"><i class="fa fa-trash"></i></a>
     <a ng-href="#/editar-grupo/{{grupo.id}}" class="btn btn-primary" title="Editar"><i class="fa fa-pencil"></i></a>
   </div>
 </div>
@@ -31,7 +31,7 @@
     <div class="widget widget-small widget-primary">
       <div class="widget-head clearfix">
         <div class="pull-left strong">
-          Alumnos
+          Alumnos ({{alumnos.length}})
         </div>
       </div>
       <div class="widget-body" ng-class="{'padding-none': alumnos.length>0}">

@@ -34,13 +34,17 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
-      .when('/proyectos-empresa', {
-        templateUrl: 'views/project-list-company.html',
-        controller: 'MainCtrl'
+      .when('/empresa/proyectos', {
+        templateUrl: 'views/proyectos.html',
+        controller: 'ProyectosEmpresaCtrl'
       })
-      .when('/dashboard', {
+      .when('/coordinador/dashboard', {
         templateUrl: 'views/dashboard.html',
-        controller: 'DashboardCtrl'
+        controller: 'CoordinadorDashboardCtrl'
+      })
+      .when('/alumno/dashboard', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardAlumnoCtrl'
       })
       .when('/coordinador/proyectos', {
         templateUrl: 'views/proyectos.html',
@@ -89,6 +93,14 @@ angular
       .when('/alumno/tareas', {
         templateUrl: 'views/tareas.html',
         controller: 'TareasAlumnoCtrl'
+      })
+      .when('/empresa/proyecto/:id', {
+        templateUrl: 'views/proyecto.html',
+        controller: 'ProyectoEmpresaCtrl'
+      })
+      .when('/alumno/proyecto/:id', {
+        templateUrl: 'views/proyecto.html',
+        controller: 'ProyectoEmpresaCtrl'
       })
       .otherwise({
         redirectTo: '/'

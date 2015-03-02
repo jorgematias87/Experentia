@@ -54,19 +54,47 @@ angular.module('experentiaWebSiteApp')
 		  };
 
 		ProyectoSrv.query({id: id, action: 'GetProyectosById'}, onProyectoSucces, onProyectoError);
-	}
+	};
 
-	proyectos.crear = function(){
+	//Proyectos by Empresa
+	proyectos.byEmpresa= function(idEmpresa, proyectoCallback){
+
+		var onProyectosSucces = function(response){
+		  proyectoCallback(response);
+		},
+		  onProyectosError = function(rejection){
+		    NotificationsSrv.error(rejection.Message, 5000);
+		  };
+
+		ProyectoSrv.query({id: idEmpresa, action: 'GetProyectosByEmpresa'}, onProyectosSucces, onProyectosError);
+	};
+
+	//Proyectos by Empresa
+	proyectos.byAlumno= function(idAlumno, proyectoCallback){
+
+		var onProyectosSucces = function(response){
+		  proyectoCallback(response);
+		},
+		  onProyectosError = function(rejection){
+		    NotificationsSrv.error(rejection.Message, 5000);
+		  };
+
+		ProyectoSrv.query({id: idAlumno, action: 'GetProyectosByAlumno'}, onProyectosSucces, onProyectosError);
+	};
+
+	proyectos.crear = function(proyecto){
 		//Crear Proyecto
 		var onCrearProyectoSucces = function(response){
 			NotificationsSrv.success('Proyecto Creado exitosamente.', 5000);
-		  $location.path('/proyectos-empresa');
+			$route.reload();
+			$('body').removeClass('modal-open');
+			$('.modal-backdrop').remove();
 		},
 		  onCrearProyectoError = function(rejection){
 		  	NotificationsSrv.error('intenta más tarde.', 5000);
 		  };
 
-		  ProyectoSrv.save($scope.proyecto, onCrearProyectoSucces, onCrearProyectoError);
+		  ProyectoSrv.save(proyecto, onCrearProyectoSucces, onCrearProyectoError);
 	};
 
 	//Editar Proyecto
@@ -74,12 +102,27 @@ angular.module('experentiaWebSiteApp')
 		var onEditarProyectoSucces = function(response){
 			NotificationsSrv.success('Proyecto Editado exitosamente.', 5000);
 		  	$route.reload();
+			$('body').removeClass('modal-open');
+			$('.modal-backdrop').remove();
 		},
 		  onEditarProyectoError = function(rejection){
 		  	NotificationsSrv.error('intenta más tarde.', 5000);
 		  };
 
 		  ProyectoSrv.update({id: idProyecto}, proyecto, onEditarProyectoSucces, onEditarProyectoError);
+	};
+
+	//Eliminar Proyecto
+	proyectos.eliminar = function(idProyecto){
+		var onEliminarProyectoSucces = function(response){
+			NotificationsSrv.success('Proyecto Eliminado exitosamente.', 5000);
+		  	$route.reload();
+		},
+		  onEliminarProyectoError = function(rejection){
+		  	NotificationsSrv.error('intenta más tarde.', 5000);
+		  };
+
+		  ProyectoSrv.delete({id: idProyecto}, onEliminarProyectoSucces, onEliminarProyectoError);
 	};
 
 	return	proyectos;

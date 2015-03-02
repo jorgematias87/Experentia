@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="styles/style.css">
     <!-- endbuild -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif|Raleway' rel='stylesheet' type='text/css'>
   </head>
   <body ng-app="experentiaWebSiteApp" custom-page ng-cloak>
     <!--[if lt IE 7]>
@@ -35,7 +37,8 @@
                 </div>
                 <div class="action">
                     <div class="notyfy_buttons" ng-if="notificationClass === 'notyfy_confirm'">
-                        <button class="btn btn-success btn-small btn-icon glyphicons ok_2" ng-click="tryDelete{{elemento}}({{id}})"><i></i> Ok</button>
+                        <button class="btn btn-success btn-small btn-icon glyphicons ok_2" ng-click="tryDelete{{elemento}}({{id}})" ng-if="elemento"><i></i> Ok</button>
+                        <button class="btn btn-success btn-small btn-icon glyphicons ok_2" ng-click="tryAsignarProyecto({{id}},{{otherId}})" ng-if="otherId"><i></i> Ok</button>
                         <button class="btn btn-danger btn-small btn-icon glyphicons remove_2" ng-click="toggleNotification()"><i></i> Cancelar</button>
                     </div>
                 </div>
@@ -124,6 +127,7 @@
         <script src="scripts/services/notifications.js"></script>
 
         <script src="scripts/directives/custompage.js"></script>
+        <script src="scripts/directives/tarea-sortable.js"></script>
 
         <script src="scripts/filters/unique.js"></script>
         <!-- endbuild -->

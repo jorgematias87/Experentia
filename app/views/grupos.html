@@ -1,17 +1,17 @@
 
-<h1 class="innerB">Grupos</h1>
+<h1 class="innerB">Grupos ({{grupos.length}})</h1>
 <div class="row half innerB">
     <div class="col-md-12">
       <a href="#/crear-grupo" class="btn btn-primary btn-xs pull-left"><i class="fa fa-plus"></i></a>
       <div class="pull-right innerR half" ng-hide="msg">
-          <select ng-model="filtroGrupos" id="filtroAlumno" class="selectPicker" data-style="btn btn-default strong filled" style="display: none;" ng-change="setFiltroAlumno()">
+          <select ng-model="filtroGrupos" id="filtroAlumno" data-style="btn btn-default strong filled" ng-change="setFiltroAlumno()" class="form-control">
               <option ng-disabled="true" value="">Tecnología</option>
               <option value="">Todos</option>
               <option ng-repeat="tecnologia in grupoTecnologias | unique:'tecnologia'" value="{{tecnologia}}">{{tecnologia}}</option>
           </select>
       </div>
         <div class="pull-right innerR half" ng-hide="msg">
-            <select ng-model="filtroGrupos" id="filtroMateria" class="selectPicker" data-style="btn btn-default strong filled" style="display: none;" ng-change="setFiltroEstado()">
+            <select ng-model="filtroGrupos" id="filtroMateria" data-style="btn btn-default strong filled" ng-change="setFiltroEstado()" class="form-control">
                 <option ng-disabled="true" value="">Materia</option>
                 <option value="">Todos</option>
                 <option ng-repeat="grupo in grupos | unique:'materia' " value="{{grupo.materia}}"><span>{{grupo.materia}}</span></option>

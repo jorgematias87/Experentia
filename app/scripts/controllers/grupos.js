@@ -184,7 +184,6 @@
   GruposSrv.byId($scope.idGrupo, onGrupoSuccess);
 
   var preSelectedTecnologias= function(tecnologias){
-    
     $scope.formGrupo.tecnologia= [];
     tecnologias.forEach(function(item){
       var tecnologia= {};
@@ -192,7 +191,7 @@
       tecnologia.text= item;
       $scope.formGrupo.tecnologia.push(tecnologia);
     });
-  }
+  };
 
   //buscar materia en array
   var getMateriaInArray = function(materias, materia){

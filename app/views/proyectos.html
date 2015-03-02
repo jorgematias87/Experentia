@@ -1,21 +1,43 @@
-<h1 class="pull-left">Proyectos &nbsp; 
-    <a ng-if="isActive('/empresa/proyectos')" data-target="#modal-project" data-toggle="modal" class="btn btn-success">Crear Proyecto <i class="icon-add-symbol"></i> </a> 
-</h1>
+<div class="row">
+    <h1 ng-if="isActive('/coordinador/oferta-proyectos')">Oferta de Proyectos</h1>
+    <h1 ng-if="!isActive('/coordinador/oferta-proyectos')" class="pull-left">Proyectos ({{proyectos.length}}) &nbsp; 
+        <a ng-if="isActive('/empresa/proyectos')" data-target="#modal-project" data-toggle="modal" class="btn btn-success">Crear Proyecto <i class="icon-add-symbol"></i> </a> 
+    </h1>
+    <div ng-if="!isActive('/coordinador/oferta-proyectos')">
+        <div class="pull-right innerR half" ng-hide="msg">
+            <select ng-model="filtroProyectos" data-style="btn btn-default strong filled" class="form-control">
+                <option ng-disabled="true" value="">Tecnología</option>
+                <option value="">Todos</option>
+                <option ng-repeat="tecnologia in proyectoTecnologias | unique:'tecnologia'" value="{{tecnologia}}">{{tecnologia}}</option>
+            </select>
+        </div>
+          <div class="pull-right innerR half" ng-hide="msg">
+              <select ng-model="filtroProyectos" data-style="btn btn-default strong filled" class="form-control">
+                  <option ng-disabled="true" value="">Estado</option>
+                  <option value="">Todos</option>
+                  <option ng-repeat="proyecto in proyectos | unique:'estado' " value="{{proyecto.estado}}"><span>{{proyecto.estado}}</span></option>
+              </select>
+          </div>
+    </div>
+</div>
 
 <div class="clearfix"></div>
 
-<div class="row innerTB" ng-controller="MainCtrl">
-    <div class="col-md-4" ng-repeat="project in proyectos" ng-if="isActive('/coordinador/oferta-proyectos')">
+<div class="row innerTB">
+    <div class="col-md-4" ng-repeat="project in proyectos" ng-if="isActive('/coordinador/oferta-proyectos')" ng-show="project.idCoordinador != usuario.id && project.idCoordinador === null">
         <div class="thumbnail widget-thumbnail">
             <div class="header text-center"><i class="icon-tv-play fa-10x icon-faded"></i></div>
             <div class="caption">
                 <h4>{{project.nombre}}</h4>
                 <p class="text-muted">{{project.descripcion}}</p>
-                <a href="#/{{usuario.user}}/proyecto/{{project.id}}" class="btn btn-primary">Ver..</a>
+                <div class="clearfix">
+                    <a href="#/{{usuario.user}}/proyecto/{{project.id}}" class="pull-left btn btn-primary">Ver..</a>
+                    <a ng-click="asignarProyectoConfirm('{{project.nombre}}', {{project.id}})" class="pull-right btn btn-xs btn-primary" title="Asignar"><i class="fa fa-check"></i></a>
+                </div>
             </div>
         </div>
     </div>
-    <div class="widget widget-inverse widget-small " ng-repeat="project in proyectos" ng-if="!isActive('/coordinador/oferta-proyectos')">
+    <div class="widget widget-inverse widget-small " ng-repeat="project in proyectos | filter:filtroProyectos" ng-if="!isActive('/coordinador/oferta-proyectos')">
         <div class="alert alert-info clearfix" ng-show="msg">
             <span class="pull-left"ng-bind-html="msg"></span>
             <a href="" class="pull-right btn btn-info">Proyectos</a>
@@ -25,11 +47,25 @@
                 <div class="pull-left innerR half hidden-xs">
                     <i class="icon-tv-play fa-4x icon-faded"></i>
                 </div>
-                <div class="pull-right hidden-xs">
+                <ul class="list-unstyled pull-right media-action" ng-if="usuario.user === 'empresa' && !project.idCoordinador">
+                    <li class="innerB half"><a href="" class="text-muted" title="eliminar" ng-click="deleteConfirm('{{project.nombre}}', {{project.id}}, 'Proyecto')"><span class="fa fa-trash"></span></a></li>
+                    <li><a href data-target="#modal-project" data-toggle="modal" ng-click="tryEditProyecto({{project}})" class="text-muted" title="editar"><span class="fa fa-pencil">
+                    </span></a></li>
+                </ul>
+                <div class="pull-right hidden-xs" ng-if="usuario.user==='coordinador'">
                     <div class="strong text-muted-dark innerB half">Asignado a:</div>
                     <p class="text-center">
-                    <span ng-show="!project.grupo">Sin asignar</span> 
-                    <a href="#/grupo/{{project.grupo.id}}">{{project.grupo.nombre}}</a></p>
+                        <span ng-show="!project.grupo">Sin asignar</span> 
+                        <a href="#/grupo/{{project.grupo.id}}">{{project.grupo.nombre}}</a>
+                    </p>
+                </div>
+                <div class="pull-right hidden-xs" ng-if="usuario.user === 'coordinador'">
+                    <div class="strong text-muted-dark innerB half">Cambiar estado:</div>
+                    <select ng-model="project.estado" data-style="btn btn-default strong filled" ng-change="changeProyectoEstado(project)" class="form-control">
+                        <option value="pendiente">Pendiente</option>
+                        <option value="en progreso">En Progreso</option>
+                        <option value="hecho">Hecho</option>
+                    </select>
                 </div>
                 <div class="media-body">
                     <h4><a href="#/{{usuario.user}}/proyecto/{{project.id}}" class="media-heading">{{project.nombre}}</a></h4>
@@ -38,13 +74,16 @@
                     <ul class="list-inline list-unbordered">
                         <li>
                             <i class="fa fa-fw fa-clock-o"></i>
-                            {{project.fechaLimite | date:'dd/MM/yyyy'}}
+                            {{project.fechaCreacion | date:'dd/MM/yyyy'}}
                         </li>
                         <li>
-                            <span class="label label-unbordered" ng-class="getClassEstado('{{project.estado}}', 'label')">
+                            <span ng-if="project.idCoordinador" class="label label-unbordered" ng-class="getClassEstado('{{project.estado}}', 'label')">
                                 <i class="icon-sliders"> </i>
                                 {{project.estado}}
-                            </span> 
+                            </span>
+                            <span ng-if="project.idCoordinador === null">
+                                no asignado
+                            </span>  
                         </li>
                         <li>
                             <i class="icon-wrench"> </i> {{project.tecnologia}}

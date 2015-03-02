@@ -18,6 +18,8 @@
  			};
  			addBg = function(path) {
  				$element.removeClass('body-wide body-lock');
+ 				$('#wrap-ngview').addClass('innerLR innerT');
+ 				
  				switch (path) {
  					case '/404':
  					case '/500':

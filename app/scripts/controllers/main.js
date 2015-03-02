@@ -24,7 +24,7 @@ angular.module('experentiaWebSiteApp')
 
     setTimeout(function() {
       $('.selectPicker').selectpicker();
-    }, 2000);
+    }, 2500);
 
     $rootScope.toggleNotification = function(){
       $rootScope.showNotification = false;
@@ -68,7 +68,6 @@ angular.module('experentiaWebSiteApp')
     
     $scope.sortableOption = {
       connectWith: '.connected',
-      cursor: 'move',
       placeholder: 'arrastre y suelte un alumno'
     };
 
@@ -81,22 +80,14 @@ angular.module('experentiaWebSiteApp')
    $scope.select2Email = {tags:[]};
 
   })
-  .controller('RatingCtrl', function ($scope) {
-    $scope.rate = 7;
-    $scope.max = 5;
+  .controller('RatingCtrl', function ($scope, $rootScope) {
+    $rootScope.rate = 0;
+    $scope.max = 10;
     $scope.isReadonly = false;
 
     $scope.hoveringOver = function(value) {
       $scope.overStar = value;
       $scope.percent = 100 * (value / $scope.max);
     };
-
-    $scope.ratingStates = [
-    {stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
-    {stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
-    {stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle'},
-    {stateOn: 'glyphicon-heart'},
-    {stateOff: 'glyphicon-off'}
-    ];
 
   });

@@ -8,11 +8,11 @@
       <div class="widget widget-small widget-primary">
         <div class="widget-head clearfix">
           <div class="pull-left strong">
-            Grupos
+            Grupos - ({{grupos.length}})
           </div>
         </div>
         <div class="widget-body" ng-class="{'padding-none': grupos.length>0}">
-          <div class="alert alert-info clearfix" ng-show="msgGrupos">
+          <div class="alert alert-info clearfix" ng-show="msgGrupos && usuario.user==='coordinador'">
               <span class="pull-left"ng-bind-html="msgGrupos"></span>
               <a href="#/crear-grupo" class="pull-right btn btn-info"><i class="icon-group"></i> Crear</a>
           </div>
@@ -49,7 +49,7 @@
     <div class="widget widget-small widget-primary">
       <div class="widget-head clearfix">
         <div class="pull-left strong">
-          Alumnos
+          Alumnos  ({{alumnos.length}})
         </div>
       </div>
       <div class="widget-body" ng-class="{'padding-none': alumnos.length>0}">

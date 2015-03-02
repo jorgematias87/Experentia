@@ -8,15 +8,16 @@
  * Controller of the experentiaWebSiteApp
  */
 angular.module('experentiaWebSiteApp')
-  .controller('TareasAlumnoCtrl', function ($scope, $cookieStore, $rootScope, TareasSrv) {
+  .controller('TareasAlumnoCtrl', function ($scope, $cookieStore, $timeout, $rootScope, TareasSrv) {
 
     $rootScope.usuario = $cookieStore.get('usuario');
-    
+
     var onTareasSuccess = function(tareas){
       $scope.tareas= {};
-      $scope.tareas.pendientes = [];
-      $scope.tareas.enProgresos = [];
-      $scope.tareas.hechos = [];
+
+      $scope.pendientes = [];
+      $scope.enProgresos = [];
+      $scope.hechos = [];
 
       if(tareas.length === 0){
         $scope.msg = 'Todavia no tienes tareas asignadas';
@@ -24,17 +25,27 @@ angular.module('experentiaWebSiteApp')
         tareas.forEach(function(tarea){
           switch(tarea.estado) {
             case 'en progreso':
-                $scope.tareas.enProgresos.push(tarea);
+                $scope.enProgresos.push(tarea);
                 break;
             case 'pendiente':
-                $scope.tareas.pendientes.push(tarea);;
+                $scope.pendientes.push(tarea);;
                 break;
             case 'hecho':
-                $scope.tareas.hechos.push(tarea);;
+                $scope.hechos.push(tarea);;
                 break;
           }
         })
       }
     };
     TareasSrv.byAlumno($rootScope.usuario.id, onTareasSuccess);
+
+    //tarea by id
+    $scope.tarea= {};
+    var tareaCallback= function(response){
+      $scope.tarea = response;
+    };
+
+    $scope.getTareaById= function(idTarea){
+      TareasSrv.byId(idTarea, tareaCallback);
+    }; 
   });

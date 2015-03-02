@@ -1,38 +1,30 @@
-<h1 class="innerB">Alumnos</h1>
+<div class="clearfix">
+  <h1 class="innerB col-md-8">Alumnos ({{alumnos.length}}) </h1>
+  <div class="input-group col-md-4">
+    <input type="text" class="form-control" ng-model="alumnoBuscado" placeholder="buscar alumno..">
+    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+  </div>
+</div>
 
-<div class="widget widget-heading-simple widget-body-white">
 
-    <!-- Widget heading -->
+<!-- <div class="widget widget-heading-simple widget-body-white">
+
     <div class="widget-head">
         <h4 class="heading">Invitar a alumnos</h4>
     </div>
-    <!-- // Widget heading END -->
 
     <div class="widget-body clearfix">
         <label for="emailAlumnos">Email:</label>
         <input class="innerB" type="hidden" ui-jq="select2" ui-options="select2Email" style="width: 100%;"/>
         <div ng-show="msg" class="alert alert-success text-center">
           <strong>{{msg}}</strong>
-          </div>
-            <button ng-click="trySendEmail()" class="pull-right btn btn-primary">Invitar</button>
-                <!-- <form action="" class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label for="emailAlumnos">Email:</label>
-                            <input type="hidden" name="emailAlumnos" id="select2_5" class="form-control" style="width: 100%;"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <button class="pull-right btn btn-primary">Invitar</button>
-                        </div>
-                    </div>
-                </form> -->
-            </div>
-</div>
+      </div>
+      <button ng-click="trySendEmail()" class="pull-right btn btn-primary">Invitar</button>
+  </div>
+</div> -->
 
 <div class="row">
-  <div class="col-md-6" ng-repeat="alumno in alumnos">
+  <div class="col-md-6" ng-repeat="alumno in alumnos | filter: alumnoBuscado">
     <div class="widget widget-small" >
     <!-- <div class="widget widget-small"> -->
         <div class="media innerAll half">

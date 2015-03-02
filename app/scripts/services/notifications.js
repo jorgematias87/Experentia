@@ -41,10 +41,11 @@ angular.module('experentiaWebSiteApp')
 		$rootScope.notificationStatus = '';
  		showNotification(msg, time);
  	};
- 	notifications.confirm = function(msg, id, elemento) {
+ 	notifications.confirm = function(msg, id, elemento, otherId) {
 		$rootScope.notificationClass = 'notyfy_confirm';
 		$rootScope.notificationStatus = '';
 		$rootScope.id = id;
+		$rootScope.otherId= otherId;
 		$rootScope.elemento= elemento;
 			
  		showNotificationConfirm(msg);
